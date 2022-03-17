@@ -84,7 +84,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
             <?php
         }
         echo '<div class="ajaxpost_loader '. esc_attr( $wraper_class ) .'" data-block_style="'. esc_attr( $style ) .'" data-column="'. esc_attr( $wraper_class ) .'" data-post_type="'. esc_attr( $posttype ) . '" data-text_limit="'. esc_attr( $text_limit ) .'" data-order="1" data-limit="'. esc_attr( $limit ) .'" data-cate="1"></div>';
-        echo '<button class="loadmore_ajax" type="button" >'. esc_html__('Load More', 'load-more-ajax-lite' ) .'</button>';
+        echo '<button class="loadmore_ajax" type="button" >'. esc_html__( 'Load More', 'load-more-ajax-lite' ) .'</button>';
     echo '</div>';
     
     return ob_get_clean();

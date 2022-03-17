@@ -110,7 +110,7 @@
         $post = wp_slash( filter_var_array( $_POST ) );
 
         if ( ! isset( $post['order'] ) ) {
-            wp_send_json_error( ['error' => true, 'message' => 'Couldn\'t found any data'] );
+            wp_send_json_error( ['error' => true, 'message' => esc_html__( 'Couldn\'t found any data', 'load-more-ajax-lite' ) ] );
         }
 
         $posttype   = $post['post_type'] ? sanitize_text_field( $post['post_type'] ) : 'post';

@@ -15,7 +15,7 @@ The plugin for ajax load more posts and custom post type posts with ajax categor
 'Load More Ajax Lite' is easiest and lite weight plugin that you can show posts and custom post type posts load more and category filter. Create your blog list/grid view page easily by using simple shortcode.
 
 Main Shortcode: [load_more_ajax_lite]
-Setup attributes according to your demand. No attribute is required.
+Add attributes according to your demand. No attribute is required.
 [load_more_ajax_lite post_type="" posts_per_page="" filter="" include="" exclude="" text_limit="" style="" column=""]
 
 Attributes & values:
