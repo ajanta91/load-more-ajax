@@ -37,13 +37,13 @@
         $words = str_word_count(strip_tags( $the_content ) );
         
         $minute = floor( $words / 200 );
-        $min    = 1 <= $minute ? $minute . ' min' : '';
+        $min    = 1 <= $minute ? $minute . esc_html__( ' min', 'load-more-ajax-lite' ) : '';
         
         $second = floor( $words % 200 / (200 / 60 ) );
-        $sec = $second . ' sec';
+        $sec = $second .  esc_html__( ' sec', 'load-more-ajax-lite');
         
         $estimate = 1 > $minute ? $sec : $min;
-        $output = $estimate . ' read';
+        $output = $estimate .  esc_html__( ' read', 'load-more-ajax-lite');
         
         return $output;
     }
@@ -53,8 +53,8 @@
      */
     function load_more_ajax_title_excerpt( $title ) {
         $max = 50;
-        if ( strlen($title) > $max ) {
-            $title = substr($title, 0, $max) . ' &hellip;';
+        if ( strlen( $title ) > $max ) {
+            $title = substr( $title, 0, $max ) . ' &hellip;';
         }
         return $title;
     }
