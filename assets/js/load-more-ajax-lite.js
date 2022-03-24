@@ -5,28 +5,29 @@
         
         loadmore_post_ajax();
 
-        if( $('.ajax_post_cat').length > 0){
+        let ajax_post_cat = $('.ajax_post_cat');
+        if( ajax_post_cat.length > 0 ){
 
-            $('.ajax_post_cat').click(function(){
+            ajax_post_cat.click( function(){
                 var $this = $(this);
-                $('.ajax_post_cat').each(function(){
+                ajax_post_cat.each(function(){
                     $(this).removeClass('active');
                 });
 
                 var $main = document.querySelector('.ajaxpost_loader');
                 if( $main ) {
-                    $main.setAttribute('data-cate', 0);
+                    $main.setAttribute( 'data-cate', 0 );
                 }    
 
                 $this.addClass('active');
 
-            }).on("click", loadmore_post_ajax);
+            } ).on( 'click', loadmore_post_ajax );
             
         }
 
         function loadmore_post_ajax(){
 
-            var $main       = document.querySelector('.ajaxpost_loader');
+            var $main       = document.querySelector( '.ajaxpost_loader' );
             var $ptype      = $main.getAttribute( 'data-post_type' );
             var $order      = $main.getAttribute( 'data-order' );
             var $limit      = $main.getAttribute( 'data-limit' );
@@ -38,23 +39,23 @@
                 $cteId = -1;
             }
 
-            var $cateSelect = $main.parentElement.querySelector(".ajax_post_cat.active");
-            if($cateSelect){
-                var $cteIdnew = $cateSelect.getAttribute("data-cateid");
+            var $cateSelect = $main.parentElement.querySelector( '.ajax_post_cat.active' );
+            if( $cateSelect ){
+                var $cteIdnew = $cateSelect.getAttribute( 'data-cateid' );
                 if( $cteIdnew !== $cteId ){
                     $main.innerHTML = '';
-                    $main.setAttribute('data-order', 1);
+                    $main.setAttribute( 'data-order', 1 );
                     $order = 1;
 
                     $cteId = $cteIdnew;
-                    $main.setAttribute('data-cate', $cteIdnew);
+                    $main.setAttribute( 'data-cate', $cteIdnew );
                 }
 
             }
 
             var $loadmore = document.querySelector('.loadmore_ajax');
             if( $loadmore ){
-                $loadmore.addEventListener("click", loadmore_post_ajax);
+                $loadmore.addEventListener( 'click', loadmore_post_ajax );
                 $loadmore.classList.add( 'loading_btn' );
             }
 
@@ -73,7 +74,6 @@
                 },
                 success: function ( res ) {
                     if( res.success ){
-                        console.log(res);
                         var $posts = ( res.data.posts ) ? res.data.posts : [];
                         var $ordernew = ( res.data.paged ) ? res.data.paged : $order;
 

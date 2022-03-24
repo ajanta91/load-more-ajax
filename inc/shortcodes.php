@@ -22,6 +22,8 @@ function load_more_ajax_lite_shortcode( $atts ) {
     $style      = ! empty( $atts['style'] ) ? $atts['style'] : '1';
     $column     = ! empty( $atts['column'] ) ? $atts['column'] : '2';
 
+    wp_enqueue_script('jquery');
+    
     if ( $style == '1' ) {
         wp_enqueue_style( 'load-more-ajax-lite' );
     } elseif ( $style == '2' ) {
@@ -32,18 +34,23 @@ function load_more_ajax_lite_shortcode( $atts ) {
     switch ( $column ) {
         case 'full':
             $wraper_class = 'full';
+            $limit        = '3';
             break;
         case '2':
             $wraper_class = 'column_2';
+            $limit        = '2';
             break;
         case '3':
             $wraper_class = 'column_3';
+            $limit        = '3';
             break;
         case '4':
             $wraper_class = 'column_4';
+            $limit        = '4';
             break;
         case '5':
             $wraper_class = 'column_5';
+            $limit        = '5';
             break;
         default:
             $wraper_class = 'column_2';

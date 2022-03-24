@@ -20,6 +20,9 @@
     color: #c6400f;
     border-bottom: 1px solid;
 }
+.apl_block_wraper .cat_filter .ajax_post_cat.active {
+    pointer-events: none;
+}
 .apl_block_wraper .ajaxpost_loader {
     width: 100%;
     display: grid;
@@ -30,20 +33,23 @@
     grid-template-columns: auto;
 }
 .apl_block_wraper .ajaxpost_loader.column_2 {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 48.5% 48.5%;
+    column-gap: 3%;
 }
 .apl_block_wraper .ajaxpost_loader.column_3{
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 31.33% 31.33% 31.33%;
+    column-gap: 3%;
 }
 .apl_block_wraper .ajaxpost_loader.column_4{
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 23.50% 23.50% 23.50% 23.50%;
+    column-gap: 2%;
 }
 .apl_block_wraper .ajaxpost_loader.column_5{
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 18.4% 18.4% 18.4% 18.4% 18.4%;
+    column-gap: 2%;
 }
 .ajaxpost_loader .apl_post_wraper {
     margin-bottom: 40px;
-    padding-right: 30px;
 }
 .ajaxpost_loader.full .apl_post_wraper,
 .ajaxpost_loader.column_2 .apl_post_wraper:nth-child(2n+0),
@@ -98,7 +104,7 @@
 .apl_post_wraper .apl_content_wraper p{
     font-size: 16px;
     color: #666;
-    margin: 0;
+    margin: 10px 0;
 }
 .apl_post_wraper .apl_cat_wraper a {
     text-decoration: none;
@@ -153,13 +159,14 @@ a.apl_post_category:hover {
 
 .apl_post_meta {
     display: flex;
+    flex-wrap:wrap
 }
 span.apl_post_meta_item a,
 span.apl_post_meta_item {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 15px;
+    margin-bottom: 4px;
     color: #7a7a7a;
 }
 span.apl_post_meta_item a{

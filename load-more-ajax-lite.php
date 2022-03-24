@@ -6,7 +6,7 @@
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Ajanta Das
- * Author URI:        mailto:ajanta.wpdev@gmail.com
+ * Author URI:        https://lite-themes.com/plugins/load-more-ajax-lite/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       load-more-ajax-lite

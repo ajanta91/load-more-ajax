@@ -25,8 +25,12 @@
     color: #4caf50;
     border: 1px solid #4caf50;
 }
+.apl_block_wraper .cat_filter .ajax_post_cat.active {
+    pointer-events: none;
+}
 .ajaxpost_loader{
     margin-bottom: 50px;
+    min-height: 440px;
 }
 .apl_post_wraper {
     display: grid;
