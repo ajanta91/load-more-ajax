@@ -231,3 +231,14 @@ span.apl_post_meta_item:last-child::after{
         transform: rotate(360deg);
     }
 }
+@media (max-width:991px) {
+    .apl_block_wraper .ajaxpost_loader.column_3 {
+        grid-template-columns: auto auto
+    }
+}
+
+@media (max-width:576px) {
+    .apl_block_wraper .ajaxpost_loader.column_3 {
+        grid-template-columns: auto
+    }
+}
