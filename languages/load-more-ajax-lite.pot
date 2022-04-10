@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-03-17 23:02+0600\n"
+"POT-Creation-Date: 2022-04-10 13:02+0600\n"
 "PO-Revision-Date: 2022-03-07 01:48+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,14 +18,26 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: inc/functions.php:113
+#: inc/functions.php:40
+msgid " min"
+msgstr ""
+
+#: inc/functions.php:43
+msgid " sec"
+msgstr ""
+
+#: inc/functions.php:46
+msgid " read"
+msgstr ""
+
+#: inc/functions.php:119
 msgid "Couldn't found any data"
 msgstr ""
 
-#: inc/shortcodes.php:79
+#: inc/shortcodes.php:86
 msgid "All"
 msgstr ""
 
-#: inc/shortcodes.php:87
+#: inc/shortcodes.php:94
 msgid "Load More"
 msgstr ""

@@ -107,20 +107,18 @@
 
     function load_more_ajax_lite_with_cat_filter() {
 
-        $post = wp_slash( filter_var_array( $_POST ) );
+        $posttype   = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'post';
+        $order      = isset( $_POST['order'] ) ? sanitize_text_field( $_POST['order'] ) : '1';
+        $limit      = isset( $_POST['limit'] ) ? sanitize_text_field( $_POST['limit'] ) : '1';
+        $cat        = isset( $_POST['cate'] ) ? sanitize_text_field( $_POST['cate'] ) : '0';
+        $image_size = isset( $_POST['column'] ) ? sanitize_text_field( $_POST['column'] ) : 'column_3';
+        $block_style= isset( $_POST['block_style'] ) ? sanitize_text_field( $_POST['block_style'] ) : '1';
+        $text_limit = isset( $_POST['text_limit'] ) ? sanitize_text_field( $_POST['text_limit'] ) : '10';
 
-        if ( ! isset( $post['order'] ) ) {
-            wp_send_json_error( ['error' => true, 'message' => esc_html__( 'Couldn\'t found any data', 'load-more-ajax-lite' ) ] );
+        if ( !isset( $order ) ) {
+            wp_send_json_error(['error' => true, 'message' => esc_html__('Couldn\'t found any data', 'load-more-ajax-lite')]);
         }
 
-        $posttype   = $post['post_type'] ? sanitize_text_field( $post['post_type'] ) : 'post';
-        $order      = $post['order'] ? sanitize_text_field( $post['order'] ) : '1';
-        $limit      = $post['limit'] ? sanitize_text_field( $post['limit'] ) : '1';
-        $cat        = $post['cate'] ? sanitize_text_field( $post['cate'] ) : '0';
-        $image_size = $post['column'] ? sanitize_text_field( $post['column'] ) : 'column_3';
-        $block_style= $post['block_style'] ? sanitize_text_field( $post['block_style'] ) : '1';
-        $text_limit = $post['text_limit'] ? sanitize_text_field( $post['text_limit'] ) : '10';
-        
         $args['suppress_filters'] = true;
         $args['post_type'] = $posttype;
         $args['posts_per_page'] = $limit;
