@@ -14,7 +14,6 @@ function load_more_ajax_lite_shortcode( $atts ) {
     ob_start();
     
     $posttype   = ! empty( $atts['post_type'] ) ? $atts['post_type'] : 'post';
-    $limit      = ! empty( $atts['posts_per_page'] ) ? $atts['posts_per_page'] : '2';
     $include    = ! empty( $atts['include'] ) ? $atts['include'] : '';
     $exclude    = ! empty( $atts['exclude'] ) ? $atts['exclude'] : '';
     $filter     = ! empty( $atts['filter'] ) ? $atts['filter'] : 'true';
@@ -56,7 +55,8 @@ function load_more_ajax_lite_shortcode( $atts ) {
             $wraper_class = 'column_2';
             break;
     }
-
+    $limit      = !empty($atts['posts_per_page']) ? $atts['posts_per_page'] : '2';
+    
     echo '<div class="apl_block_wraper lma_block_style_'.esc_attr( $style ).'">';
     $cat_item = ! empty( get_load_more_ajax_lite_taxonomi( $posttype ) ) ? get_load_more_ajax_lite_taxonomi( $posttype ) : '';
         if( $filter == 'true' && ! empty( $cat_item ) ) { ?>
