@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Load More Ajax Lite
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Ajanta Das
@@ -45,7 +45,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        public function __construct() {
+        private function __construct() {
 
             $this->define_constants();
 
@@ -151,10 +151,41 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
         }
 
+        public function loadmoreajax_get_font_url() {
+            $fonts_url = '';
+            /* Translators: If there are characters in your language that are not
+            * supported by Libre Franklin, translate this to 'off'. Do not translate
+            * into your own language.
+            */
+            $Poppins = _x('on', 'Poppins font: on or off', 'load-more-ajax-lite');
+
+            if ('off' !== $Poppins) {
+                $font_families = array();
+
+                if ('off' !== $Poppins) {
+                    $font_families[] = 'Poppins:400,500,600,700';
+                }
+
+                $query_args = array(
+                    'family' => urlencode(implode('|', $font_families)),
+                    'subset' => urlencode('latin,latin-ext'),
+                );
+                $fonts_url = add_query_arg($query_args, 'https://fonts.googleapis.com/css');
+            }
+            return esc_url_raw($fonts_url);
+        }
+
         public function enqueue_scripts() {
-        
+            $font_url = $this->loadmoreajax_get_font_url();
+            if ( !empty( $font_url ) ){
+                wp_enqueue_style('loadmoreajax-fonts', esc_url_raw( $font_url ), array(), null);
+            }
+
             wp_register_style( 'load-more-ajax-lite', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__ ) );
             wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ) );
+            wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ) );
+            wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ) );
+
             wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-lite.js', __FILE__ ), '1.0', true );
             wp_localize_script( 'load-more-ajax-lite', 'load_more_ajax_lite', array(
                 'ajax_url' => admin_url('admin-ajax.php'),

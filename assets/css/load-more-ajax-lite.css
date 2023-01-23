@@ -14,11 +14,25 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: 0.3s;
+    position: relative;
 }
 .apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat:hover,
 .apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat.active {
     color: #c6400f;
-    border-bottom: 1px solid;
+}
+.apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat:before,
+.apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat:before {
+    content: '';
+    width: 0;
+    height: 1px;
+    background: #c6400f;
+    position: absolute;
+    bottom: 0;
+    transition: 0.3s;
+}
+.apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat:hover:before,
+.apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat.active:before {
+    width: 100%;
 }
 .apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat.active {
     pointer-events: none;
@@ -61,6 +75,12 @@
 .apl_block_wraper.lma_block_style_1 .apl_post_wraper .apl_thumnbail_wrap {
     margin-bottom: 20px;
     position: relative;
+    box-shadow: 0 3px 12px -1px rgb(7 10 25 / 20%),
+    0 22px 27px -20px rgb(7 10 25 / 20%);
+    border-radius: 6px;
+}
+.apl_block_wraper.lma_block_style_1 .apl_post_wraper.no_thumbnail .apl_thumnbail_wrap {
+    box-shadow: none;
 }
 .apl_block_wraper.lma_block_style_1 .apl_post_wraper .apl_thumnbail_wrap .permalink_thumn{
     display: flex;
@@ -77,6 +97,7 @@
     margin: 0 0 10px 0;
     text-transform: capitalize;
     line-height: 30px;
+    word-break: break-word;
 }
 .apl_block_wraper.lma_block_style_1 .apl_post_wraper .apl_content_wraper .apl_title_permalink:hover{
     color: #c6400f;
@@ -242,4 +263,100 @@
     .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_3 {
         grid-template-columns: auto
     }
+}
+
+
+@keyframes theme_fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.apl_post_wraper {
+    animation: 1s theme_fadeInUp;
+}
+
+
+.apl_block_wraper {
+    position: relative;
+}
+
+.loading_overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid #ccc;
+    border-left-color: #000;
+    border-radius: 974px;
+    -o-border-radius: 974px;
+    -ms-border-radius: 974px;
+    -webkit-border-radius: 974px;
+    -moz-border-radius: 974px;
+    margin: -24px 0 0 -24px;
+    height: 49px;
+    width: 49px;
+    animation: cssload-rotate 1150ms linear infinite;
+    -o-animation: cssload-rotate 1150ms linear infinite;
+    -ms-animation: cssload-rotate 1150ms linear infinite;
+    -webkit-animation: cssload-rotate 1150ms linear infinite;
+    -moz-animation: cssload-rotate 1150ms linear infinite;
+}
+
+.loading_overlay::before,
+.loading_overlay::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid #ccc;
+    border-left-color: #000;
+    border-radius: 974px;
+    -o-border-radius: 974px;
+    -ms-border-radius: 974px;
+    -webkit-border-radius: 974px;
+    -moz-border-radius: 974px;
+}
+
+.loading_overlay::before {
+    content: "";
+    margin: -22px 0 0 -22px;
+    height: 43px;
+    width: 43px;
+    animation: cssload-rotate 1150ms linear infinite;
+    -o-animation: cssload-rotate 1150ms linear infinite;
+    -ms-animation: cssload-rotate 1150ms linear infinite;
+    -webkit-animation: cssload-rotate 1150ms linear infinite;
+    -moz-animation: cssload-rotate 1150ms linear infinite;
+}
+
+.loading_overlay::after {
+    content: "";
+    margin: -28px 0 0 -28px;
+    height: 55px;
+    width: 55px;
+    animation: cssload-rotate 2300ms linear infinite;
+    -o-animation: cssload-rotate 2300ms linear infinite;
+    -ms-animation: cssload-rotate 2300ms linear infinite;
+    -webkit-animation: cssload-rotate 2300ms linear infinite;
+    -moz-animation: cssload-rotate 2300ms linear infinite;
+}
+
+@keyframes cssload-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.loading_overlay{
+    background: #00000010;
 }

@@ -10,6 +10,7 @@
 
 .apl_block_wraper.lma_block_style_2 .cat_filter .ajax_post_cat {
     margin-right: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     font-size: 14px;
     text-transform: uppercase;
@@ -64,6 +65,7 @@
     margin: 10px 0 10px 0;
     text-transform: capitalize;
     line-height: 30px;
+    word-break: break-word;
 }
 
 .apl_block_wraper.lma_block_style_2 .apl_post_wraper .apl_content_wraper .apl_title_permalink:hover {

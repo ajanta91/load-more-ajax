@@ -51,10 +51,10 @@
     /**
      * Title Excerpt
      */
-    function load_more_ajax_title_excerpt( $title ) {
-        $max = 50;
-        if ( strlen( $title ) > $max ) {
-            $title = substr( $title, 0, $max ) . ' &hellip;';
+    function load_more_ajax_title_excerpt( $title, $title_limit = 50 ) {
+        
+        if ( strlen( $title ) > $title_limit ) {
+            $title = substr( $title, 0, $title_limit ) . ' &hellip;';
         }
         return $title;
     }
@@ -114,6 +114,7 @@
         $image_size = isset( $_POST['column'] ) ? sanitize_text_field( $_POST['column'] ) : 'column_3';
         $block_style= isset( $_POST['block_style'] ) ? sanitize_text_field( $_POST['block_style'] ) : '1';
         $text_limit = isset( $_POST['text_limit'] ) ? sanitize_text_field( $_POST['text_limit'] ) : '10';
+        $titleLimit = isset( $_POST['title_limit'] ) ? sanitize_text_field( $_POST['title_limit'] ) : 30;
 
         if ( !isset( $order ) ) {
             wp_send_json_error(['error' => true, 'message' => esc_html__('Couldn\'t found any data', 'load-more-ajax-lite')]);
@@ -146,8 +147,8 @@
                 $postdata['posts'][] = [
                     'id'            => get_the_ID(),
                     'class'         => implode( ' ', get_post_class() ),
-                    'title'         => esc_html( get_the_title() ),
-                    'title_excerpt' => esc_html( load_more_ajax_title_excerpt( get_the_title() ) ),
+                    'title'         => get_the_title(),
+                    'title_excerpt' => load_more_ajax_title_excerpt( get_the_title(), $titleLimit ),
                     'permalink'     => esc_url( get_the_permalink( get_the_ID() ) ),
                     'thumbnail'     => esc_url( get_the_post_thumbnail_url( get_the_ID(), $image_size ) ),
                     'cats'          => load_more_ajax_lite_kses_post( $cat_item ),
@@ -155,7 +156,7 @@
                     'date'          => get_the_time( 'd M, Y' ),
                     'read_time'     => esc_html( load_more_ajax_lite_estimated_reading_time( get_the_ID() ) ),
                     'content'       => esc_html( wp_trim_words( get_the_content(), $text_limit, ' ...' ) ),
-                    'block_style'   => esc_html( $block_style ),
+                    'comment_count' => get_comments_number_text( '0 Comments', '1 Comment', '% Comments' ),
                 ];
                 
             endwhile;
@@ -163,6 +164,7 @@
 
         $postdata['paged'] = $order + 1;
         $postdata['limit'] = $limit;
+        $postdata['block_style'] = esc_html( $block_style );
 
         wp_send_json_success( $postdata );
     }

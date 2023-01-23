@@ -7,6 +7,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
         'exclude'       => '',
         'filter'        => 'true',
         'text_limit'    => '10',
+        'title_limit'   => '',
         'style'         => '1',
         'column'        => '2'
     ), $atts );
@@ -18,6 +19,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
     $exclude    = ! empty( $atts['exclude'] ) ? $atts['exclude'] : '';
     $filter     = ! empty( $atts['filter'] ) ? $atts['filter'] : 'true';
     $text_limit = ! empty( $atts['text_limit'] ) ? $atts['text_limit'] : '10';
+    $title_limit = ! empty( $atts['title_limit'] ) ? $atts['title_limit'] : 30;
     $style      = ! empty( $atts['style'] ) ? $atts['style'] : '1';
     $column     = ! empty( $atts['column'] ) ? $atts['column'] : '2';
 
@@ -27,6 +29,8 @@ function load_more_ajax_lite_shortcode( $atts ) {
         wp_enqueue_style( 'load-more-ajax-lite' );
     } elseif ( $style == '2' ) {
         wp_enqueue_style( 'load-more-ajax-lite-s2' );
+    } elseif ( $style == '3') {
+        wp_enqueue_style('load-more-ajax-lite-s3');
     }
     wp_enqueue_script( 'load-more-ajax-lite' );
 
@@ -90,7 +94,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
             </div>
             <?php
         }
-        echo '<div class="ajaxpost_loader '. esc_attr( $wraper_class ) .'" data-block_style="'. esc_attr( $style ) .'" data-column="'. esc_attr( $wraper_class ) .'" data-post_type="'. esc_attr( $posttype ) . '" data-text_limit="'. esc_attr( $text_limit ) .'" data-order="1" data-limit="'. esc_attr( $limit ) .'" data-cate="1"></div>';
+        echo '<div class="ajaxpost_loader '. esc_attr( $wraper_class ) .'" data-block_style="'. esc_attr( $style ) .'" data-column="'. esc_attr( $wraper_class ) .'" data-post_type="'. esc_attr( $posttype ) . '" data-text_limit="'. esc_attr( $text_limit ) . '" data-title_limit="' . esc_attr($title_limit) . '" data-order="1" data-limit="'. esc_attr( $limit ) .'" data-cate="1"></div>';
         echo '<button class="loadmore_ajax" type="button" >'. esc_html__( 'Load More', 'load-more-ajax-lite' ) .'</button>';
     echo '</div>';
     

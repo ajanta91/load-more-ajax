@@ -32,7 +32,9 @@ For more information you can see plugin [demo](https://lite-themes.com/plugins/l
 
 - **Text Limit:** Default text_limit="10". How many text would be show in description area, the number count in word.
 
-- **Style:** Default style="1". Currently it has 2 block style ( 1 & 2 ). style 1 grid view and style 2 list view.
+- **Title Limit:** Default title_limit="30" character. How many character would be show in the title. Title limitation will be counted as per character.
+
+- **Style:** Default style="1". Currently it has 2 block style ( 1, 2 & 3 ). style 1 & 3 grid view, style 2 list view.
 
 - **Column:** Default column="2". Column will work when grid view (style="1"). Available column 1,2,3,4 & 5.
 
@@ -70,6 +72,9 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+= 1.0.2 =
+Added - New Block style
+Added - Title character limit
 
 = 1.0.1 =
 Supported multiple post block in single page
