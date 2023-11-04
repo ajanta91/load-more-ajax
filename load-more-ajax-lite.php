@@ -54,6 +54,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             $this->init_hooks();
 
             $this->core_includes();
+
+            $this->create_table();
         }
 
         /**
@@ -94,6 +96,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             }
 
             update_option( 'load_more_ajax_lite_version', LOAD_MORE_AJAX_LITE_VERSION );
+
+            
         }
 
         /**
@@ -107,6 +111,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // Extra functions
             require_once __DIR__ . '/inc/functions.php';
             require_once __DIR__ . '/inc/shortcodes.php';
+            require_once __DIR__ . '/lib/admin/AdminMenu.php';
+            require_once __DIR__ . '/lib/admin/PostBlock.php';
         }
 
         /**
@@ -149,6 +155,77 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             // enqueue scripts
             add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+            add_action('admin_enqueue_scripts', [ $this, 'lmal_admin_enqueue_scripts'] );
+
+            
+        }
+
+        public function wp_lma_block_list_insert( $args = [] ) {
+            global $wpdb;
+
+            $default = [
+                'block_style'   => '',
+                'posts_number'  => '',
+                'include'       => '',
+                'exclude'       => '',
+                'title_limit'   => '',
+                'text_limit'    => '',
+                'cat_filter'    => '',
+                'column'        => '',
+                'created_by'    => get_current_user_id(),
+                'created_at'    => current_time('mysql'),
+
+            ];
+            $data = wp_parse_args( $args, $default );
+var_dump($data);
+            if( empty( $data['posts_number'] ) ){
+                return new \WP_Error('no_posts_number', __('You must provide posts per page number', 'load-more-ajax-lite'));
+            }
+
+            $inserted = $wpdb->insert(
+                "{$wpdb->prefix}lma_block_list",
+                $data,
+                [
+                    '%d', '%d', '%s', '%s', '%d', '%d', '', '%d', '%d', '%d'
+                ]
+            );
+
+            if( !$inserted ){
+                return new \WP_Error( 'failed-to-insert', __('Failed to insert data', 'load-more-ajax-lite') );
+            }
+
+            return $wpdb->insert_id;
+        }
+
+
+        /**
+         * Create table
+         */
+        public function create_table() {
+            global $wpdb;
+
+            $charset_collate = $wpdb->get_charset_collate();
+
+            $schema = "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}lma_block_list` (
+                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `block_style` varchar(100) NOT NULL DEFAULT '',
+                `posts_number` varchar(255) DEFAULT NULL,
+                `include` varchar(255) DEFAULT NULL,
+                `exclude` varchar(255) DEFAULT NULL,
+                `title_limit` varchar(10) DEFAULT NULL,
+                `text_limit` varchar(10) DEFAULT NULL,
+                `cat_filter` varchar(30) DEFAULT NULL,
+                `column` varchar(30) DEFAULT NULL,
+                `created_by` bigint(20) unsigned NOT NULL,
+                `created_at` datetime NOT NULL,
+                PRIMARY KEY (`id`)
+            ) $charset_collate";
+
+            if (!function_exists('dbDelta')) {
+                require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+            }
+
+            dbDelta($schema);
         }
 
         public function loadmoreajax_get_font_url() {
@@ -191,6 +268,12 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
                 'ajax_url' => admin_url('admin-ajax.php'),
             ) );
             
+        }
+
+        public function lmal_admin_enqueue_scripts(){
+            wp_enqueue_style('lmal-admin', plugins_url('/lib/admin/assets/css/admin.css', __FILE__) );
+
+            wp_enqueue_script('lmal-admin', plugins_url('/lib/admin/assets/js/admin-script.js', __FILE__), '1.0', true);
         }
     }
 }
