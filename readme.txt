@@ -3,7 +3,7 @@ Contributors: ajantawpdev
 Tags: load more ajax, load more posts, load more, ajax, ajax post filter, ajax category filter, custom post type load more, ajax posts, ajax load more, masonry, grid, list, column
 Requires at least: 4.7
 Tested up to: 5.9
-Stable tag: 1.0.1
+Stable tag: 1.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -72,6 +72,9 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+= 1.0.3 =
+Fixed Load More button hidden issue
+
 = 1.0.2 =
 Added - New Block style
 Added - Title character limit

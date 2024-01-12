@@ -48,19 +48,19 @@
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_2 {
     grid-template-columns: 48.5% 48.5%;
-    column-gap: 3%;
+    column-gap: 24px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_3{
     grid-template-columns: 31.33% 31.33% 31.33%;
-    column-gap: 3%;
+    column-gap: 24px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_4{
     grid-template-columns: 23.50% 23.50% 23.50% 23.50%;
-    column-gap: 2%;
+    column-gap: 20px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_5{
     grid-template-columns: 18.4% 18.4% 18.4% 18.4% 18.4%;
-    column-gap: 2%;
+    column-gap: 20px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader .apl_post_wraper {
     margin-bottom: 40px;

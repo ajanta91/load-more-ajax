@@ -258,7 +258,7 @@
     .apl_block_wraper.lma_block_style_2 .ajaxpost_loader{
         display: grid;
         grid-template-columns: auto auto;
-        column-gap: 3%;
+        column-gap: 24;
     }
     .apl_block_wraper.lma_block_style_2 .apl_post_wraper .apl_content_wraper{
         padding: 0;

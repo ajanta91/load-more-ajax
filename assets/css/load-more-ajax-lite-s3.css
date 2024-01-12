@@ -33,7 +33,6 @@
 .lma_block_style_3 .cat_filter .ajax_post_cat:hover {
     background: #f80136;
     color: #fff;
-    box-shadow: 0 0px 20px 0px #0006;
     cursor: pointer;
 }
 .lma_block_style_3 .loadmore_ajax{
@@ -49,7 +48,7 @@
 .apl_block_wraper .column_2 {
     display: grid;
     grid-template-columns: 49% 49%;
-    gap: 2%;
+    gap: 24px;
     margin-bottom: 30px;
 }
 

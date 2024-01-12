@@ -2,11 +2,11 @@
 /**
  * Plugin Name:       Load More Ajax Lite
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 5.2
- * Requires PHP:      7.2
+ * Requires PHP:      7.4
  * Author:            Ajanta Das
- * Author URI:        https://lite-themes.com/plugins/load-more-ajax-lite/
+ * Author URI:        https://ajanta.me
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       load-more-ajax-lite
@@ -22,7 +22,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
      */
     final class Load_More_Ajax_Lite {
 
-        const  VERSION = '1.0.0';
+        const  VERSION = '1.0.3';
 
         /**
          * Minimum PHP Version
@@ -34,7 +34,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @var string Minimum PHP version required to run the plugin.
          */
-        const  MINIMUM_PHP_VERSION = '7.2';
+        const  MINIMUM_PHP_VERSION = '7.4';
 
         /**
          * Constructor
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             $this->core_includes();
 
-            $this->create_table();
+            
         }
 
         /**
@@ -111,8 +111,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // Extra functions
             require_once __DIR__ . '/inc/functions.php';
             require_once __DIR__ . '/inc/shortcodes.php';
-            require_once __DIR__ . '/lib/admin/AdminMenu.php';
-            require_once __DIR__ . '/lib/admin/PostBlock.php';
+            //require_once __DIR__ . '/lib/admin/AdminMenu.php';
+            //require_once __DIR__ . '/lib/admin/PostBlock.php';
         }
 
         /**
@@ -160,73 +160,6 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             
         }
 
-        public function wp_lma_block_list_insert( $args = [] ) {
-            global $wpdb;
-
-            $default = [
-                'block_style'   => '',
-                'posts_number'  => '',
-                'include'       => '',
-                'exclude'       => '',
-                'title_limit'   => '',
-                'text_limit'    => '',
-                'cat_filter'    => '',
-                'column'        => '',
-                'created_by'    => get_current_user_id(),
-                'created_at'    => current_time('mysql'),
-
-            ];
-            $data = wp_parse_args( $args, $default );
-var_dump($data);
-            if( empty( $data['posts_number'] ) ){
-                return new \WP_Error('no_posts_number', __('You must provide posts per page number', 'load-more-ajax-lite'));
-            }
-
-            $inserted = $wpdb->insert(
-                "{$wpdb->prefix}lma_block_list",
-                $data,
-                [
-                    '%d', '%d', '%s', '%s', '%d', '%d', '', '%d', '%d', '%d'
-                ]
-            );
-
-            if( !$inserted ){
-                return new \WP_Error( 'failed-to-insert', __('Failed to insert data', 'load-more-ajax-lite') );
-            }
-
-            return $wpdb->insert_id;
-        }
-
-
-        /**
-         * Create table
-         */
-        public function create_table() {
-            global $wpdb;
-
-            $charset_collate = $wpdb->get_charset_collate();
-
-            $schema = "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}lma_block_list` (
-                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-                `block_style` varchar(100) NOT NULL DEFAULT '',
-                `posts_number` varchar(255) DEFAULT NULL,
-                `include` varchar(255) DEFAULT NULL,
-                `exclude` varchar(255) DEFAULT NULL,
-                `title_limit` varchar(10) DEFAULT NULL,
-                `text_limit` varchar(10) DEFAULT NULL,
-                `cat_filter` varchar(30) DEFAULT NULL,
-                `column` varchar(30) DEFAULT NULL,
-                `created_by` bigint(20) unsigned NOT NULL,
-                `created_at` datetime NOT NULL,
-                PRIMARY KEY (`id`)
-            ) $charset_collate";
-
-            if (!function_exists('dbDelta')) {
-                require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-            }
-
-            dbDelta($schema);
-        }
 
         public function loadmoreajax_get_font_url() {
             $fonts_url = '';
