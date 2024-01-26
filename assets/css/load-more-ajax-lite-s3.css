@@ -45,21 +45,21 @@
     border-radius: 6px;
 }
 
-.apl_block_wraper .column_2 {
+.lma_block_style_3 .column_2 {
     display: grid;
     grid-template-columns: 49% 49%;
     gap: 24px;
     margin-bottom: 30px;
 }
 
-.apl_block_wraper .column_3 {
+.lma_block_style_3 .column_3 {
     display: grid;
     grid-template-columns: 32% 32% 32%;
     gap: 22px;
     min-height: 300px;
 }
 
-.apl_block_wraper .column_4 {
+.lma_block_style_3 .column_4 {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
 }

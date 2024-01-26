@@ -2,7 +2,7 @@
 Contributors: ajantawpdev
 Tags: load more ajax, load more posts, load more, ajax, ajax post filter, ajax category filter, custom post type load more, ajax posts, ajax load more, masonry, grid, list, column
 Requires at least: 4.7
-Tested up to: 5.9
+Tested up to: 6.4
 Stable tag: 1.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
@@ -15,7 +15,7 @@ The plugin for ajax load more posts and custom post type posts with ajax categor
 'Load More Ajax Lite' is easiest and lite weight plugin that you can show posts and custom post type posts load more and category filter. Create your blog list/grid view page easily by using simple shortcode.
 
 ### DEMO & DOCS ###
-For more information you can see plugin [demo](https://lite-themes.com/plugins/load-more-ajax-lite/) & [Documentation](https://lite-themes.com/plugins/load-more-ajax-lite/docs)
+For more information you can see plugin [demo](https://plugins.wpnonce.com/load-more-ajax/) & [Documentation](https://plugins.wpnonce.com/load-more-ajax/documentation/)
 
 ### HOW TO USE ###
 - **Shortcode:** [load_more_ajax_lite] is main shortcode. Add attributes according to your demand. No attribute is required. [load_more_ajax_lite post_type="" posts_per_page="" filter="" include="" exclude="" text_limit="" style="" column=""]
@@ -72,6 +72,9 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+= 1.0.4 =
+Fixed Style 02 grid issue while using together with the layout 03
+
 = 1.0.3 =
 Fixed Load More button hidden issue
 
