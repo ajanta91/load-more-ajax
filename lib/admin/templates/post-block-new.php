@@ -6,6 +6,14 @@
             <tbody>
                 <tr>
                     <th scope="row">
+                        <label for="block_title"><?php _e('Name', 'load-more-ajax-lite') ?></label>
+                    </th>
+                    <td>
+                        <input type="text" class="regular-text" name="block_title" id="block_title" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
                         <label for="block_style"><?php _e('Block Style', 'load-more-ajax-lite') ?></label>
                     </th>
                     <td>
@@ -23,6 +31,22 @@
                     </th>
                     <td>
                         <input type="number" class="regular-text" name="posts_number" id="post_per_page" value="3">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="title_limit"><?php _e('Title Limit', 'load-more-ajax-lite') ?></label>
+                    </th>
+                    <td>
+                        <input type="number" class="regular-text" name="title_limit" id="title_limit" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="text_limit"><?php _e('Text Limit', 'load-more-ajax-lite') ?></label>
+                    </th>
+                    <td>
+                        <input type="number" class="regular-text" name="text_limit" id="text_limit" value="">
                     </td>
                 </tr>
 
@@ -47,10 +71,11 @@
 
                 <tr>
                     <th scope="row">
-                        <label for="name"><?php _e('Name', 'load-more-ajax-lite') ?></label>
+                        <label for="exclude"><?php _e('Exclude', 'load-more-ajax-lite') ?></label>
                     </th>
                     <td>
-                        <input type="text" class="regular-text" name="name" id="name" value="">
+                        <input type="text" class="regular-text" name="exclude" id="exclude" value="">
+                        <p class="description">Add Category term ID saparate with ',' </p>
                     </td>
                 </tr>
 
@@ -70,8 +95,9 @@
 
             </tbody>
         </table>
+        <input type="hidden" name="created_by" value="<?php echo get_current_user_id() ?>">
         <?php
-        wp_nonce_field('new_shortcode');
+        wp_nonce_field('add_new_block');
         submit_button(__('Save', 'load-more-ajax-lite'), 'primary', 'submit_block'); ?>
     </form>
 </div>

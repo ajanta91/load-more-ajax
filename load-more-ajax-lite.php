@@ -99,7 +99,33 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             update_option( 'load_more_ajax_lite_version', LOAD_MORE_AJAX_LITE_VERSION );
 
+
+
+            global $wpdb;
+
+            $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
+
             
+            // SQL query to create table
+            $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+                id INT NOT NULL AUTO_INCREMENT,
+                block_title VARCHAR(255),
+                block_style INT,
+                per_page INT,
+                title_limit INT,
+                text_limit INT,
+                is_filter VARCHAR(5),
+                include_post VARCHAR(255),
+                exclude_post VARCHAR(255),
+                post_column INT,
+                created_time TIMESTAMP,
+                user_id INT,
+                PRIMARY KEY (id)
+    	    )";
+
+            // Execute SQL query
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include WordPress upgrade script
+            dbDelta($sql);
         }
 
         /**
@@ -113,8 +139,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // Extra functions
             require_once __DIR__ . '/inc/functions.php';
             require_once __DIR__ . '/inc/shortcodes.php';
-            //require_once __DIR__ . '/lib/admin/AdminMenu.php';
-            //require_once __DIR__ . '/lib/admin/PostBlock.php';
+            require_once __DIR__ . '/lib/admin/AdminMenu.php';
+            require_once __DIR__ . '/lib/admin/PostBlock.php';
         }
 
         /**

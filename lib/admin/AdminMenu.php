@@ -21,11 +21,11 @@ class AdminMenu {
 
     public function form_handler()
     {
-        if (!isset($_POST['submit_block'])) {
+        if (!isset($_POST['submit_block']) ) {
             return;
         }
 
-        if (!wp_verify_nonce($_POST['_wpnonce'], 'new_shortcode')) {
+        if (!wp_verify_nonce($_POST['_wpnonce'], 'add_new_block')) {
             wp_die('Are you cheating?');
         }
 
@@ -33,33 +33,39 @@ class AdminMenu {
             wp_die('Are you cheating?');
         }
 
-        $block_style = isset( $_POST['block_style'] ) ? sanitize_text_field( $_POST['block_style'] ) : '1';
-        $post_munber = isset( $_POST['posts_number'] ) ? sanitize_text_field( $_POST['posts_number'] ) : '3';
-        $cat_filter  = isset( $_POST['category_filter'] ) ? sanitize_text_field( $_POST['category_filter'] ) : '';
+        $block_title  = isset( $_POST['block_title'] ) ? sanitize_text_field( $_POST['block_title'] ) : '1';
+        $block_style  = isset( $_POST['block_style'] ) ? intval( $_POST['block_style'] ) : '1';
+        $post_munber  = isset( $_POST['posts_number'] ) ? intval( $_POST['posts_number'] ) : '3';
+        $cat_filter   = isset( $_POST['category_filter'] ) ? sanitize_text_field( $_POST['category_filter'] ) : '';
+        $title_limit  = isset( $_POST['title_limit'] ) ? intval( $_POST['title_limit'] ) : '';
+        $text_limit   = isset( $_POST['text_limit'] ) ? intval( $_POST['text_limit'] ) : '';
+        $include      = isset( $_POST['include'] ) ? sanitize_text_field( $_POST['include'] ) : '';
+        $exclude      = isset( $_POST['exclude'] ) ? sanitize_text_field( $_POST['exclude'] ) : '';
+        $column       = isset( $_POST['column'] ) ? intval( $_POST['column'] ) : '';
+        $created_by   = isset( $_POST['created_by'] ) ? intval( $_POST['created_by'] ) : '';
+        $currentTimes = time();
+        $created_time = date("Y-m-d H:i:s", $currentTimes);
 
-
-        echo '<pre>';
-       print_r(
-        load_more_ajax_lite_load()->wp_lma_block_list_insert([
-            'block_style'   => $block_style,
-            'posts_number'  => $post_munber,
-            'cat_filter'    => $cat_filter
-
-        ])
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
+        // Insert data into the table
+        $data = array(
+            "block_title"  => esc_html($block_title),
+            "block_style"  => esc_html($block_style),
+            "per_page"     => $post_munber,
+            "title_limit"  => $title_limit,
+            "text_limit"   => $text_limit,
+            "is_filter"    => $cat_filter,
+            "include_post" => $include,
+            "exclude_post" => $exclude,
+            "post_column"  => $column,
+            'created_time' => $created_time,
+            "user_id"      => $created_by,
         );
-        echo '</pre>';
 
-        load_more_ajax_lite_load()->wp_lma_block_list_insert([
-            'block_style'   => $block_style,
-            'posts_number'  => $post_munber,
-            'cat_filter'    => $cat_filter
+        // Insert data using $wpdb->insert
+        $wpdb->insert($table_name, $data);
 
-        ]);
-        
-    //     echo '<pre>';
-    //     var_dump($_POST);
-    //     echo '</pre>';
-        exit;
     }
     /**
      * Register a custom menu page.
@@ -67,6 +73,7 @@ class AdminMenu {
     function admin_menu_page()
     {
         add_menu_page( __('Load More Ajax', 'textdomain'), __('Load More Ajax', 'textdomain'), 'manage_options', 'load_more_ajax', [ $this, 'admin_menu_page_callback'], 'dashicons-hourglass', 6 );
+        add_submenu_page( 'load_more_ajax', __('All Blocks', 'textdomain'),__('All Blocks', 'textdomain'), 'manage_options', 'load_more_ajax', [ $this, 'admin_menu_page_callback' ] );
         add_submenu_page( 'load_more_ajax', __('Settings', 'textdomain'),__('Settings', 'textdomain'), 'manage_options', 'settings', [ $this, 'load_more_ajax_settings' ] );
     }
 
