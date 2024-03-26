@@ -27,26 +27,26 @@
             if (!empty($all_blocks)) {
                 foreach ($all_blocks as $data) {
                     $post_type  = 'post_type="post" ';
-                    $block_style= 'style="'.$data['block_style'].'" ';
-                    $per_page   = !empty( $data['per_page'] ) ? 'posts_per_page="'.$data['per_page'].'" ' : '';
-                    $filter     = !empty($data['is_filter']) ? 'filter="'.$data['is_filter'].'" ' : '';
-                    $include    = !empty($data['include_post']) ? 'include="'.$data['include_post'].'" ' : '';
-                    $exclude    = !empty($data['exclude_post']) ? 'exclude="'.$data['exclude_post'].'" ' : '';
-                    $text_limit = !empty($data['text_limit']) ? 'text_limit="'.$data['text_limit'].'" ' : '';
-                    $cloumn     = !empty($data['post_column']) ? 'column="'.$data['post_column'].'" ' : '';
-            ?>
+                    $block_style = 'style="' . $data['block_style'] . '" ';
+                    $per_page   = !empty($data['per_page']) ? 'posts_per_page="' . $data['per_page'] . '" ' : '';
+                    $filter     = !empty($data['is_filter']) ? 'filter="' . $data['is_filter'] . '" ' : '';
+                    $include    = !empty($data['include_post']) ? 'include="' . $data['include_post'] . '" ' : '';
+                    $exclude    = !empty($data['exclude_post']) ? 'exclude="' . $data['exclude_post'] . '" ' : '';
+                    $text_limit = !empty($data['text_limit']) ? 'text_limit="' . $data['text_limit'] . '" ' : '';
+                    $cloumn     = !empty($data['post_column']) ? 'column="' . $data['post_column'] . '" ' : ''; ?>
+
                     <tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
                         <th scope="row" class="check-column"> <input id="cb-select-1" type="checkbox" name="post[]" value="1"></th>
                         <td class="title column-title has-row-actions column-primary page-title" data-colname="Title">
                             <div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
-                            <strong><a class="row-title" href="#" aria-label=""><?php echo esc_html($data['block_title']) ?></a></strong>
+                            <strong><a class="row-title" href="?page=load_more_ajax&action=edit&post_block=<?php echo esc_attr($data['id']) ?>" aria-label=""><?php echo esc_html($data['block_title']) ?></a></strong>
                         </td>
-                        <td class="column-shortcode" data-colname="shortcode"><a href="javascript:void(0)">[load_more_ajax_lite <?php echo $post_type . $block_style . $per_page . $filter . $include . $exclude . $text_limit . $cloumn ?>]</a></td>
+                        <td class="column-shortcode" data-colname="shortcode"><a href="javascript:void(0)" class="copy_block_shortcode">[load_more_ajax_lite <?php echo $post_type . $block_style . $per_page . $filter . $include . $exclude . $text_limit . $cloumn ?>]</a></td>
                         <td class="author column-author" data-colname="Author"><a href="edit.php?post_type=post&amp;author=1">ajanta</a></td>
 
                         <td class="date column-date" data-colname="Date">Published<br>2023/11/05 at 3:03 pm</td>
                     </tr>
-            <?php
+                <?php
                 }
             }
             ?>

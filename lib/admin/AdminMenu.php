@@ -24,8 +24,7 @@ class AdminMenu {
         if (!isset($_POST['submit_block']) ) {
             return;
         }
-
-        if (!wp_verify_nonce($_POST['_wpnonce'], 'add_new_block')) {
+        if (!wp_verify_nonce($_POST['_wpnonce'], 'add_new_block') ) {
             wp_die('Are you cheating?');
         }
 
@@ -33,6 +32,7 @@ class AdminMenu {
             wp_die('Are you cheating?');
         }
 
+        $block_id     = isset( $_POST['block_id'] ) ? intval( $_POST['block_id'] ) : '';
         $block_title  = isset( $_POST['block_title'] ) ? sanitize_text_field( $_POST['block_title'] ) : '1';
         $block_style  = isset( $_POST['block_style'] ) ? intval( $_POST['block_style'] ) : '1';
         $post_munber  = isset( $_POST['posts_number'] ) ? intval( $_POST['posts_number'] ) : '3';
@@ -63,9 +63,21 @@ class AdminMenu {
             "user_id"      => $created_by,
         );
 
-        // Insert data using $wpdb->insert
-        $wpdb->insert($table_name, $data);
+        
+        $query = "SELECT * FROM $table_name";
+        $results = $wpdb->get_results($query);
 
+        if( !empty($block_id) && $results ){
+            $where = array(
+                'id' => $block_id,
+            );
+            // Execute the query
+            $wpdb->update($table_name, $data, $where);
+        }
+        else{
+            $wpdb->insert($table_name, $data);
+        }
+        wp_redirect('?page=load_more_ajax');
     }
     /**
      * Register a custom menu page.

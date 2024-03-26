@@ -39,6 +39,21 @@ class PostBlock {
 
     }
 
-    
+    public static function block_update_data($block_id){
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
+
+        if ($wpdb->get_var("SHOW TABLES LIKE '{$table_name}'") == $table_name) {
+            $query = "SELECT * FROM $table_name WHERE id='$block_id'";
+
+            $results = $wpdb->get_results($query);
+            $resultRows = $wpdb->num_rows;
+            if ($results && $resultRows > 0) {
+                return (array) $results[0];
+            }
+        }
+        return false;
+    }
+
 
 }

@@ -39,6 +39,64 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         const  MINIMUM_PHP_VERSION = '7.4';
 
         /**
+         * Minimum Elementor Version
+         *
+         * Holds the minimum Elementor version required to run the plugin.
+         *
+         * @since 1.0.0
+         *
+         * @var string Minimum Elementor version required to run the plugin.
+         */
+        const MINIMUM_ELEMENTOR_VERSION = '3.3.0';
+
+
+        
+        /**
+         * The loader that's responsible for maintaining and registering all hooks that power
+         * the plugin.
+         *
+         * @since    1.0.0
+         * @access   protected
+         * @var      Hostim_Core    $loader    Maintains and registers all hooks for the plugin.
+         */
+        protected $loader;
+
+                
+
+        /**
+         * Clone
+         *
+         * Disable class cloning.
+         *
+         * @return void
+         * @since 1.0.0
+         *
+         * @access protected
+         *
+         */
+        public function __clone() {
+            // Cloning instances of the class is forbidden
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+        }
+
+        /**
+         * Wakeup
+         *
+         * Disable unserializing the class.
+         *
+         * @return void
+         * @since 1.0.0
+         *
+         * @access protected
+         *
+         */
+        public function __wakeup() {
+            // Unserializing instances of the class is forbidden.
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+        }
+  
+
+        /**
          * Constructor
          *
          * Initialize the Coro Core plugins.
@@ -61,9 +119,16 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         }
 
         /**
-         * Initialize a single Instance
-         * 
-         * @return \Load_More_Ajax_Lite
+         * Instance
+         *
+         * Ensures only one instance of the class is loaded or can be loaded.
+         *
+         * @return \Load_More_Ajax_Lite An instance of the class.
+         * @since 1.0.0
+         *
+         * @access public
+         * @static
+         *
          */
         public static function instance() {
 
@@ -141,6 +206,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             require_once __DIR__ . '/inc/shortcodes.php';
             require_once __DIR__ . '/lib/admin/AdminMenu.php';
             require_once __DIR__ . '/lib/admin/PostBlock.php';
+
+            require_once __DIR__ . '/elementor/elementor_init.php';
         }
 
         /**

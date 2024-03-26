@@ -28,6 +28,18 @@
         return $cat_item;
     }
 
+    // Categories Suggestion ================
+    function categories_suggester()
+    {
+        $content = [];
+
+        foreach (get_categories() as $cat) {
+            $content[(string) $cat->slug] = $cat->cat_name;
+        }
+
+        return $content;
+    }
+
     /**
      * Estimated Reading Time
      */
