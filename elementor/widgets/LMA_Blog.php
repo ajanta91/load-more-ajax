@@ -126,277 +126,97 @@ class LMA_Blog extends Widget_Base {
 		$this->end_controls_section();//End Query Filter
 
 
-		//========================== Button =========================//
-		$this->start_controls_section( 'sec_buttons', [
-			'label' => esc_html__( 'Buttons', 'load-more-ajax-lite' ),
-			'condition' => [
-				'layout' => '6'
-			]
-		] );
-
-		$this->add_control( 'btn_label', [
-			'label'   => esc_html__( 'Read More Button', 'load-more-ajax-lite' ),
-			'type'    => Controls_Manager::TEXT,
-			'default' => 'Explore More'
-		] );
-
-
-		$this->end_controls_section(); //End Button
-
-
-		/*======================= Shape Images ============================*/
-	    $shapes = new \Elementor\Repeater();
-	    $this->start_controls_section(
-		    'shape_image_sec',
-		    [
-			    'label' => __( 'Shape Image', 'load-more-ajax-lite' ),
-				'condition' => [
-					'layout' => '5'
-				]
-		    ]
-	    );
-	    $shapes->add_control(
-		    'shape_img',
-		    [
-			    'label' => __( 'Choose Image', 'load-more-ajax-lite' ),
-			    'type' => \Elementor\Controls_Manager::MEDIA,
-
-		    ]
-	    );
-	    $shapes->add_responsive_control(
-		    'horizontal_position',
-		    [
-			    'label' => __( 'Horizontal Position', 'load-more-ajax-lite' ),
-			    'type' => Controls_Manager::SLIDER,
-			    'size_units' => [ 'px', '%' ],
-			    'range' => [
-				    'px' => [
-					    'min' => 0,
-					    'max' => 1920,
-					    'step' => 1,
-				    ],
-				    '%' => [
-					    'min' => 0,
-					    'max' => 100,
-				    ],
-			    ],
-			    'default' => [
-				    'unit' => '%',
-				    'size' => 50,
-			    ],
-			    'selectors' => [
-				    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'left: {{SIZE}}{{UNIT}};',
-			    ],
-		    ]
-	    );
-	    $shapes->add_responsive_control(
-		    'vertical_position',
-		    [
-			    'label' => __( 'Vertical Position', 'load-more-ajax-lite' ),
-			    'type' => Controls_Manager::SLIDER,
-			    'size_units' => [ 'px', '%' ],
-			    'range' => [
-				    'px' => [
-					    'min' => 0,
-					    'max' => 1920,
-					    'step' => 1,
-				    ],
-				    '%' => [
-					    'min' => 0,
-					    'max' => 100,
-				    ],
-			    ],
-			    'default' => [
-				    'unit' => '%',
-				    'size' => 50,
-			    ],
-			    'selectors' => [
-				    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'top: {{SIZE}}{{UNIT}};',
-			    ],
-		    ]
-	    );
-		$shapes->add_control(
-		    'shape_z_index',
-		    [
-			    'label' => __( 'Z-index', 'load-more-ajax-lite' ),
-			    'type' => \Elementor\Controls_Manager::NUMBER,
-				'step' => 1,
-				'selectors' => [
-				    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'z-index: {{VALUE}};',
-			    ],
-		    ]
-	    );
-		$shapes->add_control( 'bland_mode', [
-			'label'   => esc_html__( 'Bland Mode', 'load-more-ajax-lite' ),
-			'type'    => Controls_Manager::SELECT,
-			'options' => [
-				'normal' 	=> esc_html__( 'Normal', 'load-more-ajax-lite' ),
-				'multiply'	=> esc_html__( 'Multiply', 'load-more-ajax-lite' ),
-				'screen'	=> esc_html__( 'Screen', 'load-more-ajax-lite' ),
-				'overlay'	=> esc_html__( 'Overlay', 'load-more-ajax-lite' ),
-				'darken'	=> esc_html__( 'Darken', 'load-more-ajax-lite' ),
-				'lighten'	=> esc_html__( 'Lighten', 'load-more-ajax-lite' ),
-				'color-dodge'=> esc_html__( 'Color-dodge', 'load-more-ajax-lite' ),
-				'color-burn'=> esc_html__( 'Color-burn', 'load-more-ajax-lite' ),
-				'difference'=> esc_html__( 'Difference', 'load-more-ajax-lite' ),
-				'exclusion' => esc_html__( 'Exclusion', 'load-more-ajax-lite' ),
-				'hue'		=> esc_html__( 'Hue', 'load-more-ajax-lite' ),
-				'saturation'=> esc_html__( 'Saturation', 'load-more-ajax-lite' ),
-				'color'		=> esc_html__( 'Color', 'load-more-ajax-lite' ),
-				'luminosity'=> esc_html__( 'Luminosity', 'load-more-ajax-lite' ),
-			],
-			'default' => '',
-			'selectors' => [
-				'{{WRAPPER}} {{CURRENT_ITEM}}' => 'mix-blend-mode: {{VALUE}};',
-			],
-		] );
-		$shapes->add_control(
-			'shape_blur',
-			[
-				'label' => esc_html__( 'Blur', 'load-more-ajax-lite' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 1,
-					]
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 50,
-				],
-				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'filter: blur( {{SIZE}}{{UNIT}} );',
-				],
-			]
-		);
-
-	    $this->add_control(
-		    'shape_images',
-		    [
-			    'label' => __( 'Shape Image', 'load-more-ajax-lite' ),
-			    'type' => \Elementor\Controls_Manager::REPEATER,
-			    'fields' => $shapes->get_controls(),
-			    'title_field' => '{{{ shape_img.alt }}}',
-		    ]
-	    );
-	    $this->end_controls_section();
-
-		/* Carousel Settings =================== */
-		$this->start_controls_section(
-		    'carousel_settings', [
-			    'label' => __( 'Carousel Settings', 'load-more-ajax-lite' ),
-				'condition' => [
-					'layout' => ['2']
-				]
-		    ]
-	    );
-	    $this->add_control(
-		    'show_items_desktop', [
-			    'label'     => esc_html__( 'Display Items [Desktop]', 'load-more-ajax-lite' ),
-			    'type'      => Controls_Manager::NUMBER,
-
-		    ]
-	    );
-	    $this->add_control(
-		    'show_items_tablet', [
-			    'label'     => esc_html__( 'Display Items [Tablet]', 'load-more-ajax-lite' ),
-			    'type'      => Controls_Manager::NUMBER,
-
-		    ]
-	    );
-	    $this->add_control(
-		    'show_items_mobile', [
-			    'label'     => esc_html__( 'Display Items [Mobile]', 'load-more-ajax-lite' ),
-			    'type'      => Controls_Manager::NUMBER,
-                'default'	=> 1
-		    ]
-	    );
-	    $this->add_control(
-		    'item_space',
-		    [
-			    'label' => __( 'Item Space', 'load-more-ajax-lite' ),
-			    'type' => Controls_Manager::SLIDER,
-			    'size_units' => [ 'px' ],
-			    'range' => [
-				    'px' => [
-					    'min' => 0,
-					    'max' => 200,
-					    'step' => 1,
-				    ]
-			    ],
-			    'default' => [
-				    'size' => 24,
-			    ]
-		    ]
-	    );
-	    $this->add_control(
-		    'carousel_autoplay',
-		    [
-			    'label' => __( 'Auto Play', 'load-more-ajax-lite' ),
-			    'type' => \Elementor\Controls_Manager::SWITCHER,
-			    'label_on' => __( 'True', 'load-more-ajax-lite' ),
-			    'label_off' => __( 'False', 'load-more-ajax-lite' ),
-			    'return_value' => 'yes',
-			    'default' => 'yes',
-		    ]
-	    );
-	    $this->add_control(
-		    'carousel_loop',
-		    [
-			    'label' => __( 'Loop', 'load-more-ajax-lite' ),
-			    'type' => \Elementor\Controls_Manager::SWITCHER,
-			    'label_on' => __( 'True', 'load-more-ajax-lite' ),
-			    'label_off' => __( 'False', 'load-more-ajax-lite' ),
-			    'return_value' => 'yes',
-			    'default' => 'yes',
-		    ]
-	    );
-	    $this->add_control(
-		    'slide_speed', [
-			    'label' => esc_html__( 'Slide Speed', 'load-more-ajax-lite' ),
-			    'type' => Controls_Manager::NUMBER,
-			    'min' => 0,
-			    'max' => 5000,
-			    'step' => 1,
-                'default' => 500
-		    ]
-	    );
-	    $this->end_controls_section();
-
-
-		$this->start_controls_section( 'section_subtitle_style', [
-			'label' => esc_html__( 'Title', 'load-more-ajax-lite' ),
+		//Categoory tab style =========================
+		$this->start_controls_section( 'sec_cat_tab', [
+			'label' => esc_html__( 'Category Tab Style', 'load-more-ajax-lite' ),
 			'tab'   => Controls_Manager::TAB_STYLE,
 		] );
-
-		$this->add_control( 'blog_title_color', [
-			'label'     => __( 'Color', 'load-more-ajax-lite' ),
+		$this->start_controls_tabs('category_tabs');
+		$this->start_controls_tab('cat_tab_normal', [
+			'label' => __('Normal', 'load-more-ajax-lite')
+		]);
+		$this->add_control('cat_item_color', [
+			'label'     => __('Color', 'load-more-ajax-lite'),
 			'type'      => Controls_Manager::COLOR,
 			'selectors' => [
-				'{{WRAPPER}} .post-grid .blog-content .entry-title a, 
-                    {{WRAPPER}}  .single_blog_post .post_content h4 a' => 'color: {{VALUE}}',
+				'{{WRAPPER}} .cat_filter .ajax_post_cat' => 'color: {{VALUE}}',
 			],
-		] );
+		]);
 
-		$this->add_control( 'blog_title_color_hover', [
-			'label'     => __( 'Hover Color', 'load-more-ajax-lite' ),
+		$this->end_controls_tab();
+
+		$this->start_controls_tab('cat_tab_hover', [
+			'label' => __('Hover', 'load-more-ajax-lite')
+		]);
+
+		$this->add_control('cat_item_hover_color', [
+			'label'     => __('Color', 'load-more-ajax-lite'),
 			'type'      => Controls_Manager::COLOR,
 			'selectors' => [
-				'{{WRAPPER}} .post-grid .blog-content .entry-title a:hover, 
-                    {{WRAPPER}}  .single_blog_post .post_content h4 a:hover' => 'color: {{VALUE}}',
+				'{{WRAPPER}} .cat_filter .ajax_post_cat:hover, {{WRAPPER}} .cat_filter .ajax_post_cat.active' => 'color: {{VALUE}}',
+				'{{WRAPPER}} .cat_filter .ajax_post_cat:before' => 'background: {{VALUE}}',
 			],
-		] );
-
+		]);
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+	
 		$this->add_group_control( Group_Control_Typography::get_type(), [
-			'name'     => 'title_typography',
+			'name'     => 'cat_typography',
 			'label'    => __( 'Typography', 'load-more-ajax-lite' ),
-			'selector' => '{{WRAPPER}} .entry-title',
+			'selector' => '{{WRAPPER}} .cat_filter .ajax_post_cat',
 		] );
+		$this->end_controls_section();
+
+
+		// Section background ==============================
+		$this->start_controls_section('lma_post_block_section', [
+			'label' => __('Post Style', 'load-more-ajax-lite'),
+			'tab'   => Controls_Manager::TAB_STYLE,
+		]);
+		$this->add_control(
+			'title_heading',
+			[
+				'label' => esc_html__('Title Style', 'load-more-ajax-lite'),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$this->add_control('title_color', [
+			'label'     => __('Title Color', 'load-more-ajax-lite'),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .apl_content_wraper .apl_post_title' => 'color: {{VALUE}}',
+			],
+		]);
+		$this->add_group_control(Group_Control_Typography::get_type(), [
+			'name'     => 'title_typography',
+			'label'    => __('Typography', 'load-more-ajax-lite'),
+			'selector' => '{{WRAPPER}} .apl_content_wraper .apl_post_title',
+		]);
+
+		$this->add_control(
+			'neta_heading',
+			[
+				'label' => esc_html__('Post Meta Style', 'load-more-ajax-lite'),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$this->add_control('meta_color', [
+			'label'     => __('Meta Color', 'load-more-ajax-lite'),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .apl_post_meta .apl_post_meta_item' => 'color: {{VALUE}}',
+			],
+		]);
+		$this->add_group_control(Group_Control_Typography::get_type(), [
+			'name'     => 'meta_typography',
+			'label'    => __('Typography', 'load-more-ajax-lite'),
+			'selector' => '{{WRAPPER}} .apl_post_meta .apl_post_meta_item',
+		]);
 
 		$this->end_controls_section();
+
 
 		// Section background ==============================
 		$this->start_controls_section( 'background_section', [
@@ -409,7 +229,7 @@ class LMA_Blog extends Widget_Base {
 			'type'       => Controls_Manager::DIMENSIONS,
 			'size_units' => [ 'px', '%', 'em' ],
 			'selectors'  => [
-				'{{WRAPPER}} .blog-section' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'{{WRAPPER}} .lma_blog_section' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 			],
 		] );
 
@@ -418,31 +238,14 @@ class LMA_Blog extends Widget_Base {
 			'type'       => Controls_Manager::DIMENSIONS,
 			'size_units' => [ 'px', '%', 'em' ],
 			'selectors'  => [
-				'{{WRAPPER}} .blog-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'{{WRAPPER}} .lma_blog_section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 			],
 		] );
 		$this->add_group_control( Group_Control_Background::get_type(), [
 			'name' => 'background',
 			'label' => esc_html__( 'Background', 'load-more-ajax-lite' ),
 			'types' => [ 'classic', 'gradient' ],
-			'selector' => '{{WRAPPER}} .blog-section',
-		] );
-
-		$this->add_control( 'bg_shape_left', [
-			'label'   => __( 'Choose Left Shape Image', 'load-more-ajax-lite' ),
-			'type'    => Controls_Manager::MEDIA,
-			'default' => [
-				'url' => plugin_dir_url( __DIR__ ) . 'assets/images/blog/circle-with-frame.png'
-			],
-
-		] );
-		$this->add_control( 'bg_shape_right', [
-			'label'   => __( 'Choose RIght Shape Image', 'load-more-ajax-lite' ),
-			'type'    => Controls_Manager::MEDIA,
-			'default' => [
-				'url' => plugin_dir_url( __DIR__ ) . 'assets/images/blog/circle-blue.png'
-			],
-
+			'selector' => '{{WRAPPER}} .lma_blog_section',
 		] );
 
 		$this->end_controls_section();
