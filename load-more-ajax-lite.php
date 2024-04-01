@@ -4,11 +4,11 @@
  * Plugin Name:       Load More Ajax Lite
  * * Plugin URI:      https://plugins.wpnonce.com/load-more-ajax/
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           1.0.4
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Ajanta Das
- * Author URI:        https://ajanta.me
+ * Author URI:        https://wpnonce.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       load-more-ajax-lite
@@ -24,7 +24,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
      */
     final class Load_More_Ajax_Lite {
 
-        const  VERSION = '1.0.4';
+        const  VERSION = '1.1.0';
 
         /**
          * Minimum PHP Version

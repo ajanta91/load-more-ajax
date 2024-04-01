@@ -18,6 +18,8 @@ The plugin for ajax load more posts and custom post type posts with ajax categor
 For more information you can see plugin [demo](https://plugins.wpnonce.com/load-more-ajax/) & [Documentation](https://plugins.wpnonce.com/load-more-ajax/documentation/)
 
 ### HOW TO USE ###
+- **Elementor:** Added existing 3 block style in the Elementor Widget. Now you can style and custmize according to you demand.
+
 - **Shortcode:** [load_more_ajax_lite] is main shortcode. Add attributes according to your demand. No attribute is required. [load_more_ajax_lite post_type="" posts_per_page="" filter="" include="" exclude="" text_limit="" style="" column=""]
 
 - **Post Type:** Default post_type="post". If you want to show custom post type posts you have to set Attribute post_type="your custom post type name" find your custom post type name according to [screenshot](https://prnt.sc/G8nFQozLCQvl)
@@ -72,6 +74,9 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+= 1.1.0 =
+Added Elementor Widget for 3 block Style
+
 = 1.0.4 =
 Fixed Style 02 grid issue while using together with the layout 03
 

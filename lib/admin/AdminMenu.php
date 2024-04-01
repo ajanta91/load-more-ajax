@@ -25,11 +25,11 @@ class AdminMenu {
             return;
         }
         if (!wp_verify_nonce($_POST['_wpnonce'], 'add_new_block') ) {
-            wp_die('Are you cheating?');
+            wp_die( esc_html__('Are you cheating?', 'load-more-ajax-lite'));
         }
 
         if (!current_user_can('manage_options')) {
-            wp_die('Are you cheating?');
+            wp_die(esc_html__('Are you cheating?', 'load-more-ajax-lite'));
         }
 
         $block_id     = isset( $_POST['block_id'] ) ? intval( $_POST['block_id'] ) : '';
@@ -101,7 +101,7 @@ class AdminMenu {
      * load_more_ajax_settings
      */
     function load_more_ajax_settings(){
-        echo 'sub menu page';
+        echo '<h1 class="wp-heading-inline"> '. esc_html__('Settings Page', 'load-more-ajax-lite') .'</h1>';
     }
 
 

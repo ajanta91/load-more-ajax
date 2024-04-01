@@ -40,6 +40,24 @@ class LMA_Blog extends Widget_Base {
 		return 'eicon-posts-grid';
 	}
 
+	public function get_style_depends() {
+		if (\Elementor\Plugin::$instance->preview->is_preview_mode()) {
+			return [];
+		} else {
+			$settings = $this->get_settings_for_display();
+			if ($settings['layout'] == '1') {
+				return ['load-more-ajax-lite'];
+			}
+			elseif ($settings['layout'] == '2') {
+				return ['load-more-ajax-lite-s2'];
+			}
+			elseif ($settings['layout'] == '3') {
+				return ['load-more-ajax-lite-s3'];
+			}
+			return [];
+		}
+	}
+
 	public function get_categories() {
 		return ['load_more_ajax-elements' ];
 	}
@@ -142,6 +160,21 @@ class LMA_Blog extends Widget_Base {
 				'{{WRAPPER}} .cat_filter .ajax_post_cat' => 'color: {{VALUE}}',
 			],
 		]);
+		$this->add_control('cat_item_bg', [
+			'label'     => __('Background', 'load-more-ajax-lite'),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .cat_filter .ajax_post_cat' => 'background: {{VALUE}}',
+			],
+		]);
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'tab_item_border',
+				'label' => __('Border', 'load-more-ajax-lite'),
+				'selector' => '{{WRAPPER}} .cat_filter .ajax_post_cat',
+			]
+		);
 
 		$this->end_controls_tab();
 
@@ -155,6 +188,13 @@ class LMA_Blog extends Widget_Base {
 			'selectors' => [
 				'{{WRAPPER}} .cat_filter .ajax_post_cat:hover, {{WRAPPER}} .cat_filter .ajax_post_cat.active' => 'color: {{VALUE}}',
 				'{{WRAPPER}} .cat_filter .ajax_post_cat:before' => 'background: {{VALUE}}',
+			],
+		]);
+		$this->add_control('cat_item_hover_bg', [
+			'label'     => __('Background', 'load-more-ajax-lite'),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .cat_filter .ajax_post_cat:hover' => 'background: {{VALUE}}',
 			],
 		]);
 		$this->end_controls_tab();
@@ -186,16 +226,17 @@ class LMA_Blog extends Widget_Base {
 			'type'      => Controls_Manager::COLOR,
 			'selectors' => [
 				'{{WRAPPER}} .apl_content_wraper .apl_post_title' => 'color: {{VALUE}}',
+				'{{WRAPPER}} .apl_content_wraper .post_title a' => 'color: {{VALUE}}',
 			],
 		]);
 		$this->add_group_control(Group_Control_Typography::get_type(), [
 			'name'     => 'title_typography',
 			'label'    => __('Typography', 'load-more-ajax-lite'),
-			'selector' => '{{WRAPPER}} .apl_content_wraper .apl_post_title',
+			'selector' => '{{WRAPPER}} .apl_content_wraper .apl_post_title,{{WRAPPER}} .apl_content_wraper .post_title a',
 		]);
 
 		$this->add_control(
-			'neta_heading',
+			'meta_heading',
 			[
 				'label' => esc_html__('Post Meta Style', 'load-more-ajax-lite'),
 				'type' => \Elementor\Controls_Manager::HEADING,
@@ -207,14 +248,150 @@ class LMA_Blog extends Widget_Base {
 			'type'      => Controls_Manager::COLOR,
 			'selectors' => [
 				'{{WRAPPER}} .apl_post_meta .apl_post_meta_item' => 'color: {{VALUE}}',
+				'{{WRAPPER}} .apl_post_meta .apl_post_meta_item a' => 'color: {{VALUE}}'
 			],
 		]);
 		$this->add_group_control(Group_Control_Typography::get_type(), [
 			'name'     => 'meta_typography',
 			'label'    => __('Typography', 'load-more-ajax-lite'),
-			'selector' => '{{WRAPPER}} .apl_post_meta .apl_post_meta_item',
+			'selector' => '{{WRAPPER}} .apl_post_meta .apl_post_meta_item, {{WRAPPER}} .apl_post_meta .apl_post_meta_item a'
+		]);
+		
+		$this->add_control(
+			'content_heading',
+			[
+				'label' => esc_html__('Post Content Style', 'load-more-ajax-lite'),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$this->add_control('content_color', [
+			'label'     => __('Content Color', 'load-more-ajax-lite'),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .apl_post_wraper .apl_content_wraper p' => 'color: {{VALUE}}'
+			],
+		]);
+		$this->add_group_control(Group_Control_Typography::get_type(), [
+			'name'     => 'content_typography',
+			'label'    => __('Typography', 'load-more-ajax-lite'),
+			'selector' => '{{WRAPPER}} .apl_post_wraper .apl_content_wraper p'
 		]);
 
+		$this->end_controls_section();
+
+
+		$this->start_controls_section('load_more_btn_style', [
+			'label' => __('Button Style', 'load-more-ajax-lite'),
+			'tab'   => Controls_Manager::TAB_STYLE,
+		]);
+
+		$this->start_controls_tabs('tabs_button_style');
+		$this->start_controls_tab(
+			'tab_button_normal',
+			[
+				'label' => __('Normal', 'load-more-ajax-lite'),
+			]
+		);
+
+		$this->add_control(
+			'button_text_color',
+			[
+				'label' => __('Color', 'load-more-ajax-lite'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .apl_block_wraper button.loadmore_ajax' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'background_color',
+			[
+				'label' => __('Background Color', 'load-more-ajax-lite'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .apl_block_wraper button.loadmore_ajax' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'border',
+				'label' => __('Border', 'load-more-ajax-lite'),
+				'selector' => '{{WRAPPER}} .apl_block_wraper button.loadmore_ajax',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_shadow',
+				'label' => __('Box Shadow', 'load-more-ajax-lite'),
+				'selector' => '{{WRAPPER}} .apl_block_wraper button.loadmore_ajax',
+			]
+		);
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_button_hover',
+			[
+				'label' => __('Hover', 'load-more-ajax-lite'),
+			]
+		);
+
+		$this->add_control(
+			'hover_color',
+			[
+				'label' => __('Color', 'load-more-ajax-lite'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .apl_block_wraper button.loadmore_ajax:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'background_color_hover',
+			[
+				'label' => __('Background Color', 'load-more-ajax-lite'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .apl_block_wraper button.loadmore_ajax:hover' => 'background-color: {{VALUE}};'
+				],
+			]
+		);
+		
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'border_hover',
+				'label' => __('Border', 'load-more-ajax-lite'),
+				'selector' => '{{WRAPPER}} .apl_block_wraper button.loadmore_ajax:hover'
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_shadow_hover',
+				'label' => __('Box Shadow', 'load-more-ajax-lite'),
+				'selector' => '{{WRAPPER}} .apl_block_wraper button.loadmore_ajax:hover',
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_group_control(Group_Control_Typography::get_type(), [
+			'name'     => 'btn_typography',
+			'label'    => __('Typography', 'load-more-ajax-lite'),
+			'selector' => '{{WRAPPER}} .apl_block_wraper button.loadmore_ajax'
+		]);
 		$this->end_controls_section();
 
 
