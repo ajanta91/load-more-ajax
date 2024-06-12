@@ -1,9 +1,9 @@
 === Load More Ajax Lite ===
 Contributors: ajantawpdev
-Tags: load more ajax, load more posts, load more, ajax, ajax post filter, ajax category filter, custom post type load more, ajax posts, ajax load more, masonry, grid, list, column
+Tags: post filter, load more ajax, load more posts, ajax post filter, category filter, ajax posts, ajax load more, masonry
 Requires at least: 4.7
-Tested up to: 6.4
-Stable tag: 1.0.3
+Tested up to: 6.5
+Stable tag: 1.1.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -74,6 +74,9 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+= 1.1.1 =
+Added ....
+
 = 1.1.0 =
 Added Elementor Widget for 3 block Style
 
