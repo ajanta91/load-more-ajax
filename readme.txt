@@ -1,10 +1,10 @@
 === Load More Ajax Lite ===
 Contributors: ajantawpdev
-Tags: post filter, load more ajax, load more posts, ajax post filter, category filter, ajax posts, ajax load more, masonry
+Tags: load more post, load more elementor, ajax post, ajax category filter
 Requires at least: 4.7
-Tested up to: 6.5
-Stable tag: 1.1.1
-Requires PHP: 7.0
+Tested up to: 6.7
+Stable tag: 1.1.2
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,11 +74,15 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
+=1.1.2=
+- Compatible with WordPress 6.7
+- Changed Thumbnail
+
 = 1.1.1 =
-Added ....
+- Added ....
 
 = 1.1.0 =
-Added Elementor Widget for 3 block Style
+- Added Elementor Widget for 3 block Style
 
 = 1.0.4 =
 Fixed Style 02 grid issue while using together with the layout 03
