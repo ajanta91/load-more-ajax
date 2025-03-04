@@ -57,7 +57,13 @@ class Load_More_Ajax_Addons {
 	}
 
 	public function elementor_preview_mode() {
-		
+		wp_enqueue_script('load_more_ajax-elementor', LOAD_MORE_AJAX_LITE_ASSETS . '/js/elementor.js', array(
+			'jquery',
+			'elementor-frontend'
+		), LOAD_MORE_AJAX_LITE_VERSION, true);
+		wp_localize_script('load_more_ajax-elementor', 'load_more_ajax_elementor', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+		));
 	}
 
 	public function after_register_scripts() {
@@ -71,11 +77,7 @@ class Load_More_Ajax_Addons {
 	 */
 
 	public function before_enqueue_scripts() {
-		wp_enqueue_script( 'load_more_ajax-elementor', LOAD_MORE_AJAX_LITE_ASSETS . '/js/elementor.js', array(
-			'jquery',
-			'elementor-frontend'
-		), LOAD_MORE_AJAX_LITE_VERSION, true );
-
+		
 		
 	}
 

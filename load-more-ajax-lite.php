@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:       Load More Ajax Lite
- * * Plugin URI:      https://plugins.wpnonce.com/load-more-ajax/
+ * Plugin URI:        https://plugins.wpnonce.com/load-more-ajax/
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
  * Version:           1.1.2
  * Requires at least: 5.2
@@ -24,7 +24,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
      */
     final class Load_More_Ajax_Lite {
 
-        const  VERSION = '1.1.1';
+        const  VERSION = '1.1.2';
 
         /**
          * Minimum PHP Version
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __clone() {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Are you cheating?', 'load-more-ajax-lite'), '2.0.0');
         }
 
         /**
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __wakeup() {
             // Unserializing instances of the class is forbidden.
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Are you cheating?', 'load-more-ajax-lite'), '2.0.0');
         }
   
 
@@ -153,6 +153,16 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         }
 
         /**
+         * Is Elementor Installed
+         * 
+         * Check if Elementor is installed and activated
+         */
+        public function is_elementor_installed() {
+            return defined('ELEMENTOR_VERSION');
+        }
+
+
+        /**
          * activate_info
          */
         public function activate_info() {
@@ -207,7 +217,10 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             require_once __DIR__ . '/lib/admin/AdminMenu.php';
             require_once __DIR__ . '/lib/admin/PostBlock.php';
 
-            require_once __DIR__ . '/elementor/elementor_init.php';
+            if( $this->is_elementor_installed() ){
+                require_once __DIR__ . '/elementor/elementor_init.php';
+            }
+
         }
 
         /**
@@ -290,11 +303,11 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ) );
             wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ) );
             wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ) );
-
-            wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-lite.js', __FILE__ ), '1.0', true );
-            wp_localize_script( 'load-more-ajax-lite', 'load_more_ajax_lite', array(
+            
+            wp_register_script('load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-lite.js', __FILE__), '1.0', true);
+            wp_localize_script('load-more-ajax-lite', 'load_more_ajax_lite', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-            ) );
+            ));
             
         }
 
