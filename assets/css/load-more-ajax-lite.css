@@ -127,6 +127,7 @@
     font-size: 16px;
     color: #666;
     margin: 10px 0;
+    word-wrap: break-word;
 }
 .apl_block_wraper.lma_block_style_1 .apl_post_wraper .apl_cat_wraper a {
     text-decoration: none;
@@ -188,8 +189,9 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 4px;
     color: #7a7a7a;
+    display: flex;
+    align-items: center;
 }
 .apl_block_wraper.lma_block_style_1 span.apl_post_meta_item a{
     text-decoration: none;
@@ -284,6 +286,7 @@
 }
 .apl_post_wraper {
     animation: 1s theme_fadeInUp;
+    overflow: hidden;
 }
 
 
@@ -359,4 +362,25 @@
 
 .loading_overlay{
     background: #00000010;
+}
+
+/* Author Avatar Styling */
+.apl_block_wraper.lma_block_style_1 .apl_post_author .author-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.apl_block_wraper.lma_block_style_1 .apl_post_author a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.apl_block_wraper .load_more_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }

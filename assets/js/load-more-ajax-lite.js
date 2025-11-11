@@ -73,6 +73,11 @@
 
                 var $setting = 'post_type=' + $ptype + '&order=' + $order + '&limit=' + $limit + '&cate=' + $cteId + '&column=' + $column + '&block_style=' + $style + '&text_limit=' + $text_limit + '&title_limit=' + $title_limit;
                 
+                // Add nonce if available
+                if (typeof load_more_ajax_lite !== 'undefined' && load_more_ajax_lite.nonce) {
+                    $setting += '&nonce=' + load_more_ajax_lite.nonce;
+                }
+                
                 $.ajax({
                     type: "post",
                     url: load_more_ajax_lite.ajax_url+'?action=ajaxpostsload',
@@ -153,12 +158,35 @@
 
                                                     let postAuthor = document.createElement( 'span' );
                                                     postAuthor.setAttribute( 'class', 'apl_post_author apl_post_meta_item' );
-                                                    postAuthor.innerHTML = $self.author;
+                                                    // Handle both old string format and new object format
+                                                    if (typeof $self.author === 'object' && $self.author.name) {
+                                                        let authorLink = document.createElement('a');
+                                                        authorLink.setAttribute('href', $self.author.link);
+                                                        if ($self.author.avatar) {
+                                                            let authorAvatar = document.createElement('img');
+                                                            authorAvatar.setAttribute('src', $self.author.avatar);
+                                                            authorAvatar.setAttribute('alt', $self.author.name);
+                                                            authorAvatar.setAttribute('class', 'author-avatar');
+                                                            authorLink.appendChild(authorAvatar);
+                                                        }
+                                                        authorLink.appendChild(document.createTextNode(' ' + $self.author.name));
+                                                        postAuthor.appendChild(authorLink);
+                                                    } else {
+                                                        postAuthor.innerHTML = $self.author;
+                                                    }
                                                     postMeta.appendChild( postAuthor );
 
                                                     let date = document.createElement( 'span' );
                                                     date.setAttribute( 'class', 'apl_post_date apl_post_meta_item' );
-                                                    date.innerHTML = $self.date;
+                                                    // Handle both old string format and new object format
+                                                    if (typeof $self.date === 'object' && $self.date.formatted) {
+                                                        let timeElement = document.createElement('time');
+                                                        timeElement.setAttribute('datetime', $self.date.iso);
+                                                        timeElement.textContent = $self.date.formatted;
+                                                        date.appendChild(timeElement);
+                                                    } else {
+                                                        date.innerHTML = $self.date;
+                                                    }
                                                     postMeta.appendChild( date );
 
                                                     let readTime = document.createElement( 'span' );
@@ -267,14 +295,27 @@
                                                 PostsWrapperInner.appendChild(PostContent)
                                                     PostContent.appendChild(PostDate);
                                                         PostDate.appendChild(PostDateLi);
-                                                            PostDateLi.innerHTML = $self.date;
+                                                            // Handle both old string format and new object format
+                                                            if (typeof $self.date === 'object' && $self.date.formatted) {
+                                                                var timeElement = document.createElement('time');
+                                                                timeElement.setAttribute('datetime', $self.date.iso);
+                                                                timeElement.textContent = $self.date.formatted;
+                                                                PostDateLi.appendChild(timeElement);
+                                                            } else {
+                                                                PostDateLi.innerHTML = $self.date;
+                                                            }
                                                             PostDateLi.prepend(PostDateIcon);
                                                     PostContent.appendChild(PostTitle);
                                                         PostTitle.appendChild(PostTitleLink);
                                                             PostTitleLink.innerHTML = $self.title_excerpt;
                                                     PostContent.appendChild(PostMetaUl);
                                                         PostMetaUl.appendChild(PostAuthor);
-                                                            PostAuthor.innerHTML = $self.author;
+                                                            // Handle both old string format and new object format
+                                                            if (typeof $self.author === 'object' && $self.author.name) {
+                                                                PostAuthor.appendChild(document.createTextNode($self.author.name));
+                                                            } else {
+                                                                PostAuthor.innerHTML = $self.author;
+                                                            }
                                                             PostAuthor.prepend(PostAuthorIcon);
                                                         PostMetaUl.appendChild(PostComment);
                                                             PostComment.innerHTML = $self.comment_count;

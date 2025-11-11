@@ -1,0 +1,462 @@
+/**
+ * Load More Ajax Lite - Modern CSS Enhancements
+ * 
+ * @package Load_More_Ajax_Lite
+ * @since 1.1.2
+ */
+
+/* ===== Enhanced Search Box ===== */
+.lma-search-container {
+    margin-bottom: 20px;
+}
+
+.lma-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lma-search-box:focus-within {
+    border-color: #007cba;
+    box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
+}
+
+.lma-search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+}
+
+.lma-search-input::placeholder {
+    color: #7c8993;
+}
+
+.lma-search-btn,
+.lma-search-clear {
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #7c8993;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lma-search-btn:hover,
+.lma-search-clear:hover {
+    color: #007cba;
+    background-color: #f6f7f7;
+}
+
+.lma-search-btn svg {
+    fill: currentColor;
+}
+
+.lma-search-clear {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* ===== Sort Controls ===== */
+.lma-sort-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lma-sort-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.lma-sort-controls label {
+    font-weight: 500;
+    color: #495057;
+    margin: 0;
+}
+
+.lma-sort-select {
+    padding: 6px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #fff;
+    color: #495057;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lma-sort-select:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.25);
+}
+
+/* ===== Post Count Display ===== */
+.lma-post-count {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.lma-count-text {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    color: #6c757d;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ===== Enhanced Loading States ===== */
+.loading_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    backdrop-filter: blur(2px);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007cba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== Enhanced Load More Button ===== */
+.loadmore_ajax {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 30px auto;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #007cba, #005a87);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.loadmore_ajax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.loadmore_ajax:hover::before {
+    left: 100%;
+}
+
+.loadmore_ajax:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 124, 186, 0.3);
+}
+
+.loadmore_ajax:active {
+    transform: translateY(0);
+}
+
+.loadmore_ajax:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.loadmore_ajax.loading_btn {
+    pointer-events: none;
+}
+
+.loadmore_ajax.loading_btn::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ===== Search Results ===== */
+.lma-search-results {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.search-header h3 {
+    margin: 0 0 20px 0;
+    color: #495057;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.search-result-item {
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 4px solid #007cba;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-result-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-item h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.search-result-item h4 a {
+    color: #007cba;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.search-result-item h4 a:hover {
+    color: #005a87;
+}
+
+.search-result-item p {
+    margin: 0 0 8px 0;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.search-result-item small {
+    color: #adb5bd;
+    font-size: 12px;
+}
+
+.no-search-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* ===== Error Messages ===== */
+.lma-error-message {
+    text-align: center;
+    padding: 20px;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    margin: 20px 0;
+}
+
+.lma-error-message p {
+    margin: 0 0 15px 0;
+}
+
+.retry-btn {
+    padding: 8px 16px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #c82333;
+}
+
+/* ===== Enhanced Post Animations ===== */
+.apl_post_wraper {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.apl_post_wraper.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Author Avatar Enhancement ===== */
+.author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 2px solid #e9ecef;
+}
+
+/* ===== Improved Category Filters ===== */
+.cat_filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.ajax_post_cat {
+    position: relative;
+    padding: 10px 20px;
+    background: #fff;
+    color: #495057;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.ajax_post_cat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #007cba, #005a87);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.ajax_post_cat:hover,
+.ajax_post_cat.active {
+    color: #fff;
+    border-color: #007cba;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 124, 186, 0.3);
+}
+
+.ajax_post_cat:hover::before,
+.ajax_post_cat.active::before {
+    left: 0;
+}
+
+/* ===== Enhanced Responsive Design ===== */
+@media (max-width: 768px) {
+    .lma-search-box {
+        max-width: 100%;
+    }
+    
+    .lma-sort-controls {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .cat_filter {
+        gap: 6px;
+    }
+    
+    .ajax_post_cat {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .loadmore_ajax {
+        max-width: 100%;
+    }
+}
+
+/* ===== Dark Mode Support ===== */
+@media (prefers-color-scheme: dark) {
+    .lma-search-box {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .lma-search-input {
+        color: #e2e8f0;
+    }
+    
+    .lma-search-input::placeholder {
+        color: #a0aec0;
+    }
+    
+    .lma-sort-controls {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .lma-sort-controls label {
+        color: #e2e8f0;
+    }
+    
+    .lma-sort-select {
+        background: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .lma-count-text {
+        background: #2d3748;
+        color: #a0aec0;
+    }
+    
+    .ajax_post_cat {
+        background: #2d3748;
+        color: #e2e8f0;
+        border-color: #4a5568;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .lma-search-container,
+    .lma-sort-container,
+    .loadmore_ajax,
+    .loading_overlay {
+        display: none !important;
+    }
+}

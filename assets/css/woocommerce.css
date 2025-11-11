@@ -1,0 +1,434 @@
+/**
+ * WooCommerce Product Styles for Load More Ajax
+ */
+
+/* Product Grid Layout */
+.lma_products_block .ajaxproduct_loader {
+    display: grid;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.lma_products_block .ajaxproduct_loader.column_2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.lma_products_block .ajaxproduct_loader.column_3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.lma_products_block .ajaxproduct_loader.column_4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.lma_products_block .ajaxproduct_loader.column_5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.lma_products_block .ajaxproduct_loader.full {
+    grid-template-columns: 1fr;
+}
+
+/* Product Item */
+.lma_product_item {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.lma_product_item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Product Image */
+.lma_product_image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+
+.lma_product_image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.lma_product_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.lma_product_item:hover .lma_product_image img {
+    transform: scale(1.05);
+}
+
+/* Sale Badge */
+.lma_product_image .onsale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Stock Status */
+.lma_product_stock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+.lma_product_stock .stock {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.lma_product_stock .stock.in-stock {
+    color: #27ae60;
+}
+
+.lma_product_stock .stock.out-of-stock {
+    color: #e74c3c;
+}
+
+/* Product Content */
+.lma_product_content {
+    padding: 20px;
+}
+
+/* Product Categories */
+.lma_product_categories {
+    margin-bottom: 10px;
+}
+
+.lma_product_categories .product_category {
+    display: inline-block;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-decoration: none;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+}
+
+.lma_product_categories .product_category:hover {
+    color: #3498db;
+}
+
+.lma_product_categories .product_category:not(:last-child):after {
+    content: ",";
+    margin-left: -5px;
+}
+
+/* Product Title */
+.lma_product_title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.lma_product_title a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.lma_product_title a:hover {
+    color: #3498db;
+}
+
+/* Product Rating */
+.lma_product_rating {
+    margin-bottom: 12px;
+}
+
+.lma_product_rating .star-rating {
+    display: inline-block;
+    position: relative;
+    height: 1em;
+    line-height: 1;
+    font-size: 14px;
+    width: 5.4em;
+    font-family: star;
+}
+
+.lma_product_rating .star-rating:before {
+    content: "★★★★★";
+    color: #e0e0e0;
+    float: left;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.lma_product_rating .star-rating span {
+    overflow: hidden;
+    float: left;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding-top: 1.5em;
+}
+
+.lma_product_rating .star-rating span:before {
+    content: "★★★★★";
+    top: 0;
+    position: absolute;
+    left: 0;
+    color: #ffc107;
+}
+
+/* Product Price */
+.lma_product_price {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.lma_product_price del {
+    color: #95a5a6;
+    font-weight: 400;
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.lma_product_price ins {
+    text-decoration: none;
+    color: #e74c3c;
+}
+
+/* Product Description */
+.lma_product_description {
+    margin-bottom: 15px;
+    color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Add to Cart Button */
+.lma_product_cart {
+    margin-top: 15px;
+}
+
+.lma_product_cart .button {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #3498db;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lma_product_cart .button:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.lma_product_cart .button.added {
+    background: #27ae60;
+}
+
+.lma_product_cart .button.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.lma_product_cart .button.loading:after {
+    content: "...";
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60%, 100% {
+        content: "...";
+    }
+}
+
+/* Product Category Filter */
+.product_cat_filter {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.product_cat_filter .ajax_post_cat {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 5px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.product_cat_filter .ajax_post_cat:hover,
+.product_cat_filter .ajax_post_cat.active {
+    background: #3498db;
+    color: #fff;
+    border-color: #3498db;
+}
+
+/* Sort Options */
+.lma_sort_options {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.lma_sort_options .lma_product_sort {
+    padding: 10px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    background: #fff;
+    min-width: 200px;
+}
+
+/* Load More Button */
+.lma_products_block .loadmore_products {
+    background: #3498db;
+    color: #fff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lma_products_block .loadmore_products:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.lma_products_block .loadmore_products:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .lma_products_block .ajaxproduct_loader.column_5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .lma_products_block .ajaxproduct_loader.column_3,
+    .lma_products_block .ajaxproduct_loader.column_4,
+    .lma_products_block .ajaxproduct_loader.column_5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .lma_product_content {
+        padding: 15px;
+    }
+
+    .lma_product_title {
+        font-size: 16px;
+    }
+
+    .lma_product_price {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lma_products_block .ajaxproduct_loader.column_2,
+    .lma_products_block .ajaxproduct_loader.column_3,
+    .lma_products_block .ajaxproduct_loader.column_4,
+    .lma_products_block .ajaxproduct_loader.column_5 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .product_cat_filter .ajax_post_cat {
+        padding: 6px 15px;
+        font-size: 13px;
+        margin: 3px;
+    }
+
+    .lma_sort_options {
+        text-align: center;
+    }
+
+    .lma_sort_options .lma_product_sort {
+        width: 100%;
+    }
+}
+
+/* Loading Animation */
+.lma_products_block .ajaxproduct_loader.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.lma_product_item.fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Notice */
+.lma-notice {
+    padding: 15px 20px;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    margin: 20px 0;
+}

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-02-28 13:26+0600\n"
+"POT-Creation-Date: 2022-04-10 13:02+0600\n"
 "PO-Revision-Date: 2022-03-07 01:48+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,309 +11,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_n;_n_noop;_x;_nx;_nx_noop;_ex;esc_attr__;"
 "esc_attr_e;esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: elementor/elementor_init.php:94
-msgid "Load More Ajax Elements"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:36
-msgid "Blog Posts [LMA]"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:72
-msgid "Blog Post"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:76 elementor/widgets/LMA_Blog.php:94
-msgid "Blog Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:80
-msgid "Layout 1"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:81
-msgid "layout 2"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:82
-msgid "Layout 3"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:91
-msgid "Query Filter"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:98
-msgid "2 Column"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:99
-msgid "3 Column"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:100
-msgid "4 Column"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:101
-msgid "5 Column"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:102
-msgid "Full Width"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:107
-msgid "Posts Per Page"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:114
-msgid "Sort Order"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:117
-msgid "Ascending"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:118
-msgid "Descending"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:122
-msgid "Select Ascending or Descending order."
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:126
-msgid "Select category"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:136
-msgid "Title Length"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:143
-msgid "Excerpt Word Length"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:153
-msgid "Category Tab Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:158 elementor/widgets/LMA_Blog.php:297
-msgid "Normal"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:161 elementor/widgets/LMA_Blog.php:190
-#: elementor/widgets/LMA_Blog.php:304 elementor/widgets/LMA_Blog.php:353
-msgid "Color"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:168 elementor/widgets/LMA_Blog.php:198
-#: elementor/widgets/LMA_Blog.php:427
-msgid "Background"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:178 elementor/widgets/LMA_Blog.php:328
-#: elementor/widgets/LMA_Blog.php:377
-msgid "Border"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:186 elementor/widgets/LMA_Blog.php:346
-msgid "Hover"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:209 elementor/widgets/LMA_Blog.php:238
-#: elementor/widgets/LMA_Blog.php:260 elementor/widgets/LMA_Blog.php:281
-#: elementor/widgets/LMA_Blog.php:396
-msgid "Typography"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:217
-msgid "Post Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:223
-msgid "Title Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:229
-msgid "Title Color"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:245
-msgid "Post Meta Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:251
-msgid "Meta Color"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:267
-msgid "Post Content Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:273
-msgid "Content Color"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:289
-msgid "Button Style"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:316 elementor/widgets/LMA_Blog.php:364
-msgid "Background Color"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:337 elementor/widgets/LMA_Blog.php:386
-msgid "Box Shadow"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:404
-msgid "Section Background"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:409
-msgid "Margin"
-msgstr ""
-
-#: elementor/widgets/LMA_Blog.php:418
-msgid "Padding"
-msgstr ""
-
-#: inc/functions.php:52
+#: inc/functions.php:40
 msgid " min"
 msgstr ""
 
-#: inc/functions.php:55
+#: inc/functions.php:43
 msgid " sec"
 msgstr ""
 
-#: inc/functions.php:58
+#: inc/functions.php:46
 msgid " read"
 msgstr ""
 
-#: inc/functions.php:132
+#: inc/functions.php:119
 msgid "Couldn't found any data"
 msgstr ""
 
-#: inc/shortcodes.php:90
+#: inc/shortcodes.php:86
 msgid "All"
 msgstr ""
 
-#: inc/shortcodes.php:98
+#: inc/shortcodes.php:94
 msgid "Load More"
-msgstr ""
-
-#: lib/admin/AdminMenu.php:28 lib/admin/AdminMenu.php:32
-#: load-more-ajax-lite.php:79 load-more-ajax-lite.php:95
-msgid "Are you cheating?"
-msgstr ""
-
-#: lib/admin/AdminMenu.php:87
-msgid "Load More Ajax"
-msgstr ""
-
-#: lib/admin/AdminMenu.php:88
-msgid "All Blocks"
-msgstr ""
-
-#: lib/admin/AdminMenu.php:89
-msgid "Settings"
-msgstr ""
-
-#: lib/admin/AdminMenu.php:104
-msgid "Settings Page"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:2
-#: lib/admin/templates/post-block-new.php:2
-msgid "New Shortcode"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:17
-#: lib/admin/templates/post-block-new.php:9
-msgid "Name"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:25
-#: lib/admin/templates/post-block-new.php:17
-msgid "Block Style"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:38
-#: lib/admin/templates/post-block-new.php:30
-msgid "Post Per Page"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:46
-#: lib/admin/templates/post-block-new.php:38
-msgid "Title Limit"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:54
-#: lib/admin/templates/post-block-new.php:46
-msgid "Text Limit"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:63
-#: lib/admin/templates/post-block-new.php:55
-msgid "Show Category Filter"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:72
-#: lib/admin/templates/post-block-new.php:64
-msgid "Include"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:82
-#: lib/admin/templates/post-block-new.php:74
-msgid "Exclude"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:92
-#: lib/admin/templates/post-block-new.php:84
-msgid "Column"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:96
-#: lib/admin/templates/post-block-new.php:88
-msgid "Select Column"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:97
-#: lib/admin/templates/post-block-new.php:89
-msgid "Two Column"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:98
-#: lib/admin/templates/post-block-new.php:90
-msgid "Three Column"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:99
-#: lib/admin/templates/post-block-new.php:91
-msgid "Four Column"
-msgstr ""
-
-#: lib/admin/templates/post-block-edit.php:110
-msgid "Update"
-msgstr ""
-
-#: lib/admin/templates/post-block-list.php:2
-msgid "Post Block Shortcode"
-msgstr ""
-
-#: lib/admin/templates/post-block-new.php:101
-msgid "Save"
-msgstr ""
-
-#: load-more-ajax-lite.php:278
-msgid "on"
 msgstr ""

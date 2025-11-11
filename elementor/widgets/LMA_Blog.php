@@ -57,10 +57,6 @@ class LMA_Blog extends Widget_Base {
 			return [];
 		}
 	}
-	
-	public function get_script_depends() {
-		return ['load-more-ajax-lite'];
-	}
 
 	public function get_categories() {
 		return ['load_more_ajax-elements' ];
@@ -119,7 +115,7 @@ class LMA_Blog extends Widget_Base {
 			],
 			'default'     => 'DESC',
 			'separator'   => 'before',
-			'description' => esc_html__( "Select Ascending or Descending order.", 'load-more-ajax-lite' ) . '<a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters" target="_blank">WordPress codex</a>.',
+			'description' => esc_html__( "Select Ascending or Descending order. More at", 'load-more-ajax-lite' ) . '<a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters" target="_blank">WordPress codex</a>.',
 		] );
 
 		$this->add_control( 'selected_categories', [
@@ -401,7 +397,7 @@ class LMA_Blog extends Widget_Base {
 
 		// Section background ==============================
 		$this->start_controls_section( 'background_section', [
-			'label' => __( 'Section Background', 'load-more-ajax-lite' ),
+			'label' => __( 'Section Basckground', 'load-more-ajax-lite' ),
 			'tab'   => Controls_Manager::TAB_STYLE,
 		] );
 

@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:       Load More Ajax Lite
- * Plugin URI:        https://plugins.wpnonce.com/load-more-ajax/
+ * * Plugin URI:      https://plugins.wpnonce.com/load-more-ajax/
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
  * Version:           1.1.2
  * Requires at least: 5.2
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __clone() {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong(__FUNCTION__, esc_html__('Are you cheating?', 'load-more-ajax-lite'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
         }
 
         /**
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __wakeup() {
             // Unserializing instances of the class is forbidden.
-            _doing_it_wrong(__FUNCTION__, esc_html__('Are you cheating?', 'load-more-ajax-lite'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
         }
   
 
@@ -153,16 +153,6 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         }
 
         /**
-         * Is Elementor Installed
-         * 
-         * Check if Elementor is installed and activated
-         */
-        public function is_elementor_installed() {
-            return defined('ELEMENTOR_VERSION');
-        }
-
-
-        /**
          * activate_info
          */
         public function activate_info() {
@@ -211,16 +201,27 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          * @access public
          */
         public function core_includes() {
+            // Core classes
+            require_once __DIR__ . '/inc/class-security.php';
+            require_once __DIR__ . '/inc/class-cache.php';
+            require_once __DIR__ . '/inc/class-rest-api.php';
+
             // Extra functions
             require_once __DIR__ . '/inc/functions.php';
             require_once __DIR__ . '/inc/shortcodes.php';
             require_once __DIR__ . '/lib/admin/AdminMenu.php';
             require_once __DIR__ . '/lib/admin/PostBlock.php';
 
-            if( $this->is_elementor_installed() ){
-                require_once __DIR__ . '/elementor/elementor_init.php';
+            // WooCommerce integration
+            require_once __DIR__ . '/inc/woocommerce-functions.php';
+            require_once __DIR__ . '/inc/woocommerce-shortcode.php';
+            if (class_exists('WooCommerce')) {
             }
 
+            // Simple Ajax handler for testing
+            require_once __DIR__ . '/simple-ajax.php';
+
+            require_once __DIR__ . '/elementor/elementor_init.php';
         }
 
         /**
@@ -265,7 +266,93 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
             add_action('admin_enqueue_scripts', [ $this, 'lmal_admin_enqueue_scripts'] );
 
+            // Cache management hooks
+            add_action('save_post', [ $this, 'clear_post_cache' ]);
+            add_action('delete_post', [ $this, 'clear_post_cache' ]);
+            add_action('created_term', [ $this, 'clear_terms_cache' ], 10, 3);
+            add_action('edited_term', [ $this, 'clear_terms_cache' ], 10, 3);
+            add_action('delete_term', [ $this, 'clear_terms_cache' ], 10, 3);
             
+            // Admin bar cache clear button
+            add_action('admin_bar_menu', [ $this, 'add_admin_bar_cache_clear' ], 100);
+            add_action('wp_ajax_lma_clear_cache', [ $this, 'ajax_clear_cache' ]);
+            
+            // Warm cache on plugin activation
+            add_action('init', [ $this, 'maybe_warm_cache' ]);
+            
+        }
+
+        /**
+         * Clear post-related cache
+         */
+        public function clear_post_cache($post_id) {
+            $post = get_post($post_id);
+            if ($post && class_exists('LMA_Cache')) {
+                LMA_Cache::clear_cache_by_type('posts');
+                LMA_Cache::clear_cache_by_type('count');
+            }
+        }
+
+        /**
+         * Clear terms cache
+         */
+        public function clear_terms_cache($term_id, $tt_id, $taxonomy) {
+            if (class_exists('LMA_Cache')) {
+                LMA_Cache::clear_cache_by_type('terms');
+                LMA_Cache::clear_cache_by_type('posts'); // Posts cache depends on terms
+                LMA_Cache::clear_cache_by_type('count');
+            }
+        }
+
+        /**
+         * Add cache clear button to admin bar
+         */
+        public function add_admin_bar_cache_clear($wp_admin_bar) {
+            if (!current_user_can('manage_options')) {
+                return;
+            }
+
+            $wp_admin_bar->add_node(array(
+                'id' => 'lma-clear-cache',
+                'title' => '<span class="ab-icon dashicons-update"></span> ' . esc_html__('Clear LMA Cache', 'load-more-ajax-lite'),
+                'href' => wp_nonce_url(admin_url('admin-ajax.php?action=lma_clear_cache'), 'lma_clear_cache'),
+                'meta' => array(
+                    'class' => 'lma-clear-cache-btn',
+                ),
+            ));
+        }
+
+        /**
+         * Ajax handler for cache clearing
+         */
+        public function ajax_clear_cache() {
+            if (!current_user_can('manage_options')) {
+                wp_die(esc_html__('Unauthorized', 'load-more-ajax-lite'));
+            }
+
+            // Check if nonce exists and verify it
+            if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'lma_clear_cache')) {
+                wp_die(esc_html__('Invalid nonce', 'load-more-ajax-lite'));
+            }
+
+            if (class_exists('LMA_Cache')) {
+                LMA_Cache::clear_all_cache();
+            }
+
+            wp_redirect(wp_get_referer() ?: admin_url());
+            exit;
+        }
+
+        /**
+         * Maybe warm cache on first load
+         */
+        public function maybe_warm_cache() {
+            $warmed = get_option('lma_cache_warmed', false);
+            if (!$warmed) {
+                // Delay cache warming to avoid blocking initial requests
+                wp_schedule_single_event(time() + 60, 'lma_warm_cache');
+                update_option('lma_cache_warmed', true);
+            }
         }
 
 
@@ -299,16 +386,71 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
                 wp_enqueue_style('loadmoreajax-fonts', esc_url_raw( $font_url ), array(), null);
             }
 
-            wp_register_style( 'load-more-ajax-lite', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__ ) );
-            wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ) );
-            wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ) );
-            wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ) );
+            wp_register_style( 'load-more-ajax-lite', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+
+            // WooCommerce styles
+            if (class_exists('WooCommerce')) {
+                wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            }
+
+            wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
             
-            wp_register_script('load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-lite.js', __FILE__), '1.0', true);
-            wp_localize_script('load-more-ajax-lite', 'load_more_ajax_lite', array(
+
+            // WooCommerce JavaScript (Modern ES6)
+            if (class_exists('WooCommerce')) {
+                wp_register_script( 'lma-woocommerce-js', plugins_url('assets/js/woocommerce.js', __FILE__ ), array('load-more-ajax-lite'), LOAD_MORE_AJAX_LITE_VERSION, true );
+            }
+
+            wp_localize_script( 'load-more-ajax-lite', 'load_more_ajax_lite', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-            ));
-            
+                'nonce' => wp_create_nonce('load_more_ajax_nonce'),
+                'strings' => array(
+                    'loading' => esc_html__('Loading...', 'load-more-ajax-lite'),
+                    'load_more' => esc_html__('Load More', 'load-more-ajax-lite'),
+                    'no_more' => esc_html__('No More Posts', 'load-more-ajax-lite'),
+                    'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax-lite'),
+                    'search_placeholder' => esc_html__('Search posts...', 'load-more-ajax-lite'),
+                    'no_results' => esc_html__('No posts found.', 'load-more-ajax-lite'),
+                ),
+                'settings' => array(
+                    'animation_duration' => apply_filters('lma_animation_duration', 300),
+                    'scroll_threshold' => apply_filters('lma_scroll_threshold', 200),
+                    'search_min_chars' => apply_filters('lma_search_min_chars', 3),
+                ),
+            ) );
+
+        }
+
+        /**
+         * Check if browser supports modern JavaScript features
+         */
+        private function is_modern_browser() {
+            // Safely get user agent, return false if not available
+            if (!isset($_SERVER['HTTP_USER_AGENT'])) {
+                return false;
+            }
+
+            $user_agent = sanitize_text_field($_SERVER['HTTP_USER_AGENT']);
+
+            // Simple check for modern browsers
+            // Check for Chrome 60+, Firefox 54+, Safari 600+, Edge 16+
+            if (preg_match('/Chrome\/([6-9]\d|1\d\d)/', $user_agent)) {
+                return true;
+            }
+            if (preg_match('/Firefox\/(5[4-9]|[6-9]\d|1\d\d)/', $user_agent)) {
+                return true;
+            }
+            if (preg_match('/Safari\/([6-9]\d\d|1\d\d\d)/', $user_agent)) {
+                return true;
+            }
+            if (preg_match('/Edge\/(1[6-9]|[2-9]\d)/', $user_agent)) {
+                return true;
+            }
+
+            return false;
         }
 
         public function lmal_admin_enqueue_scripts(){
@@ -327,4 +469,14 @@ if ( ! function_exists( 'load_more_ajax_lite_load' ) ) {
 
     // Run ajax post lite
     load_more_ajax_lite_load();
+}
+
+/**
+ * Cache warming cron job
+ */
+add_action('lma_warm_cache', 'lma_warm_cache_handler');
+function lma_warm_cache_handler() {
+    if (class_exists('LMA_Cache')) {
+        LMA_Cache::warm_cache();
+    }
 }
