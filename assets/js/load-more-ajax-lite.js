@@ -342,7 +342,7 @@
                     },
                     //error ajax page
                     error: function(res){
-                        console.log(res);
+                        // Handle error silently
                     },
                     // ajax complate function
                     complete: function() {

@@ -37,6 +37,7 @@
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
+    padding: 10px;
 }
 
 .lma_product_item:hover {
@@ -138,6 +139,18 @@
     margin-left: -5px;
 }
 
+/* OrderBy select   */
+.cat_filter.product_cat_filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.lma_product_sort_wrapper select {
+    border-radius: 5px;
+    padding: 6px;
+    border-color: #ddd;
+}
+
 /* Product Title */
 .lma_product_title {
     font-size: 18px;
@@ -156,45 +169,68 @@
     color: #3498db;
 }
 
-/* Product Rating */
+/* Product Rating - WooCommerce Native */
 .lma_product_rating {
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .lma_product_rating .star-rating {
-    display: inline-block;
     position: relative;
+    overflow: hidden;
+    width: 5.4em;
     height: 1em;
     line-height: 1;
     font-size: 14px;
-    width: 5.4em;
-    font-family: star;
+    color: #ddd;
+    background: none;
 }
 
-.lma_product_rating .star-rating:before {
+.lma_product_rating .star-rating::before {
     content: "★★★★★";
-    color: #e0e0e0;
-    float: left;
+    color: #ddd;
+    position: absolute;
     top: 0;
     left: 0;
-    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .lma_product_rating .star-rating span {
     overflow: hidden;
-    float: left;
+    position: absolute;
     top: 0;
     left: 0;
-    position: absolute;
-    padding-top: 1.5em;
+    height: 100%;
 }
 
-.lma_product_rating .star-rating span:before {
+.lma_product_rating .star-rating span::before {
     content: "★★★★★";
-    top: 0;
     position: absolute;
+    top: 0;
     left: 0;
-    color: #ffc107;
+    color: #ffd700;
+}
+
+.lma_product_rating .rating-text {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-left: 5px;
+}
+
+/* Style 2 Specific Rating */
+.lma_block_style_2 .lma_product_rating .star-rating {
+    font-size: 14px;
+}
+
+.lma_block_style_2 .lma_product_rating .star-rating::before {
+    color: #ddd;
+}
+
+.lma_block_style_2 .lma_product_rating .star-rating span::before {
+    color: #ffd700;
 }
 
 /* Product Price */
@@ -283,18 +319,18 @@
 /* Product Category Filter */
 .product_cat_filter {
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 8px;
     background: #f8f9fa;
     border-radius: 4px;
 }
 
 .product_cat_filter .ajax_post_cat {
     display: inline-block;
-    padding: 8px 20px;
+    padding: 6px 16px;
     margin: 5px;
     background: #fff;
     border: 1px solid #e5e5e5;
-    border-radius: 20px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 14px;

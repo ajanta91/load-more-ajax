@@ -13,7 +13,20 @@ if (!defined('ABSPATH')) {
  * Check if WooCommerce is active
  */
 function lma_is_woocommerce_active() {
-    return class_exists('WooCommerce');
+    $wc_exists = class_exists('WooCommerce');
+    
+    // Alternative check - look for WooCommerce in active plugins
+    $active_plugins = get_option('active_plugins', []);
+    $wc_plugin_active = in_array('woocommerce/woocommerce.php', $active_plugins);
+    
+    // For multisite, also check network active plugins
+    if (is_multisite()) {
+        $network_plugins = get_site_option('active_sitewide_plugins', []);
+        $wc_network_active = isset($network_plugins['woocommerce/woocommerce.php']);
+        $wc_plugin_active = $wc_plugin_active || $wc_network_active;
+    }
+    
+    return $wc_exists && $wc_plugin_active;
 }
 
 /**
@@ -176,6 +189,9 @@ function lma_get_product_stock_status($product_id) {
 add_action('wp_ajax_nopriv_lma_load_products', 'lma_load_products_ajax');
 add_action('wp_ajax_lma_load_products', 'lma_load_products_ajax');
 
+/**
+ * AJAX handler for loading products
+ */
 function lma_load_products_ajax() {
     try {
         // Security checks
@@ -357,7 +373,11 @@ function lma_load_products_ajax() {
                     'thumbnail_alt' => get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true),
                     'categories' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content(lma_get_product_categories_html(get_the_ID())) : lma_get_product_categories_html(get_the_ID()),
                     'price' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content($product->get_price_html()) : $product->get_price_html(),
+                    'regular_price' => $product->get_regular_price() ? wc_price($product->get_regular_price()) : '',
+                    'sale_price' => $product->get_sale_price() ? wc_price($product->get_sale_price()) : '',
                     'rating' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content(lma_get_product_rating(get_the_ID())) : lma_get_product_rating(get_the_ID()),
+                    'average_rating' => $product->get_average_rating(),
+                    'rating_count' => $product->get_rating_count(),
                     'add_to_cart' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content(lma_get_add_to_cart_button(get_the_ID())) : lma_get_add_to_cart_button(get_the_ID()),
                     'sale_badge' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content(lma_get_product_sale_badge(get_the_ID())) : lma_get_product_sale_badge(get_the_ID()),
                     'stock_status' => class_exists('LMA_Security') ? LMA_Security::sanitize_html_content(lma_get_product_stock_status(get_the_ID())) : lma_get_product_stock_status(get_the_ID()),
@@ -383,6 +403,16 @@ function lma_load_products_ajax() {
 
         // Apply filters to final data
         $productdata = apply_filters('lma_ajax_product_response_data', $productdata, $args);
+
+        // For layout 2 (Modern Card Layout), generate HTML using template
+        if ($block_style == '2') {
+            $template_path = LOAD_MORE_AJAX_LITE_PATH . 'elementor/widgets/templates/product/layout-2.php';
+            if (file_exists($template_path)) {
+                ob_start();
+                include $template_path;
+                $productdata['html'] = ob_get_clean();
+            }
+        }
 
         wp_send_json_success($productdata);
 

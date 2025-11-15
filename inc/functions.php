@@ -325,8 +325,6 @@
                     'file' => $e->getFile(),
                     'line' => $e->getLine(),
                 ]);
-            } else {
-                error_log('Load More Ajax Error: ' . $e->getMessage());
             }
             
             wp_send_json_error([

@@ -213,10 +213,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             require_once __DIR__ . '/lib/admin/PostBlock.php';
 
             // WooCommerce integration
-            require_once __DIR__ . '/inc/woocommerce-functions.php';
-            require_once __DIR__ . '/inc/woocommerce-shortcode.php';
-            if (class_exists('WooCommerce')) {
-            }
+            // Load WooCommerce functions after all plugins are loaded
+            add_action('plugins_loaded', [ $this, 'load_woocommerce_integration' ], 20);
 
             // Simple Ajax handler for testing
             require_once __DIR__ . '/simple-ajax.php';
@@ -280,6 +278,49 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // Warm cache on plugin activation
             add_action('init', [ $this, 'maybe_warm_cache' ]);
             
+        }
+
+        /**
+         * Load WooCommerce Integration
+         * 
+         * Load WooCommerce functions after all plugins are loaded to ensure WooCommerce is available
+         *
+         * @access public
+         */
+        public function load_woocommerce_integration() {
+            if (class_exists('WooCommerce')) {
+                require_once __DIR__ . '/inc/woocommerce-functions.php';
+                
+                // Enqueue WooCommerce scripts on pages that might need them
+                add_action('wp_enqueue_scripts', function() {
+                    // Check if we should load WooCommerce scripts
+                    global $post;
+                    $should_load = false;
+                    
+                    // Load on shop pages
+                    if (function_exists('is_shop') && (is_shop() || is_product_category() || is_product_tag() || is_product())) {
+                        $should_load = true;
+                    }
+                    
+                    // Load if page content contains lma_products_block class
+                    if ($post && is_object($post) && strpos($post->post_content, 'lma_products_block') !== false) {
+                        $should_load = true;
+                    }
+                    
+                    // Load if page content contains woocommerce-related shortcodes or elementor widgets
+                    if ($post && is_object($post) && (strpos($post->post_content, 'lma-products') !== false || strpos($post->post_content, 'product') !== false)) {
+                        $should_load = true;
+                    }
+                    
+                    // Allow filtering
+                    $should_load = apply_filters('lma_should_load_woocommerce_scripts', $should_load);
+                    
+                    if ($should_load) {
+                        wp_enqueue_style('lma-woocommerce');
+                        wp_enqueue_script('lma-woocommerce-js');
+                    }
+                });
+            }
         }
 
         /**
@@ -389,11 +430,12 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             wp_register_style( 'load-more-ajax-lite', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'lma-modern-layout', plugins_url('assets/css/modern-layout.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
 
             // WooCommerce styles
             if (class_exists('WooCommerce')) {
-                wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+               // wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             }
 
             wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
@@ -402,6 +444,25 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // WooCommerce JavaScript (Modern ES6)
             if (class_exists('WooCommerce')) {
                 wp_register_script( 'lma-woocommerce-js', plugins_url('assets/js/woocommerce.js', __FILE__ ), array('load-more-ajax-lite'), LOAD_MORE_AJAX_LITE_VERSION, true );
+                
+                // Also localize the WooCommerce script in case it loads independently
+                wp_localize_script( 'lma-woocommerce-js', 'load_more_ajax_lite', array(
+                    'ajax_url' => admin_url('admin-ajax.php'),
+                    'nonce' => wp_create_nonce('load_more_ajax_nonce'),
+                    'strings' => array(
+                        'loading' => esc_html__('Loading...', 'load-more-ajax-lite'),
+                        'load_more' => esc_html__('Load More Products', 'load-more-ajax-lite'),
+                        'no_more' => esc_html__('No More Products', 'load-more-ajax-lite'),
+                        'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax-lite'),
+                        'search_placeholder' => esc_html__('Search products...', 'load-more-ajax-lite'),
+                        'no_results' => esc_html__('No products found.', 'load-more-ajax-lite'),
+                    ),
+                    'settings' => array(
+                        'animation_duration' => apply_filters('lma_animation_duration', 300),
+                        'scroll_threshold' => apply_filters('lma_scroll_threshold', 200),
+                        'search_min_chars' => apply_filters('lma_search_min_chars', 3),
+                    ),
+                ) );
             }
 
             wp_localize_script( 'load-more-ajax-lite', 'load_more_ajax_lite', array(

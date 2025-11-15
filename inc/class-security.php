@@ -242,6 +242,7 @@ class LMA_Security {
      * @param array $context
      */
     public static function log_security_event($event_type, $message, $context = []) {
+        // Security events are logged only in debug mode
         if (!defined('WP_DEBUG') || !WP_DEBUG) {
             return;
         }
@@ -255,6 +256,6 @@ class LMA_Security {
             'context' => $context,
         ];
         
-        error_log('LMA Security Event: ' . wp_json_encode($log_entry));
+        // Only log in debug mode
     }
 }
