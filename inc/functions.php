@@ -394,6 +394,10 @@
             wp_send_json_success(['total_posts' => $total_posts]);
 
         } catch (Exception $e) {
+            // Log error if debug mode is enabled
+            if (defined('WP_DEBUG') && WP_DEBUG && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+                error_log('LMA Error in lma_get_post_count: ' . $e->getMessage());
+            }
             wp_send_json_error(['message' => esc_html__('Could not get post count.', 'load-more-ajax-lite')]);
         }
     }
@@ -464,6 +468,10 @@
             ]);
 
         } catch (Exception $e) {
+            // Log error if debug mode is enabled
+            if (defined('WP_DEBUG') && WP_DEBUG && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+                error_log('LMA Error in lma_search_posts: ' . $e->getMessage());
+            }
             wp_send_json_error(['message' => esc_html__('Search failed.', 'load-more-ajax-lite')]);
         }
     }

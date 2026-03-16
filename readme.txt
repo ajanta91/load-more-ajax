@@ -2,8 +2,8 @@
 Contributors: ajantawpdev
 Tags: load more post, ajax pagination, infinite scroll, post filter, search posts, elementor widget
 Requires at least: 5.2
-Tested up to: 6.7
-Stable tag: 1.1.2
+Tested up to: 6.8
+Stable tag: 1.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,18 +14,7 @@ Advanced Ajax post loading with infinite scroll, search, filtering, caching, and
 
 **Load More Ajax Lite** is a powerful, feature-rich WordPress plugin that transforms your post listings with modern Ajax functionality. Create stunning, fast-loading blog pages with infinite scroll, real-time search, advanced filtering, and intelligent caching.
 
-**🚀 NEW in Version 1.1.2:**
-* **Infinite Scroll** - Seamless content loading as users scroll
-* **Real-time Search** - Instant post search with live results
-* **Advanced Sorting** - Sort by date, title, or popularity
-* **Smart Caching** - Lightning-fast performance with intelligent caching
-* **Enhanced Security** - Rate limiting and comprehensive input validation
-* **Modern JavaScript** - ES6+ code with automatic fallback
-* **REST API** - Complete API for headless and custom integrations
-* **Dark Mode Support** - Automatic dark theme detection
-* **Better Admin** - Enhanced settings and cache management
-
-**✨ Key Features:**
+** Key Features:**
 * **Multiple Layouts** - 3 beautiful, responsive design styles
 * **Category Filtering** - Ajax-powered category filters
 * **Custom Post Types** - Works with any post type
@@ -94,43 +83,22 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 
 
 == Changelog ==
-
-= 1.1.2 =
-**Major Update with Breaking Changes**
-
-**🔒 Security & Performance:**
+= 1.2 =
+* Security & Performance:
 * Added mandatory nonce verification for all Ajax requests
 * Implemented intelligent caching system with 50% faster load times
 * Added rate limiting to prevent abuse
 * Enhanced input validation and sanitization
 * Modern JavaScript with automatic browser detection
-
-**🎨 New Features:**
-* Infinite scroll option with customizable trigger distance
-* Real-time search functionality with debouncing
 * Advanced sorting options (date, title, modified, random)
 * Post count display with pagination information
-* Enhanced animations with customizable duration
-* Dark mode support with automatic detection
-* Author avatars and enhanced metadata display
-
-**🛠️ Developer Features:**
-* Complete REST API for headless integrations
-* Comprehensive hooks and filters system
-* Template system for easy customization
-* Cache management API with statistics
-* Enhanced error handling and debugging tools
-
-**🎯 Admin Improvements:**
-* Modern settings page with performance monitoring
 * Cache statistics and management tools
 * Admin bar cache clear button
-* Quick actions sidebar with plugin information
-
-**⚠️ Breaking Changes:**
-* Minimum PHP version increased to 7.4
 * Nonce verification required for Ajax requests
-* Some filter hook names changed for consistency
+
+= 1.1.2 =
+- Compatible with WordPress 6.7
+- Changed Thumbnail
 
 = 1.1.1 =
 - WordPress 6.7 compatibility

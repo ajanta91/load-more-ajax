@@ -30,27 +30,27 @@ class LMAWooCommerce {
             }
 
             const instanceId = `lma_product_${Date.now()}_${index}`;
-            const container = block.querySelector('.ajaxproduct_loader');
+            const containerElement = block.querySelector('.ajaxproduct_loader');
 
-            if (!container) {
+            if (!containerElement) {
                 return;
             }
 
-            const config = this.getProductConfig(container);
+            const config = this.getProductConfig(containerElement);
 
             this.productInstances.set(instanceId, {
                 block,
-                container,
+                container: containerElement,
                 config,
                 isLoading: false,
                 currentPage: 1,
             });
 
             this.setupProductBlock(instanceId);
-            
+
             // Mark as initialized
             block.dataset.lmaInitialized = 'true';
-            container.dataset.instanceId = instanceId;
+            containerElement.dataset.instanceId = instanceId;
 
             // Load initial products
             this.loadProducts(instanceId, false);
@@ -85,7 +85,7 @@ class LMAWooCommerce {
         const instance = this.productInstances.get(instanceId);
         if (!instance) return;
 
-        const { block, container } = instance;
+        const { block } = instance;
         
         // Setup load more button
         const button = block.querySelector('.loadmore_products');
@@ -214,11 +214,21 @@ class LMAWooCommerce {
                     this.animateNewProducts(container);
                 }
 
+                // Re-initialize WooCommerce elements (ratings, etc.)
+                this.initWooCommerceElements(container);
+
                 // Trigger custom event
                 const event = new CustomEvent('lmaProductsLoaded', {
                     detail: { instanceId, isLoadMore, data: data.data }
                 });
                 document.dispatchEvent(event);
+
+                // Trigger WooCommerce and jQuery events for compatibility
+                if (typeof jQuery !== 'undefined') {
+                    jQuery(document.body).trigger('wc_fragments_loaded');
+                    jQuery(document.body).trigger('wc_fragment_refresh');
+                    jQuery(container).trigger('lma_products_loaded');
+                }
 
             } else {
                 throw new Error(data.data?.message || 'Failed to load products');
@@ -263,6 +273,7 @@ class LMAWooCommerce {
     }
 
     buildProductHTML(product, config) {
+        console.log('product html', product);
         let html = `<div class="lma_product_item">`;
         
         // Product image
@@ -429,13 +440,87 @@ class LMAWooCommerce {
      */
     handleCompare(btn, productId) {
         console.log('Add to compare:', productId);
-        
+
         // Visual feedback
         btn.style.background = '#28a745';
         btn.style.color = 'white';
-        
+
         // Add your compare implementation here
         // For example, add to compare list
+    }
+
+    /**
+     * Initialize WooCommerce elements after AJAX load
+     * Re-initializes star ratings, add to cart buttons, etc.
+     */
+    initWooCommerceElements(container) {
+        // Re-initialize WooCommerce star ratings - calculate and set width
+        const starRatings = container.querySelectorAll('.star-rating');
+        starRatings.forEach(rating => {
+            // Find the rating value from the HTML
+            const ratingText = rating.querySelector('strong.rating, strong');
+            if (ratingText) {
+                const ratingValue = parseFloat(ratingText.textContent);
+                if (!isNaN(ratingValue)) {
+                    const percentage = (ratingValue / 5) * 100;
+                    const innerSpan = rating.querySelector('span');
+                    if (innerSpan) {
+                        innerSpan.style.width = percentage + '%';
+                    }
+                }
+            }
+
+            // Ensure the rating has proper aria labels
+            if (!rating.hasAttribute('role')) {
+                rating.setAttribute('role', 'img');
+            }
+        });
+
+        // Re-initialize add to cart buttons
+        if (typeof jQuery !== 'undefined') {
+            // Re-init variation forms
+            if (jQuery.fn.wc_variation_form) {
+                jQuery(container).find('.variations_form').each(function() {
+                    jQuery(this).wc_variation_form();
+                });
+            }
+
+            // Re-init add to cart buttons
+            jQuery(container).find('.add_to_cart_button:not(.product_type_variable)').off('click').on('click', function() {
+                // Let WooCommerce handle the add to cart
+                if (typeof wc_add_to_cart_params !== 'undefined') {
+                    return true;
+                }
+            });
+
+            // Trigger WooCommerce product gallery init
+            jQuery(container).find('.woocommerce-product-gallery').each(function() {
+                if (jQuery.fn.wc_product_gallery) {
+                    jQuery(this).wc_product_gallery();
+                }
+            });
+
+            // Re-initialize WooCommerce quantity inputs
+            jQuery(container).find('input.qty').each(function() {
+                const $qty = jQuery(this);
+                const val = parseFloat($qty.val());
+                const min = parseFloat($qty.attr('min'));
+                const max = parseFloat($qty.attr('max'));
+
+                if (!isNaN(min) && val < min) {
+                    $qty.val(min);
+                }
+                if (!isNaN(max) && val > max) {
+                    $qty.val(max);
+                }
+            });
+        }
+
+        // Initialize tooltips if they exist
+        const tooltips = container.querySelectorAll('[data-toggle="tooltip"]');
+        if (tooltips.length > 0 && typeof jQuery !== 'undefined' && jQuery.fn.tooltip) {
+            jQuery(tooltips).tooltip();
+        }
     }
 }
 

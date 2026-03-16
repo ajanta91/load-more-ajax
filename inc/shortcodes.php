@@ -18,20 +18,21 @@ function load_more_ajax_lite_shortcode( $atts ) {
     ), $atts );
 
     ob_start();
-    
-    $posttype       = ! empty( $atts['post_type'] ) ? $atts['post_type'] : 'post';
-    $include        = ! empty( $atts['include'] ) ? $atts['include'] : '';
-    $exclude        = ! empty( $atts['exclude'] ) ? $atts['exclude'] : '';
-    $filter         = ! empty( $atts['filter'] ) ? $atts['filter'] : 'true';
-    $text_limit     = ! empty( $atts['text_limit'] ) ? $atts['text_limit'] : '10';
-    $title_limit    = ! empty( $atts['title_limit'] ) ? $atts['title_limit'] : 30;
-    $style          = ! empty( $atts['style'] ) ? $atts['style'] : '1';
-    $column         = ! empty( $atts['column'] ) ? $atts['column'] : '3';
-    $infinite_scroll = ! empty( $atts['infinite_scroll'] ) ? $atts['infinite_scroll'] : 'false';
-    $enable_search  = ! empty( $atts['enable_search'] ) ? $atts['enable_search'] : 'false';
-    $enable_sort    = ! empty( $atts['enable_sort'] ) ? $atts['enable_sort'] : 'false';
-    $animation      = ! empty( $atts['animation'] ) ? $atts['animation'] : 'true';
-    $show_count     = ! empty( $atts['show_count'] ) ? $atts['show_count'] : 'true';
+
+    // Use the merged attributes instead of checking $atts directly
+    $posttype       = $attributes['post_type'];
+    $include        = $attributes['include'];
+    $exclude        = $attributes['exclude'];
+    $filter         = $attributes['filter'];
+    $text_limit     = $attributes['text_limit'];
+    $title_limit    = $attributes['title_limit'];
+    $style          = $attributes['style'];
+    $column         = $attributes['column'];
+    $infinite_scroll = $attributes['infinite_scroll'];
+    $enable_search  = $attributes['enable_search'];
+    $enable_sort    = $attributes['enable_sort'];
+    $animation      = $attributes['animation'];
+    $show_count     = $attributes['show_count'];
 
     // Enqueue scripts and styles
     if ( $style == '1' ) {
@@ -68,7 +69,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
             $wraper_class = 'column_2';
             break;
     }
-    $limit      = !empty($atts['posts_per_page']) ? $atts['posts_per_page'] : '2';
+    $limit      = ! empty( $attributes['posts_per_page'] ) ? $attributes['posts_per_page'] : '2';
     
     // Create wrapper with enhanced data attributes
     $block_classes = 'apl_block_wraper lma_block_style_' . esc_attr( $style );

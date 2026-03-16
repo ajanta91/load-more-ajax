@@ -246,7 +246,7 @@ class LMA_Security {
         if (!defined('WP_DEBUG') || !WP_DEBUG) {
             return;
         }
-        
+
         $log_entry = [
             'timestamp' => current_time('mysql'),
             'event_type' => $event_type,
@@ -255,7 +255,21 @@ class LMA_Security {
             'user_id' => get_current_user_id(),
             'context' => $context,
         ];
-        
-        // Only log in debug mode
+
+        // Log to WordPress debug log if enabled
+        if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+            error_log(sprintf(
+                '[LMA Security] %s - %s (User: %d, IP: %s) %s',
+                $log_entry['timestamp'],
+                $log_entry['event_type'],
+                $log_entry['user_id'],
+                $log_entry['user_ip'],
+                $log_entry['message']
+            ));
+
+            if (!empty($context)) {
+                error_log('[LMA Security] Context: ' . wp_json_encode($context));
+            }
+        }
     }
 }

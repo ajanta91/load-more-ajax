@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:       Load More Ajax Lite
- * * Plugin URI:      https://plugins.wpnonce.com/load-more-ajax/
+ * Plugin URI:        https://plugins.wpnonce.com/load-more-ajax/
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           1.1.2
+ * Version:           1.2
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Ajanta Das
@@ -24,7 +24,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
      */
     final class Load_More_Ajax_Lite {
 
-        const  VERSION = '1.1.2';
+        const  VERSION = '1.2';
 
         /**
          * Minimum PHP Version
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             add_action('plugins_loaded', [ $this, 'load_woocommerce_integration' ], 20);
 
             // Simple Ajax handler for testing
-            require_once __DIR__ . '/simple-ajax.php';
+            // require_once __DIR__ . '/simple-ajax.php';
 
             require_once __DIR__ . '/elementor/elementor_init.php';
         }
@@ -336,8 +336,14 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
         /**
          * Clear terms cache
+         *
+         * @param int    $term_id  Term ID (required by WordPress hook, not used)
+         * @param int    $tt_id    Term taxonomy ID (required by WordPress hook, not used)
+         * @param string $taxonomy Taxonomy slug (required by WordPress hook, not used)
          */
         public function clear_terms_cache($term_id, $tt_id, $taxonomy) {
+            // Parameters are required by WordPress hooks but not used in this implementation
+            // We clear all cache by type instead of specific terms
             if (class_exists('LMA_Cache')) {
                 LMA_Cache::clear_cache_by_type('terms');
                 LMA_Cache::clear_cache_by_type('posts'); // Posts cache depends on terms
@@ -435,7 +441,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             // WooCommerce styles
             if (class_exists('WooCommerce')) {
-               // wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+                wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             }
 
             wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
@@ -483,35 +489,6 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
                 ),
             ) );
 
-        }
-
-        /**
-         * Check if browser supports modern JavaScript features
-         */
-        private function is_modern_browser() {
-            // Safely get user agent, return false if not available
-            if (!isset($_SERVER['HTTP_USER_AGENT'])) {
-                return false;
-            }
-
-            $user_agent = sanitize_text_field($_SERVER['HTTP_USER_AGENT']);
-
-            // Simple check for modern browsers
-            // Check for Chrome 60+, Firefox 54+, Safari 600+, Edge 16+
-            if (preg_match('/Chrome\/([6-9]\d|1\d\d)/', $user_agent)) {
-                return true;
-            }
-            if (preg_match('/Firefox\/(5[4-9]|[6-9]\d|1\d\d)/', $user_agent)) {
-                return true;
-            }
-            if (preg_match('/Safari\/([6-9]\d\d|1\d\d\d)/', $user_agent)) {
-                return true;
-            }
-            if (preg_match('/Edge\/(1[6-9]|[2-9]\d)/', $user_agent)) {
-                return true;
-            }
-
-            return false;
         }
 
         public function lmal_admin_enqueue_scripts(){

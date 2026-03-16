@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-04-10 13:02+0600\n"
+"POT-Creation-Date: 2025-11-16 01:44+0600\n"
 "PO-Revision-Date: 2022-03-07 01:48+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,33 +11,971 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_n;_n_noop;_x;_nx;_nx_noop;_ex;esc_attr__;"
 "esc_attr_e;esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: inc/functions.php:40
+#: elementor/elementor_init.php:92
+msgid "Load More Ajax Elements"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:36
+msgid "Blog Posts [LMA]"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:68
+msgid "Blog Post"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:72 elementor/widgets/LMA_Blog.php:90
+msgid "Blog Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:76
+msgid "Layout 1"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:77
+msgid "layout 2"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:78
+msgid "Layout 3"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:87
+msgid "Query Filter"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:94
+msgid "2 Column"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:95
+msgid "3 Column"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:96
+msgid "4 Column"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:97
+msgid "5 Column"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:98
+#: elementor/widgets/LMA_Products.php:95
+msgid "Full Width"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:103
+msgid "Posts Per Page"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:110
+#: elementor/widgets/LMA_Products.php:215
+msgid "Sort Order"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:113
+#: elementor/widgets/LMA_Products.php:218
+msgid "Ascending"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:114
+#: elementor/widgets/LMA_Products.php:219
+msgid "Descending"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:118
+msgid "Select Ascending or Descending order. More at"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:122
+msgid "Select category"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:132
+msgid "Title Length"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:139
+msgid "Excerpt Word Length"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:149
+msgid "Category Tab Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:154 elementor/widgets/LMA_Blog.php:293
+#: elementor/widgets/LMA_Products.php:668
+#: elementor/widgets/LMA_Products.php:729
+msgid "Normal"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:157 elementor/widgets/LMA_Blog.php:186
+#: elementor/widgets/LMA_Blog.php:300 elementor/widgets/LMA_Blog.php:349
+#: elementor/widgets/LMA_Products.php:367
+#: elementor/widgets/LMA_Products.php:645
+msgid "Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:164 elementor/widgets/LMA_Blog.php:194
+#: elementor/widgets/LMA_Blog.php:423
+msgid "Background"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:174 elementor/widgets/LMA_Blog.php:324
+#: elementor/widgets/LMA_Blog.php:373
+msgid "Border"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:182 elementor/widgets/LMA_Blog.php:342
+#: elementor/widgets/LMA_Products.php:690
+#: elementor/widgets/LMA_Products.php:756
+msgid "Hover"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:205 elementor/widgets/LMA_Blog.php:234
+#: elementor/widgets/LMA_Blog.php:256 elementor/widgets/LMA_Blog.php:277
+#: elementor/widgets/LMA_Blog.php:392
+msgid "Typography"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:213
+msgid "Post Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:219
+msgid "Title Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:225
+msgid "Title Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:241
+msgid "Post Meta Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:247
+msgid "Meta Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:263
+msgid "Post Content Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:269
+msgid "Content Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:285
+msgid "Button Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:312 elementor/widgets/LMA_Blog.php:360
+#: elementor/widgets/LMA_Products.php:472
+#: elementor/widgets/LMA_Products.php:539
+#: elementor/widgets/LMA_Products.php:597
+#: elementor/widgets/LMA_Products.php:680
+#: elementor/widgets/LMA_Products.php:702
+#: elementor/widgets/LMA_Products.php:741
+#: elementor/widgets/LMA_Products.php:768
+msgid "Background Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:333 elementor/widgets/LMA_Blog.php:382
+msgid "Box Shadow"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:400
+msgid "Section Basckground"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:405
+#: elementor/widgets/LMA_Products.php:794
+msgid "Margin"
+msgstr ""
+
+#: elementor/widgets/LMA_Blog.php:414
+#: elementor/widgets/LMA_Products.php:502
+#: elementor/widgets/LMA_Products.php:785
+msgid "Padding"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:34
+msgid "WooCommerce Products [LMA]"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:62
+msgid "Layout"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:66
+msgid "Product Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:70
+msgid "Classic Layout"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:71
+msgid "Modern Card Layout"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:72
+msgid "Minimal Layout"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:87
+msgid "Columns"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:91
+msgid "2 Columns"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:92
+msgid "3 Columns"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:93
+msgid "4 Columns"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:94
+msgid "5 Columns"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:103
+msgid "Modern Layout Settings"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:110
+msgid "Show Action Buttons"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:112
+#: elementor/widgets/LMA_Products.php:122
+#: elementor/widgets/LMA_Products.php:131
+#: elementor/widgets/LMA_Products.php:260
+#: elementor/widgets/LMA_Products.php:269
+#: elementor/widgets/LMA_Products.php:278
+#: elementor/widgets/LMA_Products.php:287
+#: elementor/widgets/LMA_Products.php:335
+msgid "Show"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:113
+#: elementor/widgets/LMA_Products.php:123
+#: elementor/widgets/LMA_Products.php:132
+#: elementor/widgets/LMA_Products.php:261
+#: elementor/widgets/LMA_Products.php:270
+#: elementor/widgets/LMA_Products.php:279
+#: elementor/widgets/LMA_Products.php:288
+#: elementor/widgets/LMA_Products.php:336
+msgid "Hide"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:116
+msgid "Quick view, wishlist, and compare buttons on product hover"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:120
+msgid "Show Short Description"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:129
+msgid "Show Stock Status"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:138
+msgid "Enable Hover Effects"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:140
+msgid "Enable"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:141
+msgid "Disable"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:144
+msgid "Card elevation and image zoom effects on hover"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:148
+msgid "Card Border Radius"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:168
+msgid "Product Image Height"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:191
+msgid "Query Settings"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:195
+msgid "Products Per Page"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:201
+msgid "Order By"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:204
+msgid "Date"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:205
+#: elementor/widgets/LMA_Products.php:640
+msgid "Price"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:206
+msgid "Popularity"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:207
+msgid "Rating"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:208
+msgid "Title"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:209
+msgid "Menu Order"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:225
+msgid "Select Categories"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:233
+msgid "Featured Products Only"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:235
+#: elementor/widgets/LMA_Products.php:244
+#: elementor/widgets/LMA_Products.php:296
+#: elementor/widgets/LMA_Products.php:305
+#: elementor/widgets/LMA_Products.php:345
+msgid "Yes"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:236
+#: elementor/widgets/LMA_Products.php:245
+#: elementor/widgets/LMA_Products.php:297
+#: elementor/widgets/LMA_Products.php:306
+#: elementor/widgets/LMA_Products.php:346
+msgid "No"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:242
+msgid "On Sale Products Only"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:254
+msgid "Display Settings"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:258
+msgid "Show Rating"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:267
+msgid "Show Price"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:276
+msgid "Show Add to Cart Button"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:285
+msgid "Show Sale Badge"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:294
+msgid "Enable Category Filter"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:303
+msgid "Enable Sort Options"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:312
+msgid "Load More Button Text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:314 load-more-ajax-lite.php:460
+msgid "Load More Products"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:315
+msgid "Enter button text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:319
+msgid "Loading Text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:321 load-more-ajax-lite.php:459
+#: load-more-ajax-lite.php:478
+msgid "Loading..."
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:322
+msgid "Enter loading text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:326
+msgid "No More Products Text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:328 load-more-ajax-lite.php:461
+msgid "No More Products"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:329
+msgid "Enter no more text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:333
+msgid "Show Product Count"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:339
+msgid "Show \"Showing X of Y products\" text"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:343
+msgid "Enable Animation"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:349
+msgid "Animate new products when they load"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:362
+msgid "Product Title"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:383
+msgid "Category Filter"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:388
+#: elementor/widgets/LMA_Products.php:803
+msgid "Alignment"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:392
+#: elementor/widgets/LMA_Products.php:807
+msgid "Left"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:396
+#: elementor/widgets/LMA_Products.php:811
+msgid "Center"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:400
+#: elementor/widgets/LMA_Products.php:815
+msgid "Right"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:411
+msgid "Bottom Spacing"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:431
+msgid "Gap Between Buttons"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:452
+msgid "Normal State"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:463
+#: elementor/widgets/LMA_Products.php:530
+#: elementor/widgets/LMA_Products.php:588
+#: elementor/widgets/LMA_Products.php:672
+#: elementor/widgets/LMA_Products.php:694
+#: elementor/widgets/LMA_Products.php:733
+#: elementor/widgets/LMA_Products.php:760
+msgid "Text Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:486
+#: elementor/widgets/LMA_Products.php:858
+msgid "Border Radius"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:524
+msgid "Hover State"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:548
+#: elementor/widgets/LMA_Products.php:606
+msgid "Border Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:561
+msgid "Transition Duration"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:582
+msgid "Active State"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:619
+msgid "Active Scale"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:661
+msgid "Add to Cart Button"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:722
+msgid "Load More Button"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:828
+msgid "Product Container"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:833
+msgid "Products Gap"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:875
+msgid "Modern Card Style"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:883
+msgid "Card Background"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:893
+msgid "Card Shadow"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:912
+msgid "Hover Shadow Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:921
+msgid "Sale Badge"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:927
+msgid "Badge Background"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:936
+msgid "Badge Text Color"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:945
+msgid "Action Buttons"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:954
+msgid "Button Background"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:966
+msgid "Button Hover Background"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1000
+#: inc/woocommerce-functions.php:214
+msgid "WooCommerce is not active."
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1068
+msgid "All Products"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1079
+msgid "Newest First"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1080
+msgid "Oldest First"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1081
+msgid "Price: Low to High"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1082
+msgid "Price: High to Low"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1083
+msgid "Most Popular"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1084
+msgid "Highest Rated"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1085
+msgid "Name: A to Z"
+msgstr ""
+
+#: elementor/widgets/LMA_Products.php:1086
+msgid "Name: Z to A"
+msgstr ""
+
+#: elementor/widgets/templates/product/layout-2.php:64
+msgid "Quick View"
+msgstr ""
+
+#: elementor/widgets/templates/product/layout-2.php:69
+msgid "Add to Wishlist"
+msgstr ""
+
+#: elementor/widgets/templates/product/layout-2.php:74
+msgid "Compare"
+msgstr ""
+
+#: inc/functions.php:56
 msgid " min"
 msgstr ""
 
-#: inc/functions.php:43
+#: inc/functions.php:59
 msgid " sec"
 msgstr ""
 
-#: inc/functions.php:46
+#: inc/functions.php:62
 msgid " read"
 msgstr ""
 
-#: inc/functions.php:119
-msgid "Couldn't found any data"
+#: inc/functions.php:130 inc/woocommerce-functions.php:202
+msgid "Too many requests. Please wait."
 msgstr ""
 
-#: inc/shortcodes.php:86
+#: inc/functions.php:137 inc/functions.php:348 inc/functions.php:416
+#: inc/woocommerce-functions.php:209 simple-ajax.php:13
+msgid "Security check failed."
+msgstr ""
+
+#: inc/functions.php:145
+msgid "Invalid post type."
+msgstr ""
+
+#: inc/functions.php:170
+msgid "Invalid request parameters."
+msgstr ""
+
+#: inc/functions.php:250
+#, php-format
+msgid "Showing %d-%d of %d posts"
+msgstr ""
+
+#: inc/functions.php:332 inc/woocommerce-functions.php:434
+#: load-more-ajax-lite.php:462 load-more-ajax-lite.php:481
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: inc/functions.php:401
+msgid "Could not get post count."
+msgstr ""
+
+#: inc/functions.php:420
+msgid "Too many search requests."
+msgstr ""
+
+#: inc/functions.php:435
+msgid "Search term must be at least 3 characters."
+msgstr ""
+
+#: inc/functions.php:475
+msgid "Search failed."
+msgstr ""
+
+#: inc/shortcodes.php:113
 msgid "All"
 msgstr ""
 
-#: inc/shortcodes.php:94
+#: inc/shortcodes.php:121 load-more-ajax-lite.php:479
 msgid "Load More"
+msgstr ""
+
+#: inc/woocommerce-functions.php:159
+msgid "Sale!"
+msgstr ""
+
+#: inc/woocommerce-functions.php:351
+#, php-format
+msgid "Showing %d-%d of %d products"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:28 lib/admin/AdminMenu.php:32
+msgid "Are you cheating?"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:91
+msgid "Load More Ajax"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:92
+msgid "All Blocks"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:93
+msgid "Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:133
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:145
+msgid "Load More Ajax Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:153
+msgid "Performance Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:157
+msgid "Cache Duration (seconds)"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:160
+msgid ""
+"How long to cache query results. Recommended: 300 seconds (5 minutes)"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:164
+msgid "Enable Modern JavaScript"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:168
+msgid "Use modern ES6+ JavaScript for better performance"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:173
+msgid "Rate Limit (requests/minute)"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:176
+msgid "Maximum AJAX requests per minute per user"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:183
+msgid "UI/UX Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:187
+msgid "Animation Duration (ms)"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:190
+msgid "Duration for post loading animations"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:194
+msgid "Scroll Threshold (px)"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:197
+msgid "Distance from bottom to trigger infinite scroll"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:204
+msgid "Developer Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:208
+msgid "Enable Debug Mode"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:212
+msgid "Enable detailed logging for debugging"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:219
+msgid "Save Settings"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:225
+msgid "Cache Statistics"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:227
+#, php-format
+msgid "Total Entries: %d"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:228
+#, php-format
+msgid "Cache Size: %s"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:232
+msgid "Clear Cache"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:238
+msgid "Quick Actions"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:241
+msgid "Create New Block"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:246
+msgid "View API Docs"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:252
+msgid "Plugin Info"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:254
+#, php-format
+msgid "Version: %s"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:255
+#, php-format
+msgid "PHP Version: %s"
+msgstr ""
+
+#: lib/admin/AdminMenu.php:256
+#, php-format
+msgid "WordPress Version: %s"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:2
+#: lib/admin/templates/post-block-new.php:2
+msgid "New Shortcode"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:17
+#: lib/admin/templates/post-block-new.php:9
+msgid "Name"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:25
+#: lib/admin/templates/post-block-new.php:17
+msgid "Block Style"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:38
+#: lib/admin/templates/post-block-new.php:30
+msgid "Post Per Page"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:46
+#: lib/admin/templates/post-block-new.php:38
+msgid "Title Limit"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:54
+#: lib/admin/templates/post-block-new.php:46
+msgid "Text Limit"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:63
+#: lib/admin/templates/post-block-new.php:55
+msgid "Show Category Filter"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:72
+#: lib/admin/templates/post-block-new.php:64
+msgid "Include"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:82
+#: lib/admin/templates/post-block-new.php:74
+msgid "Exclude"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:92
+#: lib/admin/templates/post-block-new.php:84
+msgid "Column"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:96
+#: lib/admin/templates/post-block-new.php:88
+msgid "Select Column"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:97
+#: lib/admin/templates/post-block-new.php:89
+msgid "Two Column"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:98
+#: lib/admin/templates/post-block-new.php:90
+msgid "Three Column"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:99
+#: lib/admin/templates/post-block-new.php:91
+msgid "Four Column"
+msgstr ""
+
+#: lib/admin/templates/post-block-edit.php:110
+msgid "Update"
+msgstr ""
+
+#: lib/admin/templates/post-block-list.php:2
+msgid "Post Block Shortcode"
+msgstr ""
+
+#: lib/admin/templates/post-block-new.php:101
+msgid "Save"
+msgstr ""
+
+#: load-more-ajax-lite.php:79 load-more-ajax-lite.php:95
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: load-more-ajax-lite.php:364
+msgid "Clear LMA Cache"
+msgstr ""
+
+#: load-more-ajax-lite.php:377
+msgid "Unauthorized"
+msgstr ""
+
+#: load-more-ajax-lite.php:382
+msgid "Invalid nonce"
+msgstr ""
+
+#: load-more-ajax-lite.php:412
+msgid "on"
+msgstr ""
+
+#: load-more-ajax-lite.php:463
+msgid "Search products..."
+msgstr ""
+
+#: load-more-ajax-lite.php:464
+msgid "No products found."
+msgstr ""
+
+#: load-more-ajax-lite.php:480
+msgid "No More Posts"
+msgstr ""
+
+#: load-more-ajax-lite.php:482
+msgid "Search posts..."
+msgstr ""
+
+#: load-more-ajax-lite.php:483
+msgid "No posts found."
 msgstr ""

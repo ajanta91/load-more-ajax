@@ -65,6 +65,7 @@ function lma_get_product_price($product_id) {
 
 /**
  * Get product rating HTML
+ * Note: Width styling is applied via JavaScript after AJAX load for proper star display
  */
 function lma_get_product_rating($product_id) {
     if (!lma_is_woocommerce_active()) {

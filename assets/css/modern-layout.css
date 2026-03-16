@@ -41,22 +41,6 @@
     transform: scale(1.1);
 }
 
-/* Sale Badge */
-.lma_block_style_2 .lma_sale_badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 10px rgba(238, 90, 82, 0.3);
-    z-index: 10;
-}
 
 /* Action Buttons */
 .lma_block_style_2 .product-actions {
@@ -192,7 +176,7 @@
 .lma_block_style_2 .lma_product_cart .button,
 .lma_block_style_2 .lma_product_cart .add_to_cart_button {
     width: 100%;
-    padding: 12px 20px;
+    padding: 8px 16px;
     border: 2px solid #e1e5e9;
     background: #fff;
     color: #333;
@@ -214,6 +198,11 @@
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    padding: 8px 16px;
+}
+.lma_block_style_2 .lma_product_cart .product_type_external:after,
+.lma_block_style_2 .lma_product_cart .add_to_cart_button:after {
+    font-size: 23px;
 }
 
 /* Grid Layout */
@@ -270,9 +259,9 @@
 
 .lma_block_style_2 .ajax_post_cat:hover,
 .lma_block_style_2 .ajax_post_cat.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ee5a52;
     color: #fff;
-    border-color: #667eea;
+    border-color: #ee5a52;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
@@ -285,7 +274,7 @@
 
 .lma_block_style_2 .loadmore_products {
     padding: 15px 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ee5a52;
     color: white;
     border: none;
     border-radius: 25px;
