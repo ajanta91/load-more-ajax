@@ -5,6 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    gap: 10px;
 }
 
 .apl_block_wraper.lma_block_style_1 .cat_filter .ajax_post_cat {
@@ -47,19 +48,19 @@
     grid-template-columns: auto;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_2 {
-    grid-template-columns: 48.5% 48.5%;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_3{
-    grid-template-columns: 31.33% 31.33% 31.33%;
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 24px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_4{
-    grid-template-columns: 23.50% 23.50% 23.50% 23.50%;
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 20px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader.column_5{
-    grid-template-columns: 18.4% 18.4% 18.4% 18.4% 18.4%;
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 20px;
 }
 .apl_block_wraper.lma_block_style_1 .ajaxpost_loader .apl_post_wraper {
@@ -131,14 +132,14 @@
 }
 .apl_block_wraper.lma_block_style_1 .apl_post_wraper .apl_cat_wraper a {
     text-decoration: none;
-    padding: 3px 12px;
+    padding: 2px 10px;
     font-size: 10px;
     line-height: 20px;
     display: inline-block;
     margin: 4px 4px 0 0;
     color: #000000;
     background: #ffe8a5;
-    border-radius: 15px;
+    border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     transition: 0.3s;
@@ -289,6 +290,15 @@
     overflow: hidden;
 }
 
+.load_more_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.load_more_wrapper span.lma-count-text {
+    font-size: 14px;
+    text-transform: capitalize;
+}
 
 .apl_block_wraper {
     position: relative;

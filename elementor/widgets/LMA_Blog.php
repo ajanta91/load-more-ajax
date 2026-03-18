@@ -40,22 +40,26 @@ class LMA_Blog extends Widget_Base {
 		return 'eicon-posts-grid';
 	}
 
+	public function get_script_depends() {
+		return ['load-more-ajax-lite'];
+	}
+
 	public function get_style_depends() {
 		if (\Elementor\Plugin::$instance->preview->is_preview_mode()) {
-			return [];
-		} else {
-			$settings = $this->get_settings_for_display();
-			if ($settings['layout'] == '1') {
-				return ['load-more-ajax-lite'];
-			}
-			elseif ($settings['layout'] == '2') {
-				return ['load-more-ajax-lite-s2'];
-			}
-			elseif ($settings['layout'] == '3') {
-				return ['load-more-ajax-lite-s3'];
-			}
-			return [];
+			// Load all styles in editor so switching layouts works
+			return ['load-more-ajax-lite', 'load-more-ajax-lite-s2', 'load-more-ajax-lite-s3', 'fontawesome'];
 		}
+		$settings = $this->get_settings_for_display();
+		if ($settings['layout'] == '1') {
+			return ['load-more-ajax-lite', 'fontawesome'];
+		}
+		elseif ($settings['layout'] == '2') {
+			return ['load-more-ajax-lite-s2', 'fontawesome'];
+		}
+		elseif ($settings['layout'] == '3') {
+			return ['load-more-ajax-lite-s3', 'fontawesome'];
+		}
+		return ['load-more-ajax-lite', 'fontawesome'];
 	}
 
 	public function get_categories() {

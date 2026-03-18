@@ -311,3 +311,13 @@
     display: flex;
     align-items: center;
 }
+/* Post Count Text */
+.load_more_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.load_more_wrapper span.lma-count-text {
+    font-size: 14px;
+    text-transform: capitalize;
+}

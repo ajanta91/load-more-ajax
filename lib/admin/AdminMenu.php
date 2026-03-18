@@ -39,8 +39,17 @@ class AdminMenu {
         $cat_filter   = isset( $_POST['category_filter'] ) ? sanitize_text_field( $_POST['category_filter'] ) : '';
         $title_limit  = isset( $_POST['title_limit'] ) ? intval( $_POST['title_limit'] ) : '';
         $text_limit   = isset( $_POST['text_limit'] ) ? intval( $_POST['text_limit'] ) : '';
-        $include      = isset( $_POST['include'] ) ? sanitize_text_field( $_POST['include'] ) : '';
-        $exclude      = isset( $_POST['exclude'] ) ? sanitize_text_field( $_POST['exclude'] ) : '';
+        // Support both checkbox array and comma-separated hidden field
+        if ( ! empty( $_POST['include_cats'] ) && is_array( $_POST['include_cats'] ) ) {
+            $include = implode( ',', array_map( 'intval', $_POST['include_cats'] ) );
+        } else {
+            $include = isset( $_POST['include'] ) ? sanitize_text_field( $_POST['include'] ) : '';
+        }
+        if ( ! empty( $_POST['exclude_cats'] ) && is_array( $_POST['exclude_cats'] ) ) {
+            $exclude = implode( ',', array_map( 'intval', $_POST['exclude_cats'] ) );
+        } else {
+            $exclude = isset( $_POST['exclude'] ) ? sanitize_text_field( $_POST['exclude'] ) : '';
+        }
         $column       = isset( $_POST['column'] ) ? intval( $_POST['column'] ) : '';
         $created_by   = isset( $_POST['created_by'] ) ? intval( $_POST['created_by'] ) : '';
         $currentTimes = time();

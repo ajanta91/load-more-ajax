@@ -29,11 +29,14 @@
                     $post_type  = 'post_type="post" ';
                     $block_style = 'style="' . $data['block_style'] . '" ';
                     $per_page   = !empty($data['per_page']) ? 'posts_per_page="' . $data['per_page'] . '" ' : '';
-                    $filter     = !empty($data['is_filter']) ? 'filter="' . $data['is_filter'] . '" ' : '';
+                    $filter     = !empty($data['is_filter']) ? 'filter="true" ' : '';
                     $include    = !empty($data['include_post']) ? 'include="' . $data['include_post'] . '" ' : '';
                     $exclude    = !empty($data['exclude_post']) ? 'exclude="' . $data['exclude_post'] . '" ' : '';
                     $text_limit = !empty($data['text_limit']) ? 'text_limit="' . $data['text_limit'] . '" ' : '';
-                    $cloumn     = !empty($data['post_column']) ? 'column="' . $data['post_column'] . '" ' : ''; ?>
+                    // Convert legacy DB column values (bootstrap grid) to actual column counts
+                    $col_map    = array( '6' => '2', '4' => '3', '3' => '4' );
+                    $col_val    = isset( $col_map[ $data['post_column'] ] ) ? $col_map[ $data['post_column'] ] : $data['post_column'];
+                    $cloumn     = !empty($data['post_column']) ? 'column="' . $col_val . '" ' : ''; ?>
 
                     <tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
                         <th scope="row" class="check-column"> <input id="cb-select-1" type="checkbox" name="post[]" value="1"></th>

@@ -57,7 +57,12 @@ class Load_More_Ajax_Addons {
 	}
 
 	public function elementor_preview_mode() {
-		
+		// Load all styles and scripts in editor preview
+		wp_enqueue_style('load-more-ajax-lite');
+		wp_enqueue_style('load-more-ajax-lite-s2');
+		wp_enqueue_style('load-more-ajax-lite-s3');
+		wp_enqueue_style('fontawesome');
+		wp_enqueue_script('load-more-ajax-lite');
 	}
 
 	public function after_register_scripts() {
@@ -71,12 +76,8 @@ class Load_More_Ajax_Addons {
 	 */
 
 	public function before_enqueue_scripts() {
-		wp_enqueue_script( 'load_more_ajax-elementor', LOAD_MORE_AJAX_LITE_ASSETS . '/js/elementor.js', array(
-			'jquery',
-			'elementor-frontend'
-		), LOAD_MORE_AJAX_LITE_VERSION, true );
-
-		
+		// Ensure the main load-more-ajax script is available for Elementor widgets
+		wp_enqueue_script( 'load-more-ajax-lite' );
 	}
 
 	/**

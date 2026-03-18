@@ -494,7 +494,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         public function lmal_admin_enqueue_scripts(){
             wp_enqueue_style('lmal-admin', plugins_url('/lib/admin/assets/css/admin.css', __FILE__) );
 
-            wp_enqueue_script('lmal-admin', plugins_url('/lib/admin/assets/js/admin-script.js', __FILE__), '1.0', true);
+            wp_enqueue_script('lmal-admin', plugins_url('/lib/admin/assets/js/admin-script.js', __FILE__), array('jquery'), LOAD_MORE_AJAX_LITE_VERSION, true);
         }
     }
 }

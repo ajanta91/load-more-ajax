@@ -10,6 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 40px;
+    gap: 10px;
 }
 
 .lma_block_style_3 .loadmore_ajax,
@@ -17,7 +18,6 @@
 .lma_block_style_3 .cat_filter .ajax_post_cat {
     padding: 4px 18px;
     border: 1px solid #00000017;
-    margin-right: 5px;
     color: #000;
     border-radius: 40px;
     text-transform: capitalize;
@@ -46,21 +46,22 @@
 
 .lma_block_style_3 .column_2 {
     display: grid;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     margin-bottom: 30px;
 }
 
 .lma_block_style_3 .column_3 {
     display: grid;
-    grid-template-columns: 32% 32% 32%;
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
     min-height: 300px;
 }
 
 .lma_block_style_3 .column_4 {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
 }
 
 .lma_block_style_3 .column_2 .posts_wrapper_3 {
@@ -93,6 +94,7 @@
 .posts_wrapper_inner {
     position: relative;
     height: 100%;
+    overflow: hidden;
 }
 
 .post_thumb {
@@ -109,7 +111,7 @@
     height: 100%;
     z-index: 2;
     transition: all 0.5s ease;
-    padding: 25px 30px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -192,6 +194,7 @@ h3.post_title a {
     font-size: 24px;
     line-height: 1.4;
     margin: 10px 0;
+    text-decoration: none;
 }
 
 a.post_permalink:hover {
@@ -305,6 +308,16 @@ ul.post_meta li a {
     -ms-animation: cssload-rotate 2300ms linear infinite;
     -webkit-animation: cssload-rotate 2300ms linear infinite;
     -moz-animation: cssload-rotate 2300ms linear infinite;
+}
+
+.load_more_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.load_more_wrapper span.lma-count-text {
+    font-size: 14px;
+    text-transform: capitalize;
 }
 
 @keyframes cssload-rotate {

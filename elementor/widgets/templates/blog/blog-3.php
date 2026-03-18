@@ -45,7 +45,7 @@ $selected_cat  = isset($selected_categories) ? $selected_categories : '0';
         ?>
     </div>
 
-    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="post" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="6" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="1">
+    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="post" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="1" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="">
     </div>
-    <button class="loadmore_ajax" type="button">Load More</button>
+    <div class="load_more_wrapper"><button class="loadmore_ajax" type="button">Load More</button></div>
 </div>

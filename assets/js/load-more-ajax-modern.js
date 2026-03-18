@@ -24,18 +24,50 @@ class LoadMoreAjax {
     }
 
     init() {
-        document.addEventListener('DOMContentLoaded', () => {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.initializeBlocks();
+            });
+        } else {
             this.initializeBlocks();
-        });
+        }
+
+        // Re-initialize when Elementor frontend loads widgets
+        const self = this;
+        function bindElementorHooks() {
+            if (window.elementorFrontend && window.elementorFrontend.hooks) {
+                window.elementorFrontend.hooks.addAction('frontend/element_ready/lma-blog.default', ($element) => {
+                    self.initializeBlocks();
+                });
+                window.elementorFrontend.hooks.addAction('frontend/element_ready/lma-products.default', ($element) => {
+                    self.initializeBlocks();
+                });
+            }
+        }
+
+        // Bind immediately if elementorFrontend is already available (editor preview)
+        if (window.elementorFrontend) {
+            bindElementorHooks();
+        }
+        // Also listen for the init event (frontend page load)
+        document.addEventListener('elementor/frontend/init', bindElementorHooks);
+        // jQuery fallback for Elementor
+        if (window.jQuery) {
+            window.jQuery(window).on('elementor/frontend/init', bindElementorHooks);
+        }
     }
 
     initializeBlocks() {
         const blocks = document.querySelectorAll('.apl_block_wraper');
         
         blocks.forEach((block, index) => {
-            const instanceId = `lma_${index}`;
+            // Skip already initialized blocks
+            if (block.dataset.lmaInitialized) return;
+            block.dataset.lmaInitialized = 'true';
+
+            const instanceId = `lma_${Date.now()}_${index}`;
             const config = this.getBlockConfig(block);
-            
+
             this.instances.set(instanceId, {
                 block,
                 config,
@@ -190,6 +222,7 @@ class LoadMoreAjax {
         countContainer.innerHTML = '<span class="lma-count-text">Loading...</span>';
 
         const loader = block.querySelector('.load_more_wrapper');
+        if (!loader) return;
         loader.append(countContainer);
       
     }

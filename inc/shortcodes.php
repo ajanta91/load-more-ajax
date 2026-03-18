@@ -49,6 +49,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
             $wraper_class = 'full';
             $limit        = '3';
             break;
+        case '6': // Legacy DB value for 2 columns
         case '2':
             $wraper_class = 'column_2';
             $limit        = '2';
@@ -66,7 +67,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
             $limit        = '5';
             break;
         default:
-            $wraper_class = 'column_2';
+            $wraper_class = 'column_3';
             break;
     }
     $limit      = ! empty( $attributes['posts_per_page'] ) ? $attributes['posts_per_page'] : '2';
@@ -86,7 +87,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
     }, array_keys($data_attributes), $data_attributes)) . '>';
     
     $cat_item = ! empty( get_load_more_ajax_lite_taxonomi( $posttype ) ) ? get_load_more_ajax_lite_taxonomi( $posttype ) : '';
-        if( $filter == 'true' && ! empty( $cat_item ) ) { ?>
+        if( in_array( $filter, array( 'true', '1', 'yes' ), true ) && ! empty( $cat_item ) ) { ?>
             <div class="cat_filter">
                 <?php
                 $args['taxonomy']   = $cat_item;
