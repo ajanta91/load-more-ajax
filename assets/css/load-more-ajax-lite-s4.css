@@ -1,0 +1,192 @@
+/*
+* Ajax post style 04 — Masonry Layout
+*/
+
+/* Container — Masonry.js requires relative positioning */
+.apl_block_wraper.lma_block_style_4 .ajaxpost_loader {
+    position: relative;
+    min-height: 250px;
+    margin-bottom: 50px;
+}
+
+/* Gutter sizer for Masonry.js */
+.apl_block_wraper.lma_block_style_4 .lma-gutter-sizer {
+    width: 24px;
+}
+
+/* Column widths */
+.apl_block_wraper.lma_block_style_4 .column_2 .apl_post_wraper {
+    width: calc(50% - 12px);
+}
+
+.apl_block_wraper.lma_block_style_4 .column_3 .apl_post_wraper {
+    width: calc(33.333% - 16px);
+}
+
+.apl_block_wraper.lma_block_style_4 .column_4 .apl_post_wraper {
+    width: calc(25% - 18px);
+}
+
+/* Card */
+.apl_block_wraper.lma_block_style_4 .apl_post_wraper {
+    margin-bottom: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Thumbnail */
+.apl_block_wraper.lma_block_style_4 .apl_thumnbail_wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_thumnbail_wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Category overlay on image */
+.apl_block_wraper.lma_block_style_4 .apl_cat_wraper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    z-index: 1;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_cat_wraper a {
+    background: #007bff;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: background 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_cat_wraper a:hover {
+    background: #0056b3;
+}
+
+/* Content area */
+.apl_block_wraper.lma_block_style_4 .apl_content_wraper {
+    padding: 16px;
+}
+
+/* Title */
+.apl_block_wraper.lma_block_style_4 .apl_post_title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_title_permalink {
+    color: #222;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_title_permalink:hover {
+    color: #007bff;
+}
+
+/* Excerpt */
+.apl_block_wraper.lma_block_style_4 .apl_content_wraper p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 12px;
+}
+
+/* Meta */
+.apl_block_wraper.lma_block_style_4 .apl_post_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+    color: #777;
+}
+
+.apl_block_wraper.lma_block_style_4 .apl_post_author,
+.apl_block_wraper.lma_block_style_4 .apl_post_date,
+.apl_block_wraper.lma_block_style_4 .apl_post_readtime {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.apl_block_wraper.lma_block_style_4 .author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Category filter bar */
+.apl_block_wraper.lma_block_style_4 .cat_filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.apl_block_wraper.lma_block_style_4 .cat_filter .ajax_post_cat {
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+    border: 1px solid #ddd;
+    padding: 4px 14px;
+    border-radius: 20px;
+    color: #555;
+    background: transparent;
+}
+
+.apl_block_wraper.lma_block_style_4 .cat_filter .ajax_post_cat:hover,
+.apl_block_wraper.lma_block_style_4 .cat_filter .ajax_post_cat.active {
+    color: #fff;
+    background: #007bff;
+    border-color: #007bff;
+}
+
+.apl_block_wraper.lma_block_style_4 .cat_filter .ajax_post_cat.active {
+    pointer-events: none;
+}
+
+/* Load more button */
+.apl_block_wraper.lma_block_style_4 .load_more_wrapper {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.apl_block_wraper.lma_block_style_4 .loadmore_ajax {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_4 .loadmore_ajax:hover {
+    background: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .apl_block_wraper.lma_block_style_4 .apl_post_wraper {
+        width: 100% !important;
+    }
+}
