@@ -150,6 +150,11 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
 }
+@media (min-width: 783px) {
+    .lma-style-selector {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
 .lma-style-option {
     position: relative;
     border: 2px solid #dcdcde;
@@ -259,6 +264,66 @@
 .lma-style-thumb.style-card .thumb-img {
     height: 45%;
 }
+
+/* Style 4 - Masonry thumbnail */
+.lma-style-thumb.style-masonry {
+    display: flex; gap: 3px; height: 60px; padding: 4px;
+}
+.lma-style-thumb.style-masonry .masonry-col {
+    flex: 1; display: flex; flex-direction: column; gap: 3px;
+}
+.lma-style-thumb.style-masonry .masonry-item {
+    background: #ddd; border-radius: 2px; flex: 1;
+}
+.lma-style-thumb.style-masonry .masonry-item.tall { flex: 1.8; }
+.lma-style-thumb.style-masonry .masonry-item.medium { flex: 1.3; }
+
+/* Style 5 - Carousel thumbnail */
+.lma-style-thumb.style-carousel {
+    position: relative; height: 60px; padding: 4px; display: flex; align-items: center;
+}
+.lma-style-thumb.style-carousel .carousel-arrow {
+    font-size: 16px; color: #999; width: 12px; text-align: center; flex-shrink: 0;
+}
+.lma-style-thumb.style-carousel .carousel-slides {
+    display: flex; gap: 3px; flex: 1;
+}
+.lma-style-thumb.style-carousel .carousel-slide {
+    flex: 1; background: #ddd; border-radius: 2px; height: 40px;
+}
+.lma-style-thumb.style-carousel .carousel-dots {
+    position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px;
+}
+.lma-style-thumb.style-carousel .carousel-dots .dot {
+    width: 5px; height: 5px; border-radius: 50%; background: #ccc;
+}
+.lma-style-thumb.style-carousel .carousel-dots .dot.active {
+    background: #007bff;
+}
+
+/* Carousel settings section */
+.lma-carousel-settings .lma-form-row {
+    display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+}
+.lma-carousel-settings .lma-form-row label { font-weight: 500; }
+.lma-carousel-settings select { padding: 6px 12px; border: 1px solid #ddd; border-radius: 4px; }
+.lma-carousel-settings .lma-section-title {
+    padding: 12px 16px; margin: 0; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f0f0f1;
+}
+.lma-carousel-settings .lma-form-row:last-child { border-bottom: none; }
+.lma-carousel-settings { padding: 0 16px 16px; }
+.lma-carousel-settings .lma-toggle { display: inline-flex; align-items: center; gap: 0; }
+.lma-carousel-settings .lma-toggle .lma-toggle-slider {
+    position: relative; width: 36px; height: 20px; background: #c3c4c7; border-radius: 10px;
+    cursor: pointer; transition: background 0.2s; display: inline-block;
+}
+.lma-carousel-settings .lma-toggle .lma-toggle-slider::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+    background: #fff; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.lma-carousel-settings .lma-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.lma-carousel-settings .lma-toggle input:checked + .lma-toggle-slider { background: #2271b1; }
+.lma-carousel-settings .lma-toggle input:checked + .lma-toggle-slider::after { transform: translateX(16px); }
 
 .lma-style-option .lma-style-name {
     font-size: 12px;
@@ -549,6 +614,44 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     border: none;
+}
+
+/* Preview - Style 4 Masonry */
+.lma-preview-grid.style-masonry-preview {
+    columns: 3;
+    column-gap: 12px;
+    display: block;
+}
+.lma-preview-grid.style-masonry-preview .lma-preview-card {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Preview - Style 5 Carousel */
+.lma-preview-grid.style-carousel-preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.carousel-preview-arrow {
+    font-size: 24px;
+    color: #999;
+    cursor: default;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+.carousel-preview-slides {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    overflow: hidden;
+}
+.carousel-preview-slides .lma-preview-card {
+    flex: 1;
+    min-width: 0;
 }
 
 /* Preview - Load More Button */

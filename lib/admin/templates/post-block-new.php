@@ -105,6 +105,31 @@ $page_title = __( 'Create New Block', 'load-more-ajax-lite' );
                                     </div>
                                     <span class="lma-style-name"><?php esc_html_e( 'Modern Card', 'load-more-ajax-lite' ); ?></span>
                                 </div>
+
+                                <!-- Style 4: Masonry -->
+                                <div class="lma-style-option <?php echo $block_data['block_style'] == '4' ? 'active' : ''; ?>" data-style="4">
+                                    <input type="radio" name="block_style" value="4" <?php checked( $block_data['block_style'], '4' ); ?>>
+                                    <span class="lma-style-check"><span class="dashicons dashicons-yes"></span></span>
+                                    <div class="lma-style-thumb style-masonry">
+                                        <div class="masonry-col"><div class="masonry-item tall"></div><div class="masonry-item"></div></div>
+                                        <div class="masonry-col"><div class="masonry-item"></div><div class="masonry-item tall"></div></div>
+                                        <div class="masonry-col"><div class="masonry-item medium"></div><div class="masonry-item"></div></div>
+                                    </div>
+                                    <span class="lma-style-name"><?php esc_html_e( 'Masonry', 'load-more-ajax-lite' ); ?></span>
+                                </div>
+
+                                <!-- Style 5: Carousel -->
+                                <div class="lma-style-option <?php echo $block_data['block_style'] == '5' ? 'active' : ''; ?>" data-style="5">
+                                    <input type="radio" name="block_style" value="5" <?php checked( $block_data['block_style'], '5' ); ?>>
+                                    <span class="lma-style-check"><span class="dashicons dashicons-yes"></span></span>
+                                    <div class="lma-style-thumb style-carousel">
+                                        <div class="carousel-arrow left">&lsaquo;</div>
+                                        <div class="carousel-slides"><div class="carousel-slide"></div><div class="carousel-slide"></div><div class="carousel-slide"></div></div>
+                                        <div class="carousel-arrow right">&rsaquo;</div>
+                                        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+                                    </div>
+                                    <span class="lma-style-name"><?php esc_html_e( 'Carousel', 'load-more-ajax-lite' ); ?></span>
+                                </div>
                             </div>
                         </div>
 
@@ -133,6 +158,31 @@ $page_title = __( 'Create New Block', 'load-more-ajax-lite' );
                                 <?php endforeach; ?>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Settings -->
+                <div class="lma-section lma-carousel-settings" style="<?php echo ($block_data['block_style'] ?? '') == '5' ? '' : 'display:none;'; ?>">
+                    <h3 class="lma-section-title"><?php esc_html_e( 'Carousel Settings', 'load-more-ajax-lite' ); ?></h3>
+                    <div class="lma-form-row">
+                        <label><?php esc_html_e( 'Slides Per View', 'load-more-ajax-lite' ); ?></label>
+                        <select name="slides_per_view">
+                            <?php for ($i = 1; $i <= 4; $i++) : ?>
+                                <option value="<?php echo $i; ?>" <?php selected( $block_data['slides_per_view'] ?? 3, $i ); ?>><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                    <div class="lma-form-row">
+                        <label><?php esc_html_e( 'Show Arrows', 'load-more-ajax-lite' ); ?></label>
+                        <label class="lma-toggle"><input type="checkbox" name="show_arrows" value="1" <?php checked( $block_data['show_arrows'] ?? 1, 1 ); ?>><span class="lma-toggle-slider"></span></label>
+                    </div>
+                    <div class="lma-form-row">
+                        <label><?php esc_html_e( 'Show Dots', 'load-more-ajax-lite' ); ?></label>
+                        <label class="lma-toggle"><input type="checkbox" name="show_dots" value="1" <?php checked( $block_data['show_dots'] ?? 1, 1 ); ?>><span class="lma-toggle-slider"></span></label>
+                    </div>
+                    <div class="lma-form-row">
+                        <label><?php esc_html_e( 'Autoplay', 'load-more-ajax-lite' ); ?></label>
+                        <label class="lma-toggle"><input type="checkbox" name="autoplay" value="1" <?php checked( $block_data['autoplay'] ?? 1, 1 ); ?>><span class="lma-toggle-slider"></span></label>
                     </div>
                 </div>
 
