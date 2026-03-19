@@ -148,7 +148,7 @@
                 $order = LMA_Security::validate_numeric($_POST['order'] ?? 1, 1, 999, 1);
                 $limit = LMA_Security::validate_numeric($_POST['limit'] ?? 6, 1, 50, 6);
                 $cat = LMA_Security::validate_category_ids($_POST['cate'] ?? '', get_load_more_ajax_lite_taxonomi($posttype));
-                $block_style = LMA_Security::validate_numeric($_POST['block_style'] ?? 1, 1, 3, 1);
+                $block_style = LMA_Security::validate_numeric($_POST['block_style'] ?? 1, 1, 5, 1);
                 $text_limit = LMA_Security::validate_numeric($_POST['text_limit'] ?? 10, 1, 200, 10);
                 $title_limit = LMA_Security::validate_numeric($_POST['title_limit'] ?? 30, 1, 500, 30);
             } else {

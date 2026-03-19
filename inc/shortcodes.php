@@ -15,6 +15,10 @@ function load_more_ajax_lite_shortcode( $atts ) {
         'enable_sort'   => 'false',
         'animation'     => 'true',
         'show_count'    => 'true',
+        'slides_per_view' => '3',
+        'show_arrows'     => 'true',
+        'show_dots'       => 'true',
+        'autoplay'        => 'true',
     ), $atts );
 
     ob_start();
@@ -33,6 +37,10 @@ function load_more_ajax_lite_shortcode( $atts ) {
     $enable_sort    = $attributes['enable_sort'];
     $animation      = $attributes['animation'];
     $show_count     = $attributes['show_count'];
+    $slides_per_view = $attributes['slides_per_view'];
+    $show_arrows    = $attributes['show_arrows'];
+    $show_dots      = $attributes['show_dots'];
+    $autoplay       = $attributes['autoplay'];
 
     // Enqueue scripts and styles
     if ( $style == '1' ) {
@@ -41,6 +49,14 @@ function load_more_ajax_lite_shortcode( $atts ) {
         wp_enqueue_style( 'load-more-ajax-lite-s2' );
     } elseif ( $style == '3') {
         wp_enqueue_style('load-more-ajax-lite-s3');
+    } elseif ( $style == '4' ) {
+        wp_enqueue_style( 'load-more-ajax-lite-s4' );
+        wp_enqueue_script( 'lma-masonry' );
+        wp_enqueue_script( 'lma-imagesloaded' );
+    } elseif ( $style == '5' ) {
+        wp_enqueue_style( 'lma-swiper' );
+        wp_enqueue_style( 'load-more-ajax-lite-s5' );
+        wp_enqueue_script( 'lma-swiper' );
     }
     wp_enqueue_script( 'load-more-ajax-lite' );
 
@@ -87,7 +103,7 @@ function load_more_ajax_lite_shortcode( $atts ) {
     }, array_keys($data_attributes), $data_attributes)) . '>';
     
     $cat_item = ! empty( get_load_more_ajax_lite_taxonomi( $posttype ) ) ? get_load_more_ajax_lite_taxonomi( $posttype ) : '';
-        if( in_array( $filter, array( 'true', '1', 'yes' ), true ) && ! empty( $cat_item ) ) { ?>
+        if( $style != '5' && in_array( $filter, array( 'true', '1', 'yes' ), true ) && ! empty( $cat_item ) ) { ?>
             <div class="cat_filter">
                 <?php
                 $args['taxonomy']   = $cat_item;
@@ -118,8 +134,14 @@ function load_more_ajax_lite_shortcode( $atts ) {
             </div>
             <?php
         }
-        echo '<div class="ajaxpost_loader '. esc_attr( $wraper_class ) .'" data-block_style="'. esc_attr( $style ) .'" data-column="'. esc_attr( $wraper_class ) .'" data-post_type="'. esc_attr( $posttype ) . '" data-text_limit="'. esc_attr( $text_limit ) . '" data-title_limit="' . esc_attr($title_limit) . '" data-order="1" data-limit="'. esc_attr( $limit ) .'" data-cate=""></div>';
-        echo '<div class="load_more_wrapper"><button class="loadmore_ajax" type="button" >'. esc_html__( 'Load More', 'load-more-ajax-lite' ) .'</button></div>';
+        $slider_attrs = '';
+        if ( $style == '5' ) {
+            $slider_attrs = ' data-slides_per_view="' . esc_attr( $slides_per_view ) . '" data-show_arrows="' . esc_attr( $show_arrows ) . '" data-show_dots="' . esc_attr( $show_dots ) . '" data-autoplay="' . esc_attr( $autoplay ) . '"';
+        }
+        echo '<div class="ajaxpost_loader '. esc_attr( $wraper_class ) .'" data-block_style="'. esc_attr( $style ) .'" data-column="'. esc_attr( $wraper_class ) .'" data-post_type="'. esc_attr( $posttype ) . '" data-text_limit="'. esc_attr( $text_limit ) . '" data-title_limit="' . esc_attr($title_limit) . '" data-order="1" data-limit="'. esc_attr( $limit ) .'" data-cate=""' . $slider_attrs . '></div>';
+        if ( $style != '5' ) {
+            echo '<div class="load_more_wrapper"><button class="loadmore_ajax" type="button" >'. esc_html__( 'Load More', 'load-more-ajax-lite' ) .'</button></div>';
+        }
     echo '</div>';
     
     return ob_get_clean();
