@@ -68,7 +68,7 @@ class AdminMenu {
             "include_post" => $include,
             "exclude_post" => $exclude,
             "post_column"  => $column,
-            "slides_per_view" => intval($_POST['slides_per_view'] ?? 3),
+            "slides_per_view" => min(4, max(1, intval($_POST['slides_per_view'] ?? 3))),
             "show_arrows"     => isset($_POST['show_arrows']) ? 1 : 0,
             "show_dots"       => isset($_POST['show_dots']) ? 1 : 0,
             "autoplay"        => isset($_POST['autoplay']) ? 1 : 0,

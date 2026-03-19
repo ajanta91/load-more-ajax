@@ -135,16 +135,6 @@ class LoadMoreAjax {
         // Setup category filters
         this.setupCategoryFilters(instanceId);
 
-        // Initialize masonry for style 4
-        if (config.blockStyle === '4') {
-            this.initMasonry(instanceId);
-        }
-
-        // Initialize carousel for style 5
-        if (config.blockStyle === '5') {
-            this.initCarousel(instanceId);
-        }
-
         // Load initial posts
         this.loadPosts(instanceId);
     }
@@ -402,7 +392,7 @@ class LoadMoreAjax {
                 this.loadPosts(instanceId);
 
                 // Destroy and re-init masonry for style 4
-                if (config.blockStyle === '4') {
+                if (instance.config.blockStyle === '4') {
                     if (instance.masonryInstance) {
                         instance.masonryInstance.destroy();
                         instance.masonryInstance = null;
@@ -536,13 +526,22 @@ class LoadMoreAjax {
             instance.currentPage++;
         }
 
-        // Reflow masonry after appending
-        if (config.blockStyle === '4' && instance.masonryInstance) {
+        // Initialize masonry on first load
+        if (config.blockStyle === '4' && !instance.masonryInstance) {
+            this.initMasonry(instanceId);
+        }
+        // Reflow masonry after Load More append
+        else if (config.blockStyle === '4' && instance.masonryInstance && append) {
             const newElements = Array.from(loader.querySelectorAll('.apl_post_wraper')).slice(-data.posts.length);
             imagesLoaded(loader, () => {
                 instance.masonryInstance.appended(newElements);
                 instance.masonryInstance.layout();
             });
+        }
+
+        // Initialize carousel on first load
+        if (config.blockStyle === '5' && !instance.swiperInstance) {
+            this.initCarousel(instanceId);
         }
     }
 
