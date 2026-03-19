@@ -41,13 +41,21 @@ class LMA_Blog extends Widget_Base {
 	}
 
 	public function get_script_depends() {
-		return ['load-more-ajax-lite'];
+		$settings = $this->get_settings_for_display();
+		$scripts = ['load-more-ajax-lite'];
+		if ($settings['layout'] == '4') {
+			$scripts[] = 'lma-masonry';
+			$scripts[] = 'lma-imagesloaded';
+		} elseif ($settings['layout'] == '5') {
+			$scripts[] = 'lma-swiper';
+		}
+		return $scripts;
 	}
 
 	public function get_style_depends() {
 		if (\Elementor\Plugin::$instance->preview->is_preview_mode()) {
 			// Load all styles in editor so switching layouts works
-			return ['load-more-ajax-lite', 'load-more-ajax-lite-s2', 'load-more-ajax-lite-s3', 'fontawesome'];
+			return ['load-more-ajax-lite', 'load-more-ajax-lite-s2', 'load-more-ajax-lite-s3', 'load-more-ajax-lite-s4', 'load-more-ajax-lite-s5', 'lma-swiper', 'fontawesome'];
 		}
 		$settings = $this->get_settings_for_display();
 		if ($settings['layout'] == '1') {
@@ -58,6 +66,12 @@ class LMA_Blog extends Widget_Base {
 		}
 		elseif ($settings['layout'] == '3') {
 			return ['load-more-ajax-lite-s3', 'fontawesome'];
+		}
+		elseif ($settings['layout'] == '4') {
+			return ['load-more-ajax-lite-s4', 'fontawesome'];
+		}
+		elseif ($settings['layout'] == '5') {
+			return ['lma-swiper', 'load-more-ajax-lite-s5', 'fontawesome'];
 		}
 		return ['load-more-ajax-lite', 'fontawesome'];
 	}
@@ -79,9 +93,37 @@ class LMA_Blog extends Widget_Base {
 			'options' => [
 				'1' => esc_html__( 'Layout 1', 'load-more-ajax-lite' ),
 				'2' => esc_html__( 'layout 2', 'load-more-ajax-lite' ),
-				'3' => esc_html__( 'Layout 3', 'load-more-ajax-lite' )
+				'3' => esc_html__( 'Layout 3', 'load-more-ajax-lite' ),
+				'4' => esc_html__( 'Masonry', 'load-more-ajax-lite' ),
+				'5' => esc_html__( 'Carousel', 'load-more-ajax-lite' ),
 			],
 		] );
+
+		$this->add_control( 'slides_per_view', [
+			'label'     => esc_html__( 'Slides Per View', 'load-more-ajax-lite' ),
+			'type'      => \Elementor\Controls_Manager::SELECT,
+			'default'   => '3',
+			'options'   => ['1'=>'1','2'=>'2','3'=>'3','4'=>'4'],
+			'condition' => ['layout' => '5'],
+		]);
+		$this->add_control( 'show_arrows', [
+			'label'        => esc_html__( 'Show Arrows', 'load-more-ajax-lite' ),
+			'type'         => \Elementor\Controls_Manager::SWITCHER,
+			'default'      => 'yes',
+			'condition'    => ['layout' => '5'],
+		]);
+		$this->add_control( 'show_dots', [
+			'label'        => esc_html__( 'Show Dots', 'load-more-ajax-lite' ),
+			'type'         => \Elementor\Controls_Manager::SWITCHER,
+			'default'      => 'yes',
+			'condition'    => ['layout' => '5'],
+		]);
+		$this->add_control( 'show_autoplay', [
+			'label'        => esc_html__( 'Autoplay', 'load-more-ajax-lite' ),
+			'type'         => \Elementor\Controls_Manager::SWITCHER,
+			'default'      => 'yes',
+			'condition'    => ['layout' => '5'],
+		]);
 
 		$this->end_controls_section();//End Blog Layout
 
@@ -461,6 +503,11 @@ class LMA_Blog extends Widget_Base {
 
 		$hostim_query = new \WP_Query( $query );
 
+
+		$slides_per_view = $settings['slides_per_view'] ?? '3';
+		$show_arrows     = $settings['show_arrows'] ?? 'yes';
+		$show_dots       = $settings['show_dots'] ?? 'yes';
+		$show_autoplay   = $settings['show_autoplay'] ?? 'yes';
 
 		//====================== Template Parts ======================//
 		require __DIR__ . '/templates/blog/blog-' . $layout . '.php';
