@@ -94,6 +94,10 @@ class LoadMoreAjax {
             config.textLimit = loader.dataset.text_limit || '10';
             config.titleLimit = loader.dataset.title_limit || '30';
             config.category = loader.dataset.cate || '';
+            config.slidesPerView = parseInt(loader.dataset.slides_per_view) || 3;
+            config.showArrows = loader.dataset.show_arrows !== 'false';
+            config.showDots = loader.dataset.show_dots !== 'false';
+            config.autoplay = loader.dataset.autoplay !== 'false';
         }
 
         // Check for infinite scroll attribute
@@ -134,6 +138,11 @@ class LoadMoreAjax {
         // Initialize masonry for style 4
         if (config.blockStyle === '4') {
             this.initMasonry(instanceId);
+        }
+
+        // Initialize carousel for style 5
+        if (config.blockStyle === '5') {
+            this.initCarousel(instanceId);
         }
 
         // Load initial posts
@@ -263,8 +272,78 @@ class LoadMoreAjax {
         });
     }
 
+    initCarousel(instanceId) {
+        const instance = this.instances.get(instanceId);
+        const loader = instance.block.querySelector('.ajaxpost_loader');
+        if (!loader || typeof Swiper === 'undefined') return;
+
+        const posts = loader.querySelectorAll('.apl_post_wraper');
+        if (!posts.length) return;
+
+        const { config } = instance;
+        const slidesPerView = config.slidesPerView;
+
+        // Create swiper structure
+        const swiperEl = document.createElement('div');
+        swiperEl.className = 'swiper';
+        const swiperWrapper = document.createElement('div');
+        swiperWrapper.className = 'swiper-wrapper';
+
+        posts.forEach(post => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.appendChild(post);
+            swiperWrapper.appendChild(slide);
+        });
+
+        swiperEl.appendChild(swiperWrapper);
+
+        if (config.showArrows) {
+            swiperEl.insertAdjacentHTML('beforeend', '<div class="swiper-button-next"></div><div class="swiper-button-prev"></div>');
+        } else {
+            instance.block.classList.add('no-arrows');
+        }
+
+        if (config.showDots) {
+            swiperEl.insertAdjacentHTML('beforeend', '<div class="swiper-pagination"></div>');
+        } else {
+            instance.block.classList.add('no-dots');
+        }
+
+        loader.innerHTML = '';
+        loader.appendChild(swiperEl);
+
+        // Hide load more button
+        instance.block.querySelector('.load_more_wrapper')?.style.setProperty('display', 'none');
+
+        // Initialize Swiper
+        instance.swiperInstance = new Swiper(swiperEl, {
+            slidesPerView: 1,
+            spaceBetween: 24,
+            loop: posts.length > slidesPerView,
+            autoplay: config.autoplay ? {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            } : false,
+            navigation: config.showArrows ? {
+                nextEl: swiperEl.querySelector('.swiper-button-next'),
+                prevEl: swiperEl.querySelector('.swiper-button-prev'),
+            } : false,
+            pagination: config.showDots ? {
+                el: swiperEl.querySelector('.swiper-pagination'),
+                clickable: true,
+            } : false,
+            breakpoints: {
+                768: { slidesPerView: Math.min(2, slidesPerView), spaceBetween: 20 },
+                1024: { slidesPerView: slidesPerView, spaceBetween: 24 },
+            },
+        });
+    }
+
     setupLoadMoreButton(instanceId) {
         const instance = this.instances.get(instanceId);
+        if (instance.config.blockStyle === '5') return;
         const button = instance.block.querySelector('.loadmore_ajax');
         
         if (button) {
@@ -477,8 +556,10 @@ class LoadMoreAjax {
             wrapper.innerHTML = this.getPostTemplate3(post, config);
         } else if (config.blockStyle === '4') {
             wrapper.innerHTML = this.getPostTemplate4(post, config);
+        } else if (config.blockStyle === '5') {
+            wrapper.innerHTML = this.getPostTemplate5(post, config);
         }
-        
+
         return wrapper;
     }
 
@@ -556,6 +637,39 @@ class LoadMoreAjax {
     }
 
     getPostTemplate4(post, config) {
+        return `
+            <div class="apl_thumnbail_wrap">
+                ${post.thumbnail ? `
+                    <a href="${post.permalink}" class="permalink_thumn">
+                        <img src="${post.thumbnail}" alt="${post.thumbnail_alt || post.title}" loading="lazy" />
+                    </a>
+                ` : ''}
+                ${post.cats ? `
+                    <div class="apl_cat_wraper">${post.cats}</div>
+                ` : ''}
+            </div>
+            <div class="apl_content_wraper">
+                <a class="apl_title_permalink" href="${post.permalink}">
+                    <h2 class="apl_post_title" title="${post.title}">${post.title_excerpt}</h2>
+                </a>
+                <div class="apl_post_meta">
+                    <span class="apl_post_author apl_post_meta_item">
+                        <a href="${post.author.link}">
+                            <img src="${post.author.avatar}" alt="${post.author.name}" class="author-avatar" />
+                            ${post.author.name}
+                        </a>
+                    </span>
+                    <span class="apl_post_date apl_post_meta_item">
+                        <time datetime="${post.date.iso}">${post.date.formatted}</time>
+                    </span>
+                    <span class="apl_post_readtime apl_post_meta_item">${post.read_time}</span>
+                </div>
+                <p>${post.content}</p>
+            </div>
+        `;
+    }
+
+    getPostTemplate5(post, config) {
         return `
             <div class="apl_thumnbail_wrap">
                 ${post.thumbnail ? `
