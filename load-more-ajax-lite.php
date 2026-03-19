@@ -183,6 +183,10 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
                 include_post VARCHAR(255),
                 exclude_post VARCHAR(255),
                 post_column INT,
+                slides_per_view INT DEFAULT 3,
+                show_arrows TINYINT(1) DEFAULT 1,
+                show_dots TINYINT(1) DEFAULT 1,
+                autoplay TINYINT(1) DEFAULT 1,
                 created_time TIMESTAMP,
                 user_id INT,
                 PRIMARY KEY (id)
@@ -437,6 +441,9 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
             wp_register_style( 'lma-modern-layout', plugins_url('assets/css/modern-layout.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'load-more-ajax-lite-s4', plugins_url('assets/css/load-more-ajax-lite-s4.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'load-more-ajax-lite-s5', plugins_url('assets/css/load-more-ajax-lite-s5.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style( 'lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.css', __FILE__ ), array(), '11.2.6' );
             wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
 
             // WooCommerce styles
@@ -445,7 +452,9 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             }
 
             wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
-            
+            wp_register_script( 'lma-masonry', plugins_url('assets/vendor/masonry.pkgd.min.js', __FILE__ ), array(), '4.2.2', true );
+            wp_register_script( 'lma-imagesloaded', plugins_url('assets/vendor/imagesloaded.pkgd.min.js', __FILE__ ), array(), '5.0.0', true );
+            wp_register_script( 'lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.js', __FILE__ ), array(), '11.2.6', true );
 
             // WooCommerce JavaScript (Modern ES6)
             if (class_exists('WooCommerce')) {
