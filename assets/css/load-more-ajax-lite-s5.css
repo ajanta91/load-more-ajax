@@ -1,0 +1,158 @@
+/*
+* Block Style 05 — Carousel / Slider (Swiper.js)
+*/
+
+/* Swiper container */
+.apl_block_wraper.lma_block_style_5 .swiper {
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+
+/* Equal-height slides */
+.apl_block_wraper.lma_block_style_5 .swiper-slide {
+    height: auto;
+}
+
+/* Card */
+.apl_block_wraper.lma_block_style_5 .apl_post_wraper {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_post_wraper:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Thumbnail */
+.apl_block_wraper.lma_block_style_5 .apl_thumnbail_wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_thumnbail_wrap img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_thumnbail_wrap:hover img {
+    transform: scale(1.05);
+}
+
+/* Category overlay */
+.apl_block_wraper.lma_block_style_5 .apl_cat_wraper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    z-index: 1;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_cat_wraper a {
+    background: #007bff;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+/* Content area */
+.apl_block_wraper.lma_block_style_5 .apl_content_wraper {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Title */
+.apl_block_wraper.lma_block_style_5 .apl_post_title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_title_permalink {
+    color: #222;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_5 .apl_title_permalink:hover {
+    color: #007bff;
+}
+
+/* Meta */
+.apl_block_wraper.lma_block_style_5 .apl_post_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: #777;
+    margin-top: auto;
+}
+
+/* Navigation arrows */
+.apl_block_wraper.lma_block_style_5 .swiper-button-next,
+.apl_block_wraper.lma_block_style_5 .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s, color 0.3s;
+}
+
+.apl_block_wraper.lma_block_style_5 .swiper-button-next:hover,
+.apl_block_wraper.lma_block_style_5 .swiper-button-prev:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.apl_block_wraper.lma_block_style_5 .swiper-button-next::after,
+.apl_block_wraper.lma_block_style_5 .swiper-button-prev::after {
+    font-size: 16px;
+    color: #333;
+}
+
+.apl_block_wraper.lma_block_style_5 .swiper-button-next:hover::after,
+.apl_block_wraper.lma_block_style_5 .swiper-button-prev:hover::after {
+    color: #fff;
+}
+
+/* Pagination dots */
+.apl_block_wraper.lma_block_style_5 .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    opacity: 1;
+    transition: width 0.3s, background 0.3s;
+    border-radius: 5px;
+}
+
+.apl_block_wraper.lma_block_style_5 .swiper-pagination-bullet-active {
+    width: 24px;
+    background: #007bff;
+    border-radius: 5px;
+}
+
+/* Hide toggles */
+.apl_block_wraper.lma_block_style_5.no-arrows .swiper-button-next,
+.apl_block_wraper.lma_block_style_5.no-arrows .swiper-button-prev {
+    display: none;
+}
+
+.apl_block_wraper.lma_block_style_5.no-dots .swiper-pagination {
+    display: none;
+}
