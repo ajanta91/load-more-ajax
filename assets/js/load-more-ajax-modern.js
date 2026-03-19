@@ -131,6 +131,11 @@ class LoadMoreAjax {
         // Setup category filters
         this.setupCategoryFilters(instanceId);
 
+        // Initialize masonry for style 4
+        if (config.blockStyle === '4') {
+            this.initMasonry(instanceId);
+        }
+
         // Load initial posts
         this.loadPosts(instanceId);
     }
@@ -236,6 +241,28 @@ class LoadMoreAjax {
         }
     }
 
+    initMasonry(instanceId) {
+        const instance = this.instances.get(instanceId);
+        const loader = instance.block.querySelector('.ajaxpost_loader');
+        if (!loader || typeof Masonry === 'undefined') return;
+
+        // Add gutter sizer element if not present
+        if (!loader.querySelector('.lma-gutter-sizer')) {
+            const gutter = document.createElement('div');
+            gutter.className = 'lma-gutter-sizer';
+            loader.prepend(gutter);
+        }
+
+        imagesLoaded(loader, () => {
+            instance.masonryInstance = new Masonry(loader, {
+                itemSelector: '.apl_post_wraper',
+                columnWidth: '.apl_post_wraper',
+                gutter: '.lma-gutter-sizer',
+                percentPosition: true,
+            });
+        });
+    }
+
     setupLoadMoreButton(instanceId) {
         const instance = this.instances.get(instanceId);
         const button = instance.block.querySelector('.loadmore_ajax');
@@ -294,6 +321,15 @@ class LoadMoreAjax {
                 const categoryId = filter.dataset.cateid;
                 instance.config.category = categoryId;
                 this.loadPosts(instanceId);
+
+                // Destroy and re-init masonry for style 4
+                if (config.blockStyle === '4') {
+                    if (instance.masonryInstance) {
+                        instance.masonryInstance.destroy();
+                        instance.masonryInstance = null;
+                    }
+                    this.initMasonry(instanceId);
+                }
             });
         });
     }
@@ -420,6 +456,15 @@ class LoadMoreAjax {
         if (append) {
             instance.currentPage++;
         }
+
+        // Reflow masonry after appending
+        if (config.blockStyle === '4' && instance.masonryInstance) {
+            const newElements = Array.from(loader.querySelectorAll('.apl_post_wraper')).slice(-data.posts.length);
+            imagesLoaded(loader, () => {
+                instance.masonryInstance.appended(newElements);
+                instance.masonryInstance.layout();
+            });
+        }
     }
 
     createPostElement(post, config) {
@@ -430,6 +475,8 @@ class LoadMoreAjax {
             wrapper.innerHTML = this.getPostTemplate(post, config);
         } else if (config.blockStyle === '3') {
             wrapper.innerHTML = this.getPostTemplate3(post, config);
+        } else if (config.blockStyle === '4') {
+            wrapper.innerHTML = this.getPostTemplate4(post, config);
         }
         
         return wrapper;
@@ -504,6 +551,39 @@ class LoadMoreAjax {
                         </li>
                     </ul>
                 </div>
+            </div>
+        `;
+    }
+
+    getPostTemplate4(post, config) {
+        return `
+            <div class="apl_thumnbail_wrap">
+                ${post.thumbnail ? `
+                    <a href="${post.permalink}" class="permalink_thumn">
+                        <img src="${post.thumbnail}" alt="${post.thumbnail_alt || post.title}" loading="lazy" />
+                    </a>
+                ` : ''}
+                ${post.cats ? `
+                    <div class="apl_cat_wraper">${post.cats}</div>
+                ` : ''}
+            </div>
+            <div class="apl_content_wraper">
+                <a class="apl_title_permalink" href="${post.permalink}">
+                    <h2 class="apl_post_title" title="${post.title}">${post.title_excerpt}</h2>
+                </a>
+                <div class="apl_post_meta">
+                    <span class="apl_post_author apl_post_meta_item">
+                        <a href="${post.author.link}">
+                            <img src="${post.author.avatar}" alt="${post.author.name}" class="author-avatar" />
+                            ${post.author.name}
+                        </a>
+                    </span>
+                    <span class="apl_post_date apl_post_meta_item">
+                        <time datetime="${post.date.iso}">${post.date.formatted}</time>
+                    </span>
+                    <span class="apl_post_readtime apl_post_meta_item">${post.read_time}</span>
+                </div>
+                <p>${post.content}</p>
             </div>
         `;
     }
