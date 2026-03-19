@@ -68,10 +68,19 @@ class AdminMenu {
             "include_post" => $include,
             "exclude_post" => $exclude,
             "post_column"  => $column,
+            "slides_per_view" => intval($_POST['slides_per_view'] ?? 3),
+            "show_arrows"     => isset($_POST['show_arrows']) ? 1 : 0,
+            "show_dots"       => isset($_POST['show_dots']) ? 1 : 0,
+            "autoplay"        => isset($_POST['autoplay']) ? 1 : 0,
             'created_time' => $created_time,
             "user_id"      => $created_by,
         );
 
+        // Clamp masonry columns if block_style == 4
+        if ($block_style == '4' && intval($column) < 3) {
+            $column = 3;
+            $data['post_column'] = 3;
+        }
 
         // Check if updating existing block
         $results = null;
