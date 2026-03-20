@@ -240,10 +240,18 @@ class LoadMoreAjax {
         }
     }
 
-    initMasonry(instanceId) {
+    initMasonry(instanceId, retries = 10) {
         const instance = this.instances.get(instanceId);
         const loader = instance.block.querySelector('.ajaxpost_loader');
-        if (!loader || typeof Masonry === 'undefined') return;
+        if (!loader) return;
+
+        // Masonry may load after this script in Elementor; retry until available
+        if (typeof Masonry === 'undefined') {
+            if (retries > 0) {
+                setTimeout(() => this.initMasonry(instanceId, retries - 1), 200);
+            }
+            return;
+        }
 
         // Add gutter sizer element if not present
         if (!loader.querySelector('.lma-gutter-sizer')) {
@@ -262,12 +270,23 @@ class LoadMoreAjax {
         });
     }
 
-    initCarousel(instanceId) {
+    initCarousel(instanceId, retries = 10) {
         const instance = this.instances.get(instanceId);
         const loader = instance.block.querySelector('.ajaxpost_loader');
-        if (!loader || typeof Swiper === 'undefined') return;
+        console.log('[LMA Carousel] initCarousel called', { loader: !!loader, swiperDefined: typeof Swiper !== 'undefined', retries });
+        if (!loader) return;
+
+        // Swiper may load after this script in Elementor; retry until available
+        if (typeof Swiper === 'undefined') {
+            console.log('[LMA Carousel] Swiper not defined, retries left:', retries);
+            if (retries > 0) {
+                setTimeout(() => this.initCarousel(instanceId, retries - 1), 200);
+            }
+            return;
+        }
 
         const posts = loader.querySelectorAll('.apl_post_wraper');
+        console.log('[LMA Carousel] posts found:', posts.length);
         if (!posts.length) return;
 
         const { config } = instance;
@@ -385,20 +404,17 @@ class LoadMoreAjax {
                 catFilters.forEach(f => f.classList.remove('active'));
                 filter.classList.add('active');
                 
+                // Destroy masonry before reset so renderPosts will re-init it after new posts arrive
+                if (instance.config.blockStyle === '4' && instance.masonryInstance) {
+                    instance.masonryInstance.destroy();
+                    instance.masonryInstance = null;
+                }
+
                 // Reset and reload
                 this.resetPosts(instanceId);
                 const categoryId = filter.dataset.cateid;
                 instance.config.category = categoryId;
                 this.loadPosts(instanceId);
-
-                // Destroy and re-init masonry for style 4
-                if (instance.config.blockStyle === '4') {
-                    if (instance.masonryInstance) {
-                        instance.masonryInstance.destroy();
-                        instance.masonryInstance = null;
-                    }
-                    this.initMasonry(instanceId);
-                }
             });
         });
     }
@@ -505,19 +521,24 @@ class LoadMoreAjax {
 
         data.posts.forEach((post, index) => {
             const postElement = this.createPostElement(post, config);
-            
-            // Add animation delay for staggered effect
-            postElement.style.opacity = '0';
-            postElement.style.transform = 'translateY(20px)';
-            
+
+            // Skip animation for masonry/carousel — layout engines need visible elements
+            if (config.blockStyle !== '4' && config.blockStyle !== '5') {
+                // Add animation delay for staggered effect
+                postElement.style.opacity = '0';
+                postElement.style.transform = 'translateY(20px)';
+            }
+
             loader.appendChild(postElement);
-            
-            // Animate in
-            setTimeout(() => {
-                postElement.style.transition = `opacity ${config.animationDuration}ms ease, transform ${config.animationDuration}ms ease`;
-                postElement.style.opacity = '1';
-                postElement.style.transform = 'translateY(0)';
-            }, index * 50);
+
+            // Animate in (skip for masonry/carousel)
+            if (config.blockStyle !== '4' && config.blockStyle !== '5') {
+                setTimeout(() => {
+                    postElement.style.transition = `opacity ${config.animationDuration}ms ease, transform ${config.animationDuration}ms ease`;
+                    postElement.style.opacity = '1';
+                    postElement.style.transform = 'translateY(0)';
+                }, index * 50);
+            }
         });
 
         instance.loadedPosts += data.posts.length;
@@ -540,7 +561,9 @@ class LoadMoreAjax {
         }
 
         // Initialize carousel on first load
+        console.log('[LMA Carousel] renderPosts check:', { blockStyle: config.blockStyle, hasSwiperInstance: !!instance.swiperInstance });
         if (config.blockStyle === '5' && !instance.swiperInstance) {
+            console.log('[LMA Carousel] Calling initCarousel from renderPosts');
             this.initCarousel(instanceId);
         }
     }

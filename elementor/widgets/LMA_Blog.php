@@ -41,46 +41,16 @@ class LMA_Blog extends Widget_Base {
 	}
 
 	public function get_script_depends() {
-		$preview = \Elementor\Plugin::$instance->preview ?? null;
-		if ($preview && $preview->is_preview_mode()) {
-			return ['load-more-ajax-lite', 'lma-masonry', 'lma-imagesloaded', 'lma-swiper'];
-		}
-		$scripts = ['load-more-ajax-lite'];
-		$settings = $this->get_settings_for_display();
-		$layout = $settings['layout'] ?? '1';
-		if ($layout == '4') {
-			$scripts[] = 'lma-masonry';
-			$scripts[] = 'lma-imagesloaded';
-		} elseif ($layout == '5') {
-			$scripts[] = 'lma-swiper';
-		}
-		return $scripts;
+		// Elementor calls these methods at registration time, not per-instance,
+		// so get_settings_for_display() returns defaults. Load all vendor scripts
+		// and let the JS decide which to use based on data-block_style.
+		return ['load-more-ajax-lite', 'lma-masonry', 'lma-imagesloaded', 'lma-swiper'];
 	}
 
 	public function get_style_depends() {
-		$preview = \Elementor\Plugin::$instance->preview ?? null;
-		if ($preview && $preview->is_preview_mode()) {
-			// Load all styles in editor so switching layouts works
-			return ['load-more-ajax-lite', 'load-more-ajax-lite-s2', 'load-more-ajax-lite-s3', 'load-more-ajax-lite-s4', 'load-more-ajax-lite-s5', 'lma-swiper', 'fontawesome'];
-		}
-		$settings = $this->get_settings_for_display();
-		$layout = $layout ?? '1';
-		if ($layout == '1') {
-			return ['load-more-ajax-lite', 'fontawesome'];
-		}
-		elseif ($layout == '2') {
-			return ['load-more-ajax-lite-s2', 'fontawesome'];
-		}
-		elseif ($layout == '3') {
-			return ['load-more-ajax-lite-s3', 'fontawesome'];
-		}
-		elseif ($layout == '4') {
-			return ['load-more-ajax-lite-s4', 'fontawesome'];
-		}
-		elseif ($layout == '5') {
-			return ['lma-swiper', 'load-more-ajax-lite-s5', 'fontawesome'];
-		}
-		return ['load-more-ajax-lite', 'fontawesome'];
+		// Load all layout styles — Elementor resolves dependencies at registration,
+		// not per widget instance, so conditional loading doesn't work here.
+		return ['load-more-ajax-lite', 'load-more-ajax-lite-s2', 'load-more-ajax-lite-s3', 'load-more-ajax-lite-s4', 'load-more-ajax-lite-s5', 'lma-swiper', 'fontawesome'];
 	}
 
 	public function get_categories() {
