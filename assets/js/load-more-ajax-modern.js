@@ -608,7 +608,7 @@ class LoadMoreAjax {
                     <span class="apl_post_author apl_post_meta_item">
                         <a href="${post.author.link}">
                             <img src="${post.author.avatar}" alt="${post.author.name}" class="author-avatar" />
-                            ${post.author.name}
+                            <span>${post.author.name}</span>
                         </a>
                     </span>
                     <span class="apl_post_date apl_post_meta_item">
@@ -678,7 +678,7 @@ class LoadMoreAjax {
                     <span class="apl_post_author apl_post_meta_item">
                         <a href="${post.author.link}">
                             <img src="${post.author.avatar}" alt="${post.author.name}" class="author-avatar" />
-                            ${post.author.name}
+                            <span>${post.author.name}</span>
                         </a>
                     </span>
                     <span class="apl_post_date apl_post_meta_item">
@@ -711,7 +711,7 @@ class LoadMoreAjax {
                     <span class="apl_post_author apl_post_meta_item">
                         <a href="${post.author.link}">
                             <img src="${post.author.avatar}" alt="${post.author.name}" class="author-avatar" />
-                            ${post.author.name}
+                            <span>${post.author.name}</span>
                         </a>
                     </span>
                     <span class="apl_post_date apl_post_meta_item">

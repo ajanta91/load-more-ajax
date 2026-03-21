@@ -307,9 +307,13 @@
     align-items: center;
     gap: 20px;
 }
-.apl_block_wraper .apl_post_author {
+.apl_block_wraper .apl_post_author a{
     display: flex;
     align-items: center;
+    gap: 5px;
+}
+.apl_block_wraper .apl_post_author a img{
+    border-radius: 50%;
 }
 /* Post Count Text */
 .load_more_wrapper {
