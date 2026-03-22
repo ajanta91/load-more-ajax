@@ -418,6 +418,167 @@ class LMA_Blog extends Widget_Base {
 		$this->end_controls_section();
 
 
+		// Arrow Style ==============================
+		$this->start_controls_section( 'carousel_arrow_style', [
+			'label'     => __( 'Arrow Style', 'load-more-ajax-lite' ),
+			'tab'       => Controls_Manager::TAB_STYLE,
+			'condition' => ['layout' => '5', 'show_arrows' => 'yes'],
+		] );
+
+		$this->add_responsive_control( 'arrow_size', [
+			'label'      => __( 'Size', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 20, 'max' => 60]],
+			'default'    => ['size' => 40, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_responsive_control( 'arrow_icon_size', [
+			'label'      => __( 'Icon Size', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 8, 'max' => 30]],
+			'default'    => ['size' => 16, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next::after, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev::after' => 'font-size: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_responsive_control( 'arrow_border_radius', [
+			'label'      => __( 'Border Radius', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 0, 'max' => 50]],
+			'default'    => ['size' => 50, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev' => 'border-radius: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->start_controls_tabs( 'arrow_style_tabs' );
+
+		$this->start_controls_tab( 'arrow_tab_normal', [
+			'label' => __( 'Normal', 'load-more-ajax-lite' ),
+		] );
+		$this->add_control( 'arrow_icon_color', [
+			'label'     => __( 'Icon Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next::after, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev::after' => 'color: {{VALUE}};',
+			],
+		] );
+		$this->add_control( 'arrow_bg_color', [
+			'label'     => __( 'Background Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev' => 'background-color: {{VALUE}};',
+			],
+		] );
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'     => 'arrow_border',
+			'label'    => __( 'Border', 'load-more-ajax-lite' ),
+			'selector' => '{{WRAPPER}} .lma_block_style_5 .swiper-button-next, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev',
+		] );
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'arrow_tab_hover', [
+			'label' => __( 'Hover', 'load-more-ajax-lite' ),
+		] );
+		$this->add_control( 'arrow_icon_hover_color', [
+			'label'     => __( 'Icon Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next:hover::after, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev:hover::after' => 'color: {{VALUE}};',
+			],
+		] );
+		$this->add_control( 'arrow_bg_hover_color', [
+			'label'     => __( 'Background Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-button-next:hover, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev:hover' => 'background-color: {{VALUE}};',
+			],
+		] );
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'     => 'arrow_border_hover',
+			'label'    => __( 'Border', 'load-more-ajax-lite' ),
+			'selector' => '{{WRAPPER}} .lma_block_style_5 .swiper-button-next:hover, {{WRAPPER}} .lma_block_style_5 .swiper-button-prev:hover',
+		] );
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+		$this->end_controls_section();
+
+		// Dot Style ==============================
+		$this->start_controls_section( 'carousel_dot_style', [
+			'label'     => __( 'Dot Style', 'load-more-ajax-lite' ),
+			'tab'       => Controls_Manager::TAB_STYLE,
+			'condition' => ['layout' => '5', 'show_dots' => 'yes'],
+		] );
+
+		$this->add_responsive_control( 'dot_size', [
+			'label'      => __( 'Size', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 6, 'max' => 20]],
+			'default'    => ['size' => 10, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_responsive_control( 'dot_active_width', [
+			'label'      => __( 'Active Dot Width', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 10, 'max' => 40]],
+			'default'    => ['size' => 24, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_responsive_control( 'dot_border_radius', [
+			'label'      => __( 'Border Radius', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 0, 'max' => 20]],
+			'default'    => ['size' => 5, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_responsive_control( 'dot_spacing', [
+			'label'      => __( 'Spacing', 'load-more-ajax-lite' ),
+			'type'       => Controls_Manager::SLIDER,
+			'range'      => ['px' => ['min' => 0, 'max' => 20]],
+			'default'    => ['size' => 4, 'unit' => 'px'],
+			'selectors'  => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet' => 'margin: 0 {{SIZE}}{{UNIT}};',
+			],
+		] );
+
+		$this->add_control( 'dot_color', [
+			'label'     => __( 'Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet' => 'background: {{VALUE}};',
+			],
+		] );
+
+		$this->add_control( 'dot_active_color', [
+			'label'     => __( 'Active Color', 'load-more-ajax-lite' ),
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet-active' => 'background: {{VALUE}};',
+			],
+		] );
+
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'     => 'dot_border',
+			'label'    => __( 'Border', 'load-more-ajax-lite' ),
+			'selector' => '{{WRAPPER}} .lma_block_style_5 .swiper-pagination-bullet',
+		] );
+
+		$this->end_controls_section();
+
 		// Section background ==============================
 		$this->start_controls_section( 'background_section', [
 			'label' => __( 'Section Basckground', 'load-more-ajax-lite' ),
