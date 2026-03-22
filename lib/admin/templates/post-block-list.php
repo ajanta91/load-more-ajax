@@ -16,6 +16,7 @@
                     <label for="cb-select-all-1"><span class="screen-reader-text">Select All</span></label>
                 </td>
                 <th scope="col" id="title" class="manage-column column-title column-primary sortable desc" abbr="Title"><a href="http://localhost/blocky/wp-admin/edit.php?orderby=title&amp;order=asc"><span>Title</span><span class="sorting-indicators"><span class="sorting-indicator asc" aria-hidden="true"></span><span class="sorting-indicator desc" aria-hidden="true"></span></span> <span class="screen-reader-text">Sort ascending.</span></a></th>
+                <th scope="col" id="post_type" class="manage-column column-post-type">Post Type</th>
                 <th scope="col" id="shortcode" class="manage-column column-shortcode">Shortcode</th>
                 <th scope="col" id="author" class="manage-column column-author">Author</th>
                 <th scope="col" id="date" class="manage-column column-date sorted desc" aria-sort="descending" abbr="Date"><a href="http://localhost/blocky/wp-admin/edit.php?orderby=date&amp;order=asc"><span>Date</span><span class="sorting-indicators"><span class="sorting-indicator asc" aria-hidden="true"></span><span class="sorting-indicator desc" aria-hidden="true"></span></span></a></th>
@@ -26,7 +27,8 @@
             <?php
             if (!empty($all_blocks)) {
                 foreach ($all_blocks as $data) {
-                    $post_type  = 'post_type="post" ';
+                    $pt_value = !empty($data['post_type']) ? $data['post_type'] : 'post';
+                    $post_type = 'post_type="' . esc_attr($pt_value) . '" ';
                     $block_style = 'style="' . $data['block_style'] . '" ';
                     $per_page   = !empty($data['per_page']) ? 'posts_per_page="' . $data['per_page'] . '" ' : '';
                     $filter     = !empty($data['is_filter']) ? 'filter="true" ' : '';
@@ -43,6 +45,9 @@
                         <td class="title column-title has-row-actions column-primary page-title" data-colname="Title">
                             <div class="locked-info"><span class="locked-avatar"></span> <span class="locked-text"></span></div>
                             <strong><a class="row-title" href="?page=load_more_ajax&action=edit&post_block=<?php echo esc_attr($data['id']) ?>" aria-label=""><?php echo esc_html($data['block_title']) ?></a></strong>
+                        </td>
+                        <td class="column-post-type" data-colname="Post Type">
+                            <span class="lma-post-type-badge"><?php echo esc_html($pt_value); ?></span>
                         </td>
                         <td class="column-shortcode" data-colname="shortcode"><a href="javascript:void(0)" class="copy_block_shortcode">[load_more_ajax_lite <?php echo $post_type . $block_style . $per_page . $filter . $include . $exclude . $text_limit . $cloumn ?>]</a></td>
                         <td class="author column-author" data-colname="Author"><a href="edit.php?post_type=post&amp;author=1">ajanta</a></td>
@@ -61,6 +66,7 @@
                     <label for="cb-select-all-2"><span class="screen-reader-text">Select All</span></label>
                 </td>
                 <th scope="col" class="manage-column column-title column-primary sortable desc" abbr="Title"><a href="http://localhost/blocky/wp-admin/edit.php?orderby=title&amp;order=asc"><span>Title</span><span class="sorting-indicators"><span class="sorting-indicator asc" aria-hidden="true"></span><span class="sorting-indicator desc" aria-hidden="true"></span></span> <span class="screen-reader-text">Sort ascending.</span></a></th>
+                <th scope="col" class="manage-column column-post-type">Post Type</th>
                 <th scope="col" class="manage-column column-shortcode">Shortcode</th>
                 <th scope="col" class="manage-column column-author">Author</th>
 
