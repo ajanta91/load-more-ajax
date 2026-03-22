@@ -175,6 +175,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 id INT NOT NULL AUTO_INCREMENT,
                 block_title VARCHAR(255),
+                post_type VARCHAR(50) DEFAULT 'post',
+                taxonomy VARCHAR(50) DEFAULT 'category',
                 block_style INT,
                 per_page INT,
                 title_limit INT,
@@ -195,6 +197,17 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             // Execute SQL query
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include WordPress upgrade script
             dbDelta($sql);
+
+            // Migrate: add post_type and taxonomy columns if missing
+            $db_version = get_option('lma_db_version', '1.0');
+            if (version_compare($db_version, '1.1', '<')) {
+                $col_check = $wpdb->get_results("SHOW COLUMNS FROM $table_name LIKE 'post_type'");
+                if (empty($col_check)) {
+                    $wpdb->query("ALTER TABLE $table_name ADD COLUMN post_type VARCHAR(50) DEFAULT 'post' AFTER block_title");
+                    $wpdb->query("ALTER TABLE $table_name ADD COLUMN taxonomy VARCHAR(50) DEFAULT 'category' AFTER post_type");
+                }
+                update_option('lma_db_version', '1.1');
+            }
         }
 
         /**
