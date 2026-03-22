@@ -33,14 +33,21 @@
     }
 
     // Categories Suggestion ================
-    function categories_suggester()
-    {
+    function categories_suggester( $post_type = 'post' ) {
         $content = [];
-
-        foreach (get_categories() as $cat) {
-            $content[(string) $cat->slug] = $cat->cat_name;
+        $taxonomy = get_load_more_ajax_lite_taxonomi( $post_type );
+        if ( empty( $taxonomy ) ) {
+            $taxonomy = 'category';
         }
-
+        $terms = get_terms([
+            'taxonomy'   => $taxonomy,
+            'hide_empty' => false,
+        ]);
+        if ( ! is_wp_error( $terms ) ) {
+            foreach ( $terms as $term ) {
+                $content[ (string) $term->slug ] = $term->name;
+            }
+        }
         return $content;
     }
 
