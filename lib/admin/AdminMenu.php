@@ -13,6 +13,15 @@ class AdminMenu {
         $this->dispace_action();
         add_action('wp_ajax_lma_get_taxonomies_and_terms', [$this, 'ajax_get_taxonomies_and_terms']);
         add_action('admin_menu', [$this, 'admin_menu_page']);
+        add_action('admin_enqueue_scripts', [$this, 'localize_admin_script']);
+    }
+
+    public function localize_admin_script($hook) {
+        if (strpos($hook, 'load_more_ajax') === false) return;
+        wp_localize_script('lmal-admin', 'lmaAdmin', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('lma_admin_nonce'),
+        ]);
     }
 
     function dispace_action(){
