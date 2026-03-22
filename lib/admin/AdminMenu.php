@@ -11,6 +11,7 @@ class AdminMenu {
     function __construct()
     {
         $this->dispace_action();
+        add_action('wp_ajax_lma_get_taxonomies_and_terms', [$this, 'ajax_get_taxonomies_and_terms']);
         add_action('admin_menu', [$this, 'admin_menu_page']);
     }
 
@@ -34,6 +35,10 @@ class AdminMenu {
 
         $block_id     = isset( $_POST['block_id'] ) ? intval( $_POST['block_id'] ) : '';
         $block_title  = isset( $_POST['block_title'] ) ? sanitize_text_field( $_POST['block_title'] ) : '1';
+        $post_type = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : 'post';
+        if (!post_type_exists($post_type)) $post_type = 'post';
+        $taxonomy = isset($_POST['taxonomy']) ? sanitize_key($_POST['taxonomy']) : 'category';
+        if (!taxonomy_exists($taxonomy)) $taxonomy = 'category';
         $block_style  = isset( $_POST['block_style'] ) ? intval( $_POST['block_style'] ) : '1';
         $post_munber  = isset( $_POST['posts_number'] ) ? intval( $_POST['posts_number'] ) : '3';
         $cat_filter   = isset( $_POST['category_filter'] ) ? sanitize_text_field( $_POST['category_filter'] ) : '';
@@ -60,6 +65,8 @@ class AdminMenu {
         // Insert data into the table
         $data = array(
             "block_title"  => esc_html($block_title),
+            "post_type"    => $post_type,
+            "taxonomy"     => $taxonomy,
             "block_style"  => esc_html($block_style),
             "per_page"     => $post_munber,
             "title_limit"  => $title_limit,
@@ -327,7 +334,54 @@ class AdminMenu {
         <?php
     }
 
+    /**
+     * AJAX: Return taxonomies and terms for a given post type.
+     */
+    public function ajax_get_taxonomies_and_terms() {
+        check_ajax_referer('lma_admin_nonce', 'nonce');
 
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Unauthorized', 403);
+        }
+
+        $post_type = sanitize_key($_POST['post_type'] ?? 'post');
+        if (!post_type_exists($post_type)) {
+            wp_send_json_error('Invalid post type', 400);
+        }
+
+        $taxonomies = get_object_taxonomies($post_type, 'objects');
+        $tax_list = [];
+        $terms_map = [];
+
+        foreach ($taxonomies as $tax) {
+            if (!$tax->public) continue;
+            $tax_list[] = [
+                'slug'  => $tax->name,
+                'label' => $tax->labels->name,
+            ];
+            $terms = get_terms([
+                'taxonomy'   => $tax->name,
+                'hide_empty' => false,
+                'orderby'    => 'name',
+                'order'      => 'ASC',
+            ]);
+            $terms_map[$tax->name] = [];
+            if (!is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                    $terms_map[$tax->name][] = [
+                        'term_id' => $term->term_id,
+                        'name'    => $term->name,
+                        'count'   => $term->count,
+                    ];
+                }
+            }
+        }
+
+        wp_send_json_success([
+            'taxonomies' => $tax_list,
+            'terms'      => $terms_map,
+        ]);
+    }
 
 }
 new AdminMenu();
