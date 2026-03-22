@@ -6,6 +6,8 @@ $block_data = array(
     'id'           => 0,
     'block_title'  => '',
     'block_style'  => '1',
+    'post_type'    => 'post',
+    'taxonomy'     => 'category',
     'per_page'     => 6,
     'title_limit'  => 30,
     'text_limit'   => 10,
@@ -23,13 +25,21 @@ if ( ! empty( $block_id ) ) {
     }
 }
 
-// Fetch categories
+$current_post_type = $block_data['post_type'] ?? 'post';
+$current_taxonomy  = $block_data['taxonomy'] ?? 'category';
+
+// Get all public post types
+$post_types = get_post_types( ['public' => true], 'objects' );
+unset( $post_types['attachment'] );
+
+// Fetch terms for current taxonomy
 $categories = get_terms( array(
-    'taxonomy'   => 'category',
+    'taxonomy'   => $current_taxonomy,
     'hide_empty' => false,
     'orderby'    => 'name',
     'order'      => 'ASC',
 ) );
+if ( is_wp_error( $categories ) ) $categories = [];
 
 $page_title = __( 'Edit Block', 'load-more-ajax-lite' );
 $is_edit = true;
@@ -192,14 +202,40 @@ $is_edit = true;
                     </div>
                 </div>
 
-                <!-- Category Filter -->
+                <!-- Post Type & Taxonomy -->
                 <div class="lma-section">
                     <div class="lma-section-header">
                         <span class="dashicons dashicons-category"></span>
-                        <?php esc_html_e( 'Category Filter', 'load-more-ajax-lite' ); ?>
+                        <?php esc_html_e( 'Post Type & Taxonomy', 'load-more-ajax-lite' ); ?>
                         <span class="dashicons dashicons-arrow-down-alt2 lma-toggle-icon"></span>
                     </div>
                     <div class="lma-section-body">
+                        <div class="lma-field">
+                            <label><?php esc_html_e( 'Post Type', 'load-more-ajax-lite' ); ?></label>
+                            <select name="post_type" id="lma-post-type">
+                                <?php foreach ( $post_types as $pt ) : ?>
+                                    <option value="<?php echo esc_attr( $pt->name ); ?>" <?php selected( $current_post_type, $pt->name ); ?>>
+                                        <?php echo esc_html( $pt->labels->singular_name ); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="lma-field">
+                            <label><?php esc_html_e( 'Taxonomy', 'load-more-ajax-lite' ); ?></label>
+                            <select name="taxonomy" id="lma-taxonomy">
+                                <?php
+                                $taxonomies = get_object_taxonomies( $current_post_type, 'objects' );
+                                foreach ( $taxonomies as $tax ) :
+                                    if ( ! $tax->public ) continue;
+                                ?>
+                                    <option value="<?php echo esc_attr( $tax->name ); ?>" <?php selected( $current_taxonomy, $tax->name ); ?>>
+                                        <?php echo esc_html( $tax->labels->name ); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
                         <div class="lma-field">
                             <div class="lma-toggle">
                                 <input type="checkbox" id="is_cat_filter" name="category_filter" value="1" <?php checked( $block_data['is_filter'], '1' ); ?>>
