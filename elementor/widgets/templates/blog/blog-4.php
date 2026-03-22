@@ -44,7 +44,7 @@ $template_post_type = isset($lma_post_type_for_template) ? $lma_post_type_for_te
         ?>
     </div>
 
-    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="<?php echo esc_attr($template_post_type); ?>" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="1" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="">
+    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="<?php echo esc_attr($template_post_type); ?>" data-taxonomy="<?php echo esc_attr($template_taxonomy); ?>" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="1" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="">
     </div>
     <div class="load_more_wrapper"><button class="loadmore_ajax" type="button">Load More</button></div>
 </div>

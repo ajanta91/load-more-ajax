@@ -29,6 +29,8 @@
                 foreach ($all_blocks as $data) {
                     $pt_value = !empty($data['post_type']) ? $data['post_type'] : 'post';
                     $post_type = 'post_type="' . esc_attr($pt_value) . '" ';
+                    $tax_value = !empty($data['taxonomy']) ? $data['taxonomy'] : 'category';
+                    $taxonomy_attr = 'taxonomy="' . esc_attr($tax_value) . '" ';
                     $block_style = 'style="' . $data['block_style'] . '" ';
                     $per_page   = !empty($data['per_page']) ? 'posts_per_page="' . $data['per_page'] . '" ' : '';
                     $filter     = !empty($data['is_filter']) ? 'filter="true" ' : '';
@@ -49,7 +51,7 @@
                         <td class="column-post-type" data-colname="Post Type">
                             <span class="lma-post-type-badge"><?php echo esc_html($pt_value); ?></span>
                         </td>
-                        <td class="column-shortcode" data-colname="shortcode"><a href="javascript:void(0)" class="copy_block_shortcode">[load_more_ajax_lite <?php echo $post_type . $block_style . $per_page . $filter . $include . $exclude . $text_limit . $cloumn ?>]</a></td>
+                        <td class="column-shortcode" data-colname="shortcode"><a href="javascript:void(0)" class="copy_block_shortcode">[load_more_ajax_lite <?php echo $post_type . $taxonomy_attr . $block_style . $per_page . $filter . $include . $exclude . $text_limit . $cloumn ?>]</a></td>
                         <td class="author column-author" data-colname="Author"><a href="edit.php?post_type=post&amp;author=1">ajanta</a></td>
 
                         <td class="date column-date" data-colname="Date">Published<br>2023/11/05 at 3:03 pm</td>
