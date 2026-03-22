@@ -109,6 +109,37 @@ class LMA_Blog extends Widget_Base {
 		$this->start_controls_section( 'sec_filter', [
 			'label' => esc_html__( 'Query Filter', 'load-more-ajax-lite' ),
 		] );
+
+		$post_types = get_post_types(['public' => true], 'objects');
+		unset($post_types['attachment']);
+		$pt_options = [];
+		foreach ($post_types as $pt) {
+		    $pt_options[$pt->name] = $pt->labels->singular_name;
+		}
+
+		$this->add_control('lma_post_type', [
+		    'label'   => esc_html__('Post Type', 'load-more-ajax-lite'),
+		    'type'    => Controls_Manager::SELECT,
+		    'default' => 'post',
+		    'options' => $pt_options,
+		]);
+
+		$this->add_control('lma_taxonomy', [
+		    'label'   => esc_html__('Taxonomy', 'load-more-ajax-lite'),
+		    'type'    => Controls_Manager::SELECT,
+		    'default' => 'category',
+		    'options' => ['category' => 'Categories'],
+		]);
+
+		$this->add_control('lma_terms', [
+		    'label'       => esc_html__('Select Terms', 'load-more-ajax-lite'),
+		    'type'        => Controls_Manager::SELECT2,
+		    'multiple'    => true,
+		    'label_block' => true,
+		    'options'     => categories_suggester(),
+		    'default'     => [],
+		]);
+
 		$this->add_control('blog_column', [
 			'label'   => esc_html__('Blog Style', 'load-more-ajax-lite'),
 			'type'    => Controls_Manager::SELECT,
@@ -624,14 +655,26 @@ class LMA_Blog extends Widget_Base {
 			$paged = get_query_var( 'page' );
 		}
 
-		$query['post_type'] 	= 'post';
+		$lma_post_type = $settings['lma_post_type'] ?? 'post';
+		$lma_taxonomy  = $settings['lma_taxonomy'] ?? 'category';
+		$lma_terms     = $settings['lma_terms'] ?? [];
+
+		$query['post_type'] 	= $lma_post_type;
 		$query['order'] 		= $order;
 		$query['post_status'] 	= 'publish';
 		$query['posts_per_page']= $per_page;
-		if( !empty( $selected_categories ) ){
+		if (!empty($lma_terms)) {
 			$query['tax_query'] = array(
 				array(
-					'taxonomy' => 'category',
+					'taxonomy' => $lma_taxonomy,
+					'field'    => 'slug',
+					'terms'    => $lma_terms,
+				)
+			);
+		} elseif (!empty($selected_categories)) {
+			$query['tax_query'] = array(
+				array(
+					'taxonomy' => $lma_taxonomy,
 					'field'    => 'slug',
 					'terms'    => $selected_categories,
 				)
@@ -646,6 +689,9 @@ class LMA_Blog extends Widget_Base {
 		$show_arrows     = $settings['show_arrows'] ?? 'yes';
 		$show_dots       = $settings['show_dots'] ?? 'yes';
 		$show_autoplay   = $settings['show_autoplay'] ?? 'yes';
+
+		$lma_post_type_for_template = $lma_post_type;
+		$lma_taxonomy_for_template  = $lma_taxonomy;
 
 		//====================== Template Parts ======================//
 		require __DIR__ . '/templates/blog/blog-' . $layout . '.php';

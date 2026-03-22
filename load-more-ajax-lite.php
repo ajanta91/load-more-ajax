@@ -281,6 +281,19 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
             add_action('admin_enqueue_scripts', [ $this, 'lmal_admin_enqueue_scripts'] );
 
+            add_action('elementor/editor/after_enqueue_scripts', function() {
+                wp_enqueue_script(
+                    'lma-elementor-editor',
+                    LOAD_MORE_AJAX_LITE_ASSETS . '/js/lma-elementor-editor.js',
+                    [],
+                    LOAD_MORE_AJAX_LITE_VERSION,
+                    true
+                );
+                wp_localize_script('lma-elementor-editor', 'lmaElementorEditor', [
+                    'nonce' => wp_create_nonce('lma_admin_nonce'),
+                ]);
+            });
+
             // Cache management hooks
             add_action('save_post', [ $this, 'clear_post_cache' ]);
             add_action('delete_post', [ $this, 'clear_post_cache' ]);

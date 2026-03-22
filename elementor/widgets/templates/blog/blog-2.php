@@ -5,13 +5,15 @@ $per_page      = isset($per_page) ? $per_page : '3';
 $title_limit   = !empty($title_length) ? $title_length : '20';
 $excerpt_limit = !empty($excerpt_length) ? $excerpt_length : '40';
 $selected_cat  = isset($selected_categories) ? $selected_categories : '0';
+$template_taxonomy  = isset($lma_taxonomy_for_template) ? $lma_taxonomy_for_template : 'category';
+$template_post_type = isset($lma_post_type_for_template) ? $lma_post_type_for_template : 'post';
 ?>
 
 <div class="apl_block_wraper lma_block_style_2 lma_blog_section">
     <div class="cat_filter">
         <?php
         $get_terms = get_terms([
-            'taxonomy' => 'category',
+            'taxonomy' => $template_taxonomy,
             'hide_empty' => true
         ]);
         $all_slug = array();
@@ -45,7 +47,7 @@ $selected_cat  = isset($selected_categories) ? $selected_categories : '0';
         ?>
     </div>
 
-    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="post" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="1" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="">
+    <div class="ajaxpost_loader <?php echo esc_attr($blog_columns) ?>" data-block_style="<?php echo esc_attr($blog_layout) ?>" data-column="<?php echo esc_attr($blog_columns) ?>" data-post_type="<?php echo esc_attr($template_post_type); ?>" data-text_limit="<?php echo esc_attr($excerpt_limit) ?>" data-title_limit="<?php echo esc_attr($title_limit) ?>" data-order="1" data-limit="<?php echo esc_attr($per_page) ?>" data-cate="">
     </div>
     <div class="load_more_wrapper"><button class="loadmore_ajax" type="button">Load More</button></div>
 </div>
