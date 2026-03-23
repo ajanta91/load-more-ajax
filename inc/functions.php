@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
     /**
      * Add Image Size
      */
@@ -154,7 +155,9 @@
 
                 $order = LMA_Security::validate_numeric($_POST['order'] ?? 1, 1, 999, 1);
                 $limit = LMA_Security::validate_numeric($_POST['limit'] ?? 6, 1, 50, 6);
-                $cat = LMA_Security::validate_category_ids($_POST['cate'] ?? '', get_load_more_ajax_lite_taxonomi($posttype));
+                $taxonomy_input = sanitize_key($_POST['taxonomy'] ?? '');
+                $active_taxonomy = !empty($taxonomy_input) && taxonomy_exists($taxonomy_input) ? $taxonomy_input : get_load_more_ajax_lite_taxonomi($posttype);
+                $cat = LMA_Security::validate_category_ids($_POST['cate'] ?? '', $active_taxonomy);
                 $block_style = LMA_Security::validate_numeric($_POST['block_style'] ?? 1, 1, 5, 1);
                 $text_limit = LMA_Security::validate_numeric($_POST['text_limit'] ?? 10, 1, 200, 10);
                 $title_limit = LMA_Security::validate_numeric($_POST['title_limit'] ?? 30, 1, 500, 30);
@@ -210,7 +213,7 @@
 
             // Add category filter
             if (!empty($cat)) {
-                $taxonomy = get_load_more_ajax_lite_taxonomi($posttype);
+                $taxonomy = !empty($active_taxonomy) ? $active_taxonomy : get_load_more_ajax_lite_taxonomi($posttype);
                 if ($taxonomy) {
                     $args['tax_query'] = [
                         [
@@ -356,11 +359,14 @@
                 }
 
                 $posttype = LMA_Security::validate_post_type($_POST['post_type'] ?? 'post');
-                $cat = LMA_Security::validate_category_ids($_POST['cate'] ?? '', get_load_more_ajax_lite_taxonomi($posttype));
+                $taxonomy_input2 = sanitize_key($_POST['taxonomy'] ?? '');
+                $active_taxonomy2 = !empty($taxonomy_input2) && taxonomy_exists($taxonomy_input2) ? $taxonomy_input2 : get_load_more_ajax_lite_taxonomi($posttype);
+                $cat = LMA_Security::validate_category_ids($_POST['cate'] ?? '', $active_taxonomy2);
             } else {
                 // Fallback validation if security class doesn't exist
                 $posttype = sanitize_text_field($_POST['post_type'] ?? 'post');
                 $cat = sanitize_text_field($_POST['cate'] ?? '');
+                $active_taxonomy2 = get_load_more_ajax_lite_taxonomi($posttype);
             }
 
             $count_args = [
@@ -371,7 +377,7 @@
             ];
 
             if (!empty($cat)) {
-                $taxonomy = get_load_more_ajax_lite_taxonomi($posttype);
+                $taxonomy = !empty($active_taxonomy2) ? $active_taxonomy2 : get_load_more_ajax_lite_taxonomi($posttype);
                 if ($taxonomy) {
                     $count_args['tax_query'] = [
                         [

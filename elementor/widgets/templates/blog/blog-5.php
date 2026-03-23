@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 $blog_layout    = isset($layout) ? $layout : '5';
 $per_page       = isset($per_page) ? $per_page : '6';
 $template_taxonomy  = isset($lma_taxonomy_for_template) ? $lma_taxonomy_for_template : 'category';

@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 function load_more_ajax_lite_shortcode( $atts ) {
     $attributes = shortcode_atts( array(
         'post_type'     => 'post',

@@ -94,6 +94,7 @@ class LoadMoreAjax {
             config.textLimit = loader.dataset.text_limit || '10';
             config.titleLimit = loader.dataset.title_limit || '30';
             config.category = loader.dataset.cate || '';
+            config.taxonomy = loader.dataset.taxonomy || '';
             config.slidesPerView = parseInt(loader.dataset.slides_per_view) || 3;
             config.showArrows = loader.dataset.show_arrows !== 'false';
             config.showDots = loader.dataset.show_dots !== 'false';
@@ -438,6 +439,7 @@ class LoadMoreAjax {
                 block_style: config.blockStyle,
                 text_limit: config.textLimit,
                 title_limit: config.titleLimit,
+                taxonomy: config.taxonomy,
                 sort_by: config.sortBy || 'date',
                 sort_order: config.sortOrder || 'DESC',
             });

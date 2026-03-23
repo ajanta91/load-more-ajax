@@ -1,88 +1,186 @@
 === Load More Ajax Lite ===
 Contributors: ajantawpdev
-Tags: load more post, ajax pagination, infinite scroll, post filter, search posts, elementor widget
+Tags: load more, ajax pagination, infinite scroll, post filter, elementor widget
 Requires at least: 5.2
 Tested up to: 6.8
-Stable tag: 1.2
+Stable tag: 2.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced Ajax post loading with infinite scroll, search, filtering, caching, and modern performance optimizations.
+Advanced Ajax post loading with 5 layouts, custom post type support, Elementor widget, infinite scroll, search, filtering, and modern performance optimizations.
 
 == Description ==
 
 **Load More Ajax Lite** is a powerful, feature-rich WordPress plugin that transforms your post listings with modern Ajax functionality. Create stunning, fast-loading blog pages with infinite scroll, real-time search, advanced filtering, and intelligent caching.
 
-** Key Features:**
-* **Multiple Layouts** - 3 beautiful, responsive design styles
-* **Category Filtering** - Ajax-powered category filters
-* **Custom Post Types** - Works with any post type
-* **Elementor Widget** - Fully integrated with Elementor
-* **Responsive Design** - Mobile-first, fully responsive
-* **Performance Optimized** - Caching, lazy loading, and optimization
-* **Developer Friendly** - Hooks, filters, and extensive API
+### Key Features ###
+
+* **5 Beautiful Layouts** — Classic Grid, List View, Modern Card, Masonry, and Carousel
+* **Custom Post Type Support** — Works with any public post type (Posts, Pages, WooCommerce Products, Portfolios, etc.)
+* **Dynamic Taxonomy Filtering** — Filter by any taxonomy, not just categories
+* **Masonry Layout** — Pinterest-style staggered grid with smooth re-layout on filter/load-more
+* **Carousel/Slider** — Swiper.js powered carousel with configurable slides, arrows, dots, and autoplay
+* **Category Filtering** — Ajax-powered taxonomy term filters on the frontend
+* **Elementor Widget** — Fully integrated widget with layout, query, and style controls
+* **Carousel Styling Controls** — Customize arrow and dot appearance (size, colors, borders, hover states) in Elementor
+* **Admin Block Builder** — Visual block creator with live preview, style thumbnails, and shortcode generator
+* **Responsive Design** — Mobile-first, fully responsive across all layouts
+* **Performance Optimized** — Caching, lazy loading, rate limiting, and modern JavaScript
+* **Developer Friendly** — Hooks, filters, REST API, and extensive documentation
 
 ### DEMO & DOCS ###
-For more information you can see plugin [demo](https://plugins.wpnonce.com/load-more-ajax/) & [Documentation](https://plugins.wpnonce.com/load-more-ajax/documentation/)
 
-### HOW TO USE ###
-- **Elementor:** Added existing 3 block style in the Elementor Widget. Now you can style and custmize according to you demand.
+For more information see the plugin [demo](https://plugins.wpnonce.com/load-more-ajax/) & [Documentation](https://plugins.wpnonce.com/load-more-ajax/documentation/)
 
-- **Shortcode:** [load_more_ajax_lite] is main shortcode. Add attributes according to your demand. No attribute is required. [load_more_ajax_lite post_type="" posts_per_page="" filter="" include="" exclude="" text_limit="" style="" column=""]
+== How To Use ==
 
-- **Post Type:** Default post_type="post". If you want to show custom post type posts you have to set Attribute post_type="your custom post type name" find your custom post type name according to [screenshot](https://prnt.sc/G8nFQozLCQvl)
+= Admin Block Builder =
 
-- **Posts Per Page:** Default posts_per_page="2". How many posts you want to show before load more action.
+1. Go to **Load More Ajax → Add New** in your WordPress admin
+2. Give your block a title
+3. Select a **Post Type** (Post, Page, Product, or any custom post type)
+4. Choose a **Taxonomy** (Category, Tag, Product Category, or any registered taxonomy)
+5. Pick a **Layout** — Classic Grid, List, Modern Card, Masonry, or Carousel
+6. Configure columns, posts per page, text/title limits
+7. For Carousel: set slides per view, arrows, dots, and autoplay
+8. Select terms to include or exclude
+9. Save and copy the generated shortcode
 
-- **Filter:** Default filter="true". To hide category filter bar just use filter value 'false'.
+= Shortcode Usage =
 
-- **Include:** Default include="null". Show specific category posts by using category ID, for multiple category IDs use comma(,) to separate. Find your category IDs according to [screenshot](https://prnt.sc/yc0RZ0LTSgPI)
+Basic: `[load_more_ajax_lite]`
 
-- **Exclude:** Default exclude="null". Remove specific category posts by using category ID, for multiple category IDs use comma(,) to separate. Find your category IDs according to [screenshot](https://prnt.sc/yc0RZ0LTSgPI)
+Full attributes:
 
-- **Text Limit:** Default text_limit="10". How many text would be show in description area, the number count in word.
+`[load_more_ajax_lite post_type="post" taxonomy="category" posts_per_page="6" filter="true" include="" exclude="" text_limit="10" title_limit="30" style="1" column="3"]`
 
-- **Title Limit:** Default title_limit="30" character. How many character would be show in the title. Title limitation will be counted as per character.
+**Shortcode Attributes:**
 
-- **Style:** Default style="1". Currently it has 2 block style ( 1, 2 & 3 ). style 1 & 3 grid view, style 2 list view.
+* **post_type** — Any registered public post type. Default: `post`
+* **taxonomy** — Taxonomy to use for filtering. Default: auto-detected from post type
+* **posts_per_page** — Number of posts before load more. Default: `6`
+* **filter** — Show/hide category filter bar. Default: `true`
+* **include** — Show only specific term IDs (comma-separated)
+* **exclude** — Hide specific term IDs (comma-separated)
+* **text_limit** — Excerpt word count. Default: `10`
+* **title_limit** — Title character limit. Default: `30`
+* **style** — Layout style: `1` (Grid), `2` (List), `3` (Modern Card), `4` (Masonry), `5` (Carousel). Default: `1`
+* **column** — Grid columns: `2`, `3`, or `4`. Default: `3`
 
-- **Column:** Default column="2". Column will work when grid view (style="1"). Available column 1,2,3,4 & 5.
+**Carousel-only attributes:**
+
+* **slides_per_view** — Slides visible at once: `1` to `4`. Default: `3`
+* **show_arrows** — Show navigation arrows. Default: `true`
+* **show_dots** — Show pagination dots. Default: `true`
+* **autoplay** — Enable auto-slide. Default: `true`
+
+= Elementor Widget =
+
+1. In the Elementor editor, search for **LMA Blog Post**
+2. Drag the widget to your page
+3. **Content Tab:**
+   * Select layout (5 options)
+   * Choose post type and taxonomy
+   * Select specific terms to display
+   * Set columns, posts per page, and order
+   * Configure carousel options (for carousel layout)
+4. **Style Tab:**
+   * Customize card background, title colors, meta colors
+   * **Arrow Style** (carousel) — Size, icon size, border radius, colors (normal/hover), border
+   * **Dot Style** (carousel) — Size, active width, spacing, border radius, colors, border
 
 == Frequently Asked Questions ==
 
-= Can I show all posts in all categories? =
-   Yes, you can show all posts in all categories by using shortcode [load_more_ajax_lite]
+= Can I use this with WooCommerce products? =
+Yes! Select "Product" as the post type in the admin block builder or use `post_type="product"` in the shortcode. The taxonomy dropdown will automatically show Product Categories and Product Tags.
 
-= Can I show all posts of specific category? =
-   Yes, use shortcode [load_more_ajax_lite include="category ID"] for multiple category IDs use comma(,) to separate
+= Can I use custom taxonomies? =
+Yes. When you select a post type, all its registered public taxonomies appear in the taxonomy dropdown. You can filter by any taxonomy, not just the default category.
+
+= Can I show all posts from all categories? =
+Yes, use the shortcode `[load_more_ajax_lite]` without any include/exclude attributes.
+
+= Can I show posts from a specific category only? =
+Yes, use `[load_more_ajax_lite include="category_id"]`. For multiple categories, separate with commas: `include="1,3,5"`.
 
 = Can I hide specific category posts? =
-   Yes, use shortcode [load_more_ajax_lite exclude="category ID"] for multiple category IDs use comma(,) to separate
-   
-= How can I show all posts for Custom Posts? =
-   Yes, use shortcode [load_more_ajax_lite post_type="custom_post_type"]
+Yes, use `[load_more_ajax_lite exclude="category_id"]`.
+
+= What layouts are available? =
+Five layouts: Classic Grid (style 1), List View (style 2), Modern Card (style 3), Masonry (style 4), and Carousel (style 5).
+
+= Can I customize the carousel arrows and dots? =
+Yes, in the Elementor widget you get full styling controls for arrows (size, colors, border, hover states) and dots (size, active width, colors, border, spacing).
+
+= Does it work with the block editor (Gutenberg)? =
+Currently the plugin uses shortcodes and an Elementor widget. Gutenberg block support is planned for a future release.
 
 == Installation ==
 
-= OPTION 1: Install the Load More Ajax Lite Plugin from WordPress Dashboard =
+= Option 1: Install from WordPress Dashboard =
 
-1. Navigate to Plugins -> Add New.
-2. Search for 'Load More Ajax Lite' and click on the Install button to install the plugin.
-3. Activate the plugin in the Plugins menu.
+1. Navigate to **Plugins → Add New**
+2. Search for **Load More Ajax Lite**
+3. Click **Install Now** and then **Activate**
 
-= OPTION 2: Manually Upload Plugin Files =
+= Option 2: Manual Upload =
 
-1. Download the plugin file from the plugin page: load-more-ajax.zip.
-2. Upload the 'load-more-ajax.zip' file to your '/wp-content/plugins' directory.
-2. Unzip the file load-more-ajax.zip (do not rename the folder).
+1. Download the plugin zip file
+2. Navigate to **Plugins → Add New → Upload Plugin**
+3. Upload the zip file and click **Install Now**
+4. Activate the plugin
 
 == Screenshots ==
 
-This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-
+1. Admin Block Builder — Visual block creator with post type and taxonomy selection
+2. Classic Grid Layout — Responsive grid with category filtering
+3. List Layout — Horizontal list view
+4. Modern Card Layout — Card-style grid with hover effects
+5. Masonry Layout — Pinterest-style staggered grid
+6. Carousel Layout — Swiper-powered slider with arrows and dots
+7. Elementor Widget — Full layout and style controls
 
 == Changelog ==
+
+= 2.0 =
+* **New: Masonry Layout (Style 4)** — Pinterest-style staggered grid using Masonry.js
+  * True masonry stagger with smooth re-layout on filter and load more
+  * Category filter with automatic reflow
+  * Responsive: single column on mobile
+* **New: Carousel Layout (Style 5)** — Swiper.js powered post slider
+  * Configurable slides per view (1–4), navigation arrows, pagination dots, autoplay
+  * Responsive breakpoints with pause-on-hover
+  * Vendor libraries (Swiper, Masonry, imagesLoaded) conditionally loaded per layout
+* **New: Carousel Arrow & Dot Styling** — Full Elementor style controls
+  * Arrow: size, icon size, border radius, icon color, background color, border (normal + hover)
+  * Dots: size, active width, spacing, border radius, color, active color, border
+* **New: Custom Post Type Support** — Full support across admin, shortcode, and Elementor
+  * Post type dropdown with all registered public post types
+  * Dynamic taxonomy selection based on post type
+  * AJAX-driven term checkboxes that reload when post type or taxonomy changes
+  * Works with WooCommerce Products, Portfolios, Events, and any custom post type
+* **New: Dynamic Taxonomy Filtering** — Filter by any taxonomy, not just categories
+  * New `taxonomy` shortcode attribute
+  * Taxonomy passed through to frontend AJAX for correct load-more filtering
+  * `data-taxonomy` attribute on frontend containers
+* **New: Admin Block Builder UX Overhaul**
+  * Visual style selector with CSS-drawn layout thumbnails
+  * Visual column selector with grid icons
+  * Category checkboxes with post counts (replaces manual comma-separated IDs)
+  * Live preview panel with real-time updates
+  * Collapsible sections, toggle switches, shortcode copy button
+  * Post type column with badge in block list
+* **Improved: Elementor Widget** — Post type, taxonomy, and terms controls in Query Filter section
+* **Improved: categories_suggester()** now supports any post type's taxonomy
+* **Fix: Grid CSS overflow** — Changed grid-template-columns from percentages to repeat(N, 1fr)
+* **Fix: Column value mismatch** — Block list converts DB values to actual column counts
+* **Fix: Filter value bug** — Shortcode accepts "1", "true", or "yes" for filter attribute
+* **Fix: Elementor preview** — Scripts and styles now load correctly in Elementor preview mode
+* **Fix: Elementor init timing** — Added elementorFrontend hooks with double-init guard
+* **Fix: JS null error** — Added null check for load_more_wrapper in addPostCountDisplay
+* Database migration: added post_type and taxonomy columns with backward-compatible defaults
+
 = 1.2 =
 * Security & Performance:
 * Added mandatory nonce verification for all Ajax requests
@@ -132,3 +230,8 @@ This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Scr
 - Basic Ajax load more functionality
 - Category filtering
 - Multiple layout options
+
+== Upgrade Notice ==
+
+= 2.0 =
+Major update: 2 new layouts (Masonry & Carousel), custom post type & taxonomy support, carousel styling controls, admin UX overhaul. Database migration runs automatically — existing blocks are preserved with no changes needed.

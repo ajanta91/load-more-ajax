@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 $blog_layout   = isset($layout) ? $layout : '1';
 $blog_columns  = isset($blog_column) ? 'column_' . $blog_column : 'column_4';
 $per_page      = isset($per_page) ? $per_page : '3';

@@ -4,7 +4,7 @@
  * Plugin Name:       Load More Ajax Lite
  * Plugin URI:        https://plugins.wpnonce.com/load-more-ajax/
  * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           1.2
+ * Version:           2.0
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Ajanta Das
@@ -24,7 +24,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
      */
     final class Load_More_Ajax_Lite {
 
-        const  VERSION = '1.2';
+        const  VERSION = '2.0';
 
         /**
          * Minimum PHP Version
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __clone() {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax-lite'), '2.0.0');
         }
 
         /**
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         public function __wakeup() {
             // Unserializing instances of the class is forbidden.
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'hostim-core'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax-lite'), '2.0.0');
         }
   
 
@@ -478,8 +478,10 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             }
 
             wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
-            wp_register_script( 'lma-masonry', plugins_url('assets/vendor/masonry.pkgd.min.js', __FILE__ ), array(), '4.2.2', true );
-            wp_register_script( 'lma-imagesloaded', plugins_url('assets/vendor/imagesloaded.pkgd.min.js', __FILE__ ), array(), '5.0.0', true );
+            // masonry and imagesloaded use WordPress core bundled versions
+            // Registered as aliases so existing lma-masonry/lma-imagesloaded handles still work
+            wp_register_script( 'lma-masonry', '', array('masonry'), LOAD_MORE_AJAX_LITE_VERSION, true );
+            wp_register_script( 'lma-imagesloaded', '', array('imagesloaded'), LOAD_MORE_AJAX_LITE_VERSION, true );
             wp_register_script( 'lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.js', __FILE__ ), array(), '11.2.6', true );
 
             // WooCommerce JavaScript (Modern ES6)
