@@ -12,27 +12,29 @@ if (!defined('ABSPATH')) {
 /**
  * Check if WooCommerce is active
  */
-function lma_is_woocommerce_active() {
+function lma_is_woocommerce_active()
+{
     $wc_exists = class_exists('WooCommerce');
-    
+
     // Alternative check - look for WooCommerce in active plugins
     $active_plugins = get_option('active_plugins', []);
     $wc_plugin_active = in_array('woocommerce/woocommerce.php', $active_plugins);
-    
+
     // For multisite, also check network active plugins
     if (is_multisite()) {
         $network_plugins = get_site_option('active_sitewide_plugins', []);
         $wc_network_active = isset($network_plugins['woocommerce/woocommerce.php']);
         $wc_plugin_active = $wc_plugin_active || $wc_network_active;
     }
-    
+
     return $wc_exists && $wc_plugin_active;
 }
 
 /**
  * Get WooCommerce product categories for filter
  */
-function lma_get_product_categories() {
+function lma_get_product_categories()
+{
     if (!lma_is_woocommerce_active()) {
         return [];
     }
@@ -50,7 +52,8 @@ function lma_get_product_categories() {
 /**
  * Get product price HTML
  */
-function lma_get_product_price($product_id) {
+function lma_get_product_price($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -67,7 +70,8 @@ function lma_get_product_price($product_id) {
  * Get product rating HTML
  * Note: Width styling is applied via JavaScript after AJAX load for proper star display
  */
-function lma_get_product_rating($product_id) {
+function lma_get_product_rating($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -90,7 +94,8 @@ function lma_get_product_rating($product_id) {
 /**
  * Get add to cart button HTML
  */
-function lma_get_add_to_cart_button($product_id) {
+function lma_get_add_to_cart_button($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -125,7 +130,8 @@ function lma_get_add_to_cart_button($product_id) {
 /**
  * Get product categories for a product
  */
-function lma_get_product_categories_html($product_id) {
+function lma_get_product_categories_html($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -145,7 +151,8 @@ function lma_get_product_categories_html($product_id) {
 /**
  * Get product sale badge
  */
-function lma_get_product_sale_badge($product_id) {
+function lma_get_product_sale_badge($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -156,7 +163,7 @@ function lma_get_product_sale_badge($product_id) {
     }
 
     if ($product->is_on_sale()) {
-        return '<span class="onsale">' . esc_html__('Sale!', 'load-more-ajax-lite') . '</span>';
+        return '<span class="onsale">' . esc_html__('Sale!', 'load-more-ajax') . '</span>';
     }
 
     return '';
@@ -165,7 +172,8 @@ function lma_get_product_sale_badge($product_id) {
 /**
  * Get product stock status
  */
-function lma_get_product_stock_status($product_id) {
+function lma_get_product_stock_status($product_id)
+{
     if (!lma_is_woocommerce_active()) {
         return '';
     }
@@ -193,25 +201,26 @@ add_action('wp_ajax_lma_load_products', 'lma_load_products_ajax');
 /**
  * AJAX handler for loading products
  */
-function lma_load_products_ajax() {
+function lma_load_products_ajax()
+{
     try {
         // Security checks
         if (class_exists('LMA_Security')) {
             if (!LMA_Security::check_rate_limit('lma_load_products', 120)) {
                 LMA_Security::log_security_event('rate_limit', 'Rate limit exceeded for lma_load_products');
-                wp_send_json_error(['error' => true, 'message' => esc_html__('Too many requests. Please wait.', 'load-more-ajax-lite')]);
+                wp_send_json_error(['error' => true, 'message' => esc_html__('Too many requests. Please wait.', 'load-more-ajax')]);
             }
 
             // Verify nonce - make it optional for backward compatibility
             $nonce_provided = isset($_POST['nonce']) && !empty($_POST['nonce']);
             if ($nonce_provided && !LMA_Security::verify_ajax_nonce('load_more_ajax_nonce', 'nonce')) {
                 LMA_Security::log_security_event('invalid_nonce', 'Invalid nonce for lma_load_products');
-                wp_send_json_error(['error' => true, 'message' => esc_html__('Security check failed.', 'load-more-ajax-lite')]);
+                wp_send_json_error(['error' => true, 'message' => esc_html__('Security check failed.', 'load-more-ajax')]);
             }
         }
 
         if (!lma_is_woocommerce_active()) {
-            wp_send_json_error(['error' => true, 'message' => esc_html__('WooCommerce is not active.', 'load-more-ajax-lite')]);
+            wp_send_json_error(['error' => true, 'message' => esc_html__('WooCommerce is not active.', 'load-more-ajax')]);
         }
 
         // Validate and sanitize inputs
@@ -348,7 +357,7 @@ function lma_load_products_ajax() {
                 'block_style' => $block_style,
                 'limit' => $limit,
                 'showing' => sprintf(
-                    esc_html__('Showing %d-%d of %d products', 'load-more-ajax-lite'),
+                    esc_html__('Showing %d-%d of %d products', 'load-more-ajax'),
                     (($order - 1) * $limit) + 1,
                     min($order * $limit, $query->found_posts),
                     $query->found_posts
@@ -431,7 +440,7 @@ function lma_load_products_ajax() {
 
         wp_send_json_error([
             'error' => true,
-            'message' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax-lite'),
+            'message' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax'),
         ]);
     }
 }

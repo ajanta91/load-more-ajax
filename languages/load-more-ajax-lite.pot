@@ -414,7 +414,7 @@ msgstr ""
 msgid "Load More Button Text"
 msgstr ""
 
-#: elementor/widgets/LMA_Products.php:314 load-more-ajax-lite.php:460
+#: elementor/widgets/LMA_Products.php:314 load-more-ajax.php:460
 msgid "Load More Products"
 msgstr ""
 
@@ -426,8 +426,8 @@ msgstr ""
 msgid "Loading Text"
 msgstr ""
 
-#: elementor/widgets/LMA_Products.php:321 load-more-ajax-lite.php:459
-#: load-more-ajax-lite.php:478
+#: elementor/widgets/LMA_Products.php:321 load-more-ajax.php:459
+#: load-more-ajax.php:478
 msgid "Loading..."
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "No More Products Text"
 msgstr ""
 
-#: elementor/widgets/LMA_Products.php:328 load-more-ajax-lite.php:461
+#: elementor/widgets/LMA_Products.php:328 load-more-ajax.php:461
 msgid "No More Products"
 msgstr ""
 
@@ -683,7 +683,7 @@ msgid "Showing %d-%d of %d posts"
 msgstr ""
 
 #: inc/functions.php:332 inc/woocommerce-functions.php:434
-#: load-more-ajax-lite.php:462 load-more-ajax-lite.php:481
+#: load-more-ajax.php:462 load-more-ajax.php:481
 msgid "Something went wrong. Please try again."
 msgstr ""
 
@@ -707,7 +707,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: inc/shortcodes.php:121 load-more-ajax-lite.php:479
+#: inc/shortcodes.php:121 load-more-ajax.php:479
 msgid "Load More"
 msgstr ""
 
@@ -940,42 +940,42 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: load-more-ajax-lite.php:79 load-more-ajax-lite.php:95
+#: load-more-ajax.php:79 load-more-ajax.php:95
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: load-more-ajax-lite.php:364
+#: load-more-ajax.php:364
 msgid "Clear LMA Cache"
 msgstr ""
 
-#: load-more-ajax-lite.php:377
+#: load-more-ajax.php:377
 msgid "Unauthorized"
 msgstr ""
 
-#: load-more-ajax-lite.php:382
+#: load-more-ajax.php:382
 msgid "Invalid nonce"
 msgstr ""
 
-#: load-more-ajax-lite.php:412
+#: load-more-ajax.php:412
 msgid "on"
 msgstr ""
 
-#: load-more-ajax-lite.php:463
+#: load-more-ajax.php:463
 msgid "Search products..."
 msgstr ""
 
-#: load-more-ajax-lite.php:464
+#: load-more-ajax.php:464
 msgid "No products found."
 msgstr ""
 
-#: load-more-ajax-lite.php:480
+#: load-more-ajax.php:480
 msgid "No More Posts"
 msgstr ""
 
-#: load-more-ajax-lite.php:482
+#: load-more-ajax.php:482
 msgid "Search posts..."
 msgstr ""
 
-#: load-more-ajax-lite.php:483
+#: load-more-ajax.php:483
 msgid "No posts found."
 msgstr ""

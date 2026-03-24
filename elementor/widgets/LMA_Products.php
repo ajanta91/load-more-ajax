@@ -31,7 +31,7 @@ class LMA_Products extends Widget_Base
 
     public function get_title()
     {
-        return esc_html__('WooCommerce Products [LMA]', 'load-more-ajax-lite');
+        return esc_html__('WooCommerce Products [LMA]', 'load-more-ajax');
     }
 
     public function get_icon()
@@ -59,17 +59,17 @@ class LMA_Products extends Widget_Base
 
         // Layout Settings
         $this->start_controls_section('section_layout', [
-            'label' => esc_html__('Layout', 'load-more-ajax-lite'),
+            'label' => esc_html__('Layout', 'load-more-ajax'),
         ]);
 
         $this->add_control('layout', [
-            'label' => esc_html__('Product Style', 'load-more-ajax-lite'),
+            'label' => esc_html__('Product Style', 'load-more-ajax'),
             'type' => Controls_Manager::SELECT,
             'default' => '1',
             'options' => [
-                '1' => esc_html__('Classic Layout', 'load-more-ajax-lite'),
-                '2' => esc_html__('Modern Card Layout', 'load-more-ajax-lite'),
-                '3' => esc_html__('Minimal Layout', 'load-more-ajax-lite')
+                '1' => esc_html__('Classic Layout', 'load-more-ajax'),
+                '2' => esc_html__('Modern Card Layout', 'load-more-ajax'),
+                '3' => esc_html__('Minimal Layout', 'load-more-ajax')
             ],
         ]);
 
@@ -84,15 +84,15 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('product_column', [
-            'label' => esc_html__('Columns', 'load-more-ajax-lite'),
+            'label' => esc_html__('Columns', 'load-more-ajax'),
             'type' => Controls_Manager::SELECT,
             'default' => '3',
             'options' => [
-                '2' => esc_html__('2 Columns', 'load-more-ajax-lite'),
-                '3' => esc_html__('3 Columns', 'load-more-ajax-lite'),
-                '4' => esc_html__('4 Columns', 'load-more-ajax-lite'),
-                '5' => esc_html__('5 Columns', 'load-more-ajax-lite'),
-                'full' => esc_html__('Full Width', 'load-more-ajax-lite'),
+                '2' => esc_html__('2 Columns', 'load-more-ajax'),
+                '3' => esc_html__('3 Columns', 'load-more-ajax'),
+                '4' => esc_html__('4 Columns', 'load-more-ajax'),
+                '5' => esc_html__('5 Columns', 'load-more-ajax'),
+                'full' => esc_html__('Full Width', 'load-more-ajax'),
             ],
         ]);
 
@@ -100,52 +100,52 @@ class LMA_Products extends Widget_Base
 
         // Modern Layout Settings (Layout 2)
         $this->start_controls_section('section_modern_layout', [
-            'label' => esc_html__('Modern Layout Settings', 'load-more-ajax-lite'),
+            'label' => esc_html__('Modern Layout Settings', 'load-more-ajax'),
             'condition' => [
                 'layout' => '2',
             ],
         ]);
 
         $this->add_control('show_action_buttons', [
-            'label' => esc_html__('Show Action Buttons', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Action Buttons', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
-            'description' => esc_html__('Quick view, wishlist, and compare buttons on product hover', 'load-more-ajax-lite'),
+            'description' => esc_html__('Quick view, wishlist, and compare buttons on product hover', 'load-more-ajax'),
         ]);
 
         $this->add_control('show_product_description', [
-            'label' => esc_html__('Show Short Description', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Short Description', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('show_stock_status', [
-            'label' => esc_html__('Show Stock Status', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Stock Status', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('enable_hover_effects', [
-            'label' => esc_html__('Enable Hover Effects', 'load-more-ajax-lite'),
+            'label' => esc_html__('Enable Hover Effects', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Enable', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Disable', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Enable', 'load-more-ajax'),
+            'label_off' => esc_html__('Disable', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
-            'description' => esc_html__('Card elevation and image zoom effects on hover', 'load-more-ajax-lite'),
+            'description' => esc_html__('Card elevation and image zoom effects on hover', 'load-more-ajax'),
         ]);
 
         $this->add_control('card_border_radius', [
-            'label' => esc_html__('Card Border Radius', 'load-more-ajax-lite'),
+            'label' => esc_html__('Card Border Radius', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range' => [
@@ -165,7 +165,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('image_height', [
-            'label' => esc_html__('Product Image Height', 'load-more-ajax-lite'),
+            'label' => esc_html__('Product Image Height', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range' => [
@@ -188,41 +188,41 @@ class LMA_Products extends Widget_Base
 
         // Query Settings
         $this->start_controls_section('section_query', [
-            'label' => esc_html__('Query Settings', 'load-more-ajax-lite'),
+            'label' => esc_html__('Query Settings', 'load-more-ajax'),
         ]);
 
         $this->add_control('per_page', [
-            'label' => esc_html__('Products Per Page', 'load-more-ajax-lite'),
+            'label' => esc_html__('Products Per Page', 'load-more-ajax'),
             'type' => Controls_Manager::NUMBER,
             'default' => 6
         ]);
 
         $this->add_control('orderby', [
-            'label' => esc_html__('Order By', 'load-more-ajax-lite'),
+            'label' => esc_html__('Order By', 'load-more-ajax'),
             'type' => Controls_Manager::SELECT,
             'options' => [
-                'date' => esc_html__('Date', 'load-more-ajax-lite'),
-                'price' => esc_html__('Price', 'load-more-ajax-lite'),
-                'popularity' => esc_html__('Popularity', 'load-more-ajax-lite'),
-                'rating' => esc_html__('Rating', 'load-more-ajax-lite'),
-                'title' => esc_html__('Title', 'load-more-ajax-lite'),
-                'menu_order' => esc_html__('Menu Order', 'load-more-ajax-lite'),
+                'date' => esc_html__('Date', 'load-more-ajax'),
+                'price' => esc_html__('Price', 'load-more-ajax'),
+                'popularity' => esc_html__('Popularity', 'load-more-ajax'),
+                'rating' => esc_html__('Rating', 'load-more-ajax'),
+                'title' => esc_html__('Title', 'load-more-ajax'),
+                'menu_order' => esc_html__('Menu Order', 'load-more-ajax'),
             ],
             'default' => 'date',
         ]);
 
         $this->add_control('order', [
-            'label' => esc_html__('Sort Order', 'load-more-ajax-lite'),
+            'label' => esc_html__('Sort Order', 'load-more-ajax'),
             'type' => Controls_Manager::SELECT,
             'options' => [
-                'ASC' => esc_html__('Ascending', 'load-more-ajax-lite'),
-                'DESC' => esc_html__('Descending', 'load-more-ajax-lite'),
+                'ASC' => esc_html__('Ascending', 'load-more-ajax'),
+                'DESC' => esc_html__('Descending', 'load-more-ajax'),
             ],
             'default' => 'DESC',
         ]);
 
         $this->add_control('selected_categories', [
-            'label' => esc_html__('Select Categories', 'load-more-ajax-lite'),
+            'label' => esc_html__('Select Categories', 'load-more-ajax'),
             'type' => Controls_Manager::SELECT2,
             'multiple' => true,
             'label_block' => true,
@@ -230,19 +230,19 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('featured_products', [
-            'label' => esc_html__('Featured Products Only', 'load-more-ajax-lite'),
+            'label' => esc_html__('Featured Products Only', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('No', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Yes', 'load-more-ajax'),
+            'label_off' => esc_html__('No', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'false',
         ]);
 
         $this->add_control('on_sale_products', [
-            'label' => esc_html__('On Sale Products Only', 'load-more-ajax-lite'),
+            'label' => esc_html__('On Sale Products Only', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('No', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Yes', 'load-more-ajax'),
+            'label_off' => esc_html__('No', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'false',
         ]);
@@ -251,102 +251,102 @@ class LMA_Products extends Widget_Base
 
         // Display Settings
         $this->start_controls_section('section_display', [
-            'label' => esc_html__('Display Settings', 'load-more-ajax-lite'),
+            'label' => esc_html__('Display Settings', 'load-more-ajax'),
         ]);
 
         $this->add_control('show_rating', [
-            'label' => esc_html__('Show Rating', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Rating', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('show_price', [
-            'label' => esc_html__('Show Price', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Price', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('show_cart_button', [
-            'label' => esc_html__('Show Add to Cart Button', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Add to Cart Button', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('show_sale_badge', [
-            'label' => esc_html__('Show Sale Badge', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Sale Badge', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('enable_filter', [
-            'label' => esc_html__('Enable Category Filter', 'load-more-ajax-lite'),
+            'label' => esc_html__('Enable Category Filter', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('No', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Yes', 'load-more-ajax'),
+            'label_off' => esc_html__('No', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
         ]);
 
         $this->add_control('enable_sort', [
-            'label' => esc_html__('Enable Sort Options', 'load-more-ajax-lite'),
+            'label' => esc_html__('Enable Sort Options', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('No', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Yes', 'load-more-ajax'),
+            'label_off' => esc_html__('No', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'false',
         ]);
 
         $this->add_control('button_text', [
-            'label' => esc_html__('Load More Button Text', 'load-more-ajax-lite'),
+            'label' => esc_html__('Load More Button Text', 'load-more-ajax'),
             'type' => Controls_Manager::TEXT,
-            'default' => esc_html__('Load More Products', 'load-more-ajax-lite'),
-            'placeholder' => esc_html__('Enter button text', 'load-more-ajax-lite'),
+            'default' => esc_html__('Load More Products', 'load-more-ajax'),
+            'placeholder' => esc_html__('Enter button text', 'load-more-ajax'),
         ]);
 
         $this->add_control('loading_text', [
-            'label' => esc_html__('Loading Text', 'load-more-ajax-lite'),
+            'label' => esc_html__('Loading Text', 'load-more-ajax'),
             'type' => Controls_Manager::TEXT,
-            'default' => esc_html__('Loading...', 'load-more-ajax-lite'),
-            'placeholder' => esc_html__('Enter loading text', 'load-more-ajax-lite'),
+            'default' => esc_html__('Loading...', 'load-more-ajax'),
+            'placeholder' => esc_html__('Enter loading text', 'load-more-ajax'),
         ]);
 
         $this->add_control('no_more_text', [
-            'label' => esc_html__('No More Products Text', 'load-more-ajax-lite'),
+            'label' => esc_html__('No More Products Text', 'load-more-ajax'),
             'type' => Controls_Manager::TEXT,
-            'default' => esc_html__('No More Products', 'load-more-ajax-lite'),
-            'placeholder' => esc_html__('Enter no more text', 'load-more-ajax-lite'),
+            'default' => esc_html__('No More Products', 'load-more-ajax'),
+            'placeholder' => esc_html__('Enter no more text', 'load-more-ajax'),
         ]);
 
         $this->add_control('show_count', [
-            'label' => esc_html__('Show Product Count', 'load-more-ajax-lite'),
+            'label' => esc_html__('Show Product Count', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Show', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('Hide', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Show', 'load-more-ajax'),
+            'label_off' => esc_html__('Hide', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'false',
-            'description' => esc_html__('Show "Showing X of Y products" text', 'load-more-ajax-lite'),
+            'description' => esc_html__('Show "Showing X of Y products" text', 'load-more-ajax'),
         ]);
 
         $this->add_control('enable_animation', [
-            'label' => esc_html__('Enable Animation', 'load-more-ajax-lite'),
+            'label' => esc_html__('Enable Animation', 'load-more-ajax'),
             'type' => Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'load-more-ajax-lite'),
-            'label_off' => esc_html__('No', 'load-more-ajax-lite'),
+            'label_on' => esc_html__('Yes', 'load-more-ajax'),
+            'label_off' => esc_html__('No', 'load-more-ajax'),
             'return_value' => 'true',
             'default' => 'true',
-            'description' => esc_html__('Animate new products when they load', 'load-more-ajax-lite'),
+            'description' => esc_html__('Animate new products when they load', 'load-more-ajax'),
         ]);
 
         $this->end_controls_section();
@@ -359,12 +359,12 @@ class LMA_Products extends Widget_Base
     {
         // Product Title Style
         $this->start_controls_section('section_title_style', [
-            'label' => esc_html__('Product Title', 'load-more-ajax-lite'),
+            'label' => esc_html__('Product Title', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_control('title_color', [
-            'label' => esc_html__('Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_title a' => 'color: {{VALUE}}',
@@ -380,24 +380,24 @@ class LMA_Products extends Widget_Base
 
         // Category Filter Style
         $this->start_controls_section('section_category_filter_style', [
-            'label' => esc_html__('Category Filter', 'load-more-ajax-lite'),
+            'label' => esc_html__('Category Filter', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_control('category_filter_alignment', [
-            'label' => esc_html__('Alignment', 'load-more-ajax-lite'),
+            'label' => esc_html__('Alignment', 'load-more-ajax'),
             'type' => Controls_Manager::CHOOSE,
             'options' => [
                 'left' => [
-                    'title' => esc_html__('Left', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Left', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-left',
                 ],
                 'center' => [
-                    'title' => esc_html__('Center', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Center', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-center',
                 ],
                 'right' => [
-                    'title' => esc_html__('Right', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Right', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-right',
                 ],
             ],
@@ -408,7 +408,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_responsive_control('category_filter_spacing', [
-            'label' => esc_html__('Bottom Spacing', 'load-more-ajax-lite'),
+            'label' => esc_html__('Bottom Spacing', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range' => [
@@ -428,7 +428,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_responsive_control('category_button_gap', [
-            'label' => esc_html__('Gap Between Buttons', 'load-more-ajax-lite'),
+            'label' => esc_html__('Gap Between Buttons', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range' => [
@@ -449,7 +449,7 @@ class LMA_Products extends Widget_Base
 
         // Normal State
         $this->add_control('category_normal_heading', [
-            'label' => esc_html__('Normal State', 'load-more-ajax-lite'),
+            'label' => esc_html__('Normal State', 'load-more-ajax'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
         ]);
@@ -460,7 +460,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_text_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#333333',
             'selectors' => [
@@ -469,7 +469,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#f5f5f5',
             'selectors' => [
@@ -483,7 +483,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_responsive_control('category_border_radius', [
-            'label' => esc_html__('Border Radius', 'load-more-ajax-lite'),
+            'label' => esc_html__('Border Radius', 'load-more-ajax'),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%'],
             'default' => [
@@ -499,7 +499,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_responsive_control('category_padding', [
-            'label' => esc_html__('Padding', 'load-more-ajax-lite'),
+            'label' => esc_html__('Padding', 'load-more-ajax'),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'em', '%'],
             'default' => [
@@ -521,13 +521,13 @@ class LMA_Products extends Widget_Base
 
         // Hover State
         $this->add_control('category_hover_heading', [
-            'label' => esc_html__('Hover State', 'load-more-ajax-lite'),
+            'label' => esc_html__('Hover State', 'load-more-ajax'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
         ]);
 
         $this->add_control('category_hover_text_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#ffffff',
             'selectors' => [
@@ -536,7 +536,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_hover_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#666666',
             'selectors' => [
@@ -545,7 +545,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_hover_border_color', [
-            'label' => esc_html__('Border Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Border Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .ajax_post_cat:hover' => 'border-color: {{VALUE}};',
@@ -558,7 +558,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_hover_transition', [
-            'label' => esc_html__('Transition Duration', 'load-more-ajax-lite'),
+            'label' => esc_html__('Transition Duration', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['ms'],
             'range' => [
@@ -579,13 +579,13 @@ class LMA_Products extends Widget_Base
 
         // Active State
         $this->add_control('category_active_heading', [
-            'label' => esc_html__('Active State', 'load-more-ajax-lite'),
+            'label' => esc_html__('Active State', 'load-more-ajax'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
         ]);
 
         $this->add_control('category_active_text_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#ffffff',
             'selectors' => [
@@ -594,7 +594,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_active_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#0073aa',
             'selectors' => [
@@ -603,7 +603,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_active_border_color', [
-            'label' => esc_html__('Border Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Border Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .ajax_post_cat.active' => 'border-color: {{VALUE}};',
@@ -616,7 +616,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('category_active_transform', [
-            'label' => esc_html__('Active Scale', 'load-more-ajax-lite'),
+            'label' => esc_html__('Active Scale', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'range' => [
                 'px' => [
@@ -637,12 +637,12 @@ class LMA_Products extends Widget_Base
 
         // Price Style
         $this->start_controls_section('section_price_style', [
-            'label' => esc_html__('Price', 'load-more-ajax-lite'),
+            'label' => esc_html__('Price', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_control('price_color', [
-            'label' => esc_html__('Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_price' => 'color: {{VALUE}}',
@@ -658,18 +658,18 @@ class LMA_Products extends Widget_Base
 
         // Button Style
         $this->start_controls_section('section_button_style', [
-            'label' => esc_html__('Add to Cart Button', 'load-more-ajax-lite'),
+            'label' => esc_html__('Add to Cart Button', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->start_controls_tabs('tabs_button_style');
 
         $this->start_controls_tab('tab_button_normal', [
-            'label' => esc_html__('Normal', 'load-more-ajax-lite'),
+            'label' => esc_html__('Normal', 'load-more-ajax'),
         ]);
 
         $this->add_control('button_text_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_cart .button' => 'color: {{VALUE}}',
@@ -677,7 +677,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('button_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_cart .button' => 'background-color: {{VALUE}}',
@@ -687,11 +687,11 @@ class LMA_Products extends Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('tab_button_hover', [
-            'label' => esc_html__('Hover', 'load-more-ajax-lite'),
+            'label' => esc_html__('Hover', 'load-more-ajax'),
         ]);
 
         $this->add_control('button_hover_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_cart .button:hover' => 'color: {{VALUE}}',
@@ -699,7 +699,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('button_hover_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lma_product_cart .button:hover' => 'background-color: {{VALUE}}',
@@ -719,18 +719,18 @@ class LMA_Products extends Widget_Base
 
         // Load More Button Style
         $this->start_controls_section('section_load_more_style', [
-            'label' => esc_html__('Load More Button', 'load-more-ajax-lite'),
+            'label' => esc_html__('Load More Button', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->start_controls_tabs('tabs_load_more_style');
 
         $this->start_controls_tab('tab_load_more_normal', [
-            'label' => esc_html__('Normal', 'load-more-ajax-lite'),
+            'label' => esc_html__('Normal', 'load-more-ajax'),
         ]);
 
         $this->add_control('load_more_text_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .loadmore_products' => 'color: {{VALUE}}',
@@ -738,7 +738,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('load_more_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .loadmore_products' => 'background-color: {{VALUE}}',
@@ -753,11 +753,11 @@ class LMA_Products extends Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('tab_load_more_hover', [
-            'label' => esc_html__('Hover', 'load-more-ajax-lite'),
+            'label' => esc_html__('Hover', 'load-more-ajax'),
         ]);
 
         $this->add_control('load_more_hover_color', [
-            'label' => esc_html__('Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .loadmore_products:hover' => 'color: {{VALUE}}',
@@ -765,7 +765,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('load_more_hover_bg_color', [
-            'label' => esc_html__('Background Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Background Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .loadmore_products:hover' => 'background-color: {{VALUE}}',
@@ -782,7 +782,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('load_more_padding', [
-            'label' => esc_html__('Padding', 'load-more-ajax-lite'),
+            'label' => esc_html__('Padding', 'load-more-ajax'),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'em', '%'],
             'selectors' => [
@@ -791,7 +791,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('load_more_margin', [
-            'label' => esc_html__('Margin', 'load-more-ajax-lite'),
+            'label' => esc_html__('Margin', 'load-more-ajax'),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'em', '%'],
             'selectors' => [
@@ -800,19 +800,19 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_responsive_control('load_more_align', [
-            'label' => esc_html__('Alignment', 'load-more-ajax-lite'),
+            'label' => esc_html__('Alignment', 'load-more-ajax'),
             'type' => Controls_Manager::CHOOSE,
             'options' => [
                 'left' => [
-                    'title' => esc_html__('Left', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Left', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-left',
                 ],
                 'center' => [
-                    'title' => esc_html__('Center', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Center', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-center',
                 ],
                 'right' => [
-                    'title' => esc_html__('Right', 'load-more-ajax-lite'),
+                    'title' => esc_html__('Right', 'load-more-ajax'),
                     'icon' => 'eicon-text-align-right',
                 ],
             ],
@@ -825,12 +825,12 @@ class LMA_Products extends Widget_Base
 
         // Product Container Style
         $this->start_controls_section('section_container_style', [
-            'label' => esc_html__('Product Container', 'load-more-ajax-lite'),
+            'label' => esc_html__('Product Container', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_responsive_control('products_gap', [
-            'label' => esc_html__('Products Gap', 'load-more-ajax-lite'),
+            'label' => esc_html__('Products Gap', 'load-more-ajax'),
             'type' => Controls_Manager::SLIDER,
             'size_units' => ['px'],
             'range' => [
@@ -855,7 +855,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('container_border_radius', [
-            'label' => esc_html__('Border Radius', 'load-more-ajax-lite'),
+            'label' => esc_html__('Border Radius', 'load-more-ajax'),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%'],
             'selectors' => [
@@ -872,7 +872,7 @@ class LMA_Products extends Widget_Base
 
         // Modern Layout Style Controls
         $this->start_controls_section('section_modern_style', [
-            'label' => esc_html__('Modern Card Style', 'load-more-ajax-lite'),
+            'label' => esc_html__('Modern Card Style', 'load-more-ajax'),
             'tab' => Controls_Manager::TAB_STYLE,
             'condition' => [
                 'layout' => '2',
@@ -880,7 +880,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('modern_card_background', [
-            'label' => esc_html__('Card Background', 'load-more-ajax-lite'),
+            'label' => esc_html__('Card Background', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#ffffff',
             'selectors' => [
@@ -890,7 +890,7 @@ class LMA_Products extends Widget_Base
 
         $this->add_group_control(Group_Control_Box_Shadow::get_type(), [
             'name' => 'modern_card_shadow',
-            'label' => esc_html__('Card Shadow', 'load-more-ajax-lite'),
+            'label' => esc_html__('Card Shadow', 'load-more-ajax'),
             'selector' => '{{WRAPPER}} .modern-product-card',
             'fields_options' => [
                 'box_shadow_type' => [
@@ -909,7 +909,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('modern_hover_shadow', [
-            'label' => esc_html__('Hover Shadow Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Hover Shadow Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => 'rgba(0,0,0,0.15)',
             'selectors' => [
@@ -918,13 +918,13 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('sale_badge_heading', [
-            'label' => esc_html__('Sale Badge', 'load-more-ajax-lite'),
+            'label' => esc_html__('Sale Badge', 'load-more-ajax'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
         ]);
 
         $this->add_control('sale_badge_bg_color', [
-            'label' => esc_html__('Badge Background', 'load-more-ajax-lite'),
+            'label' => esc_html__('Badge Background', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#ff6b6b',
             'selectors' => [
@@ -933,7 +933,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('sale_badge_text_color', [
-            'label' => esc_html__('Badge Text Color', 'load-more-ajax-lite'),
+            'label' => esc_html__('Badge Text Color', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#ffffff',
             'selectors' => [
@@ -942,7 +942,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('action_buttons_heading', [
-            'label' => esc_html__('Action Buttons', 'load-more-ajax-lite'),
+            'label' => esc_html__('Action Buttons', 'load-more-ajax'),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
             'condition' => [
@@ -951,7 +951,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('action_button_bg', [
-            'label' => esc_html__('Button Background', 'load-more-ajax-lite'),
+            'label' => esc_html__('Button Background', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => 'rgba(255,255,255,0.95)',
             'selectors' => [
@@ -963,7 +963,7 @@ class LMA_Products extends Widget_Base
         ]);
 
         $this->add_control('action_button_hover_bg', [
-            'label' => esc_html__('Button Hover Background', 'load-more-ajax-lite'),
+            'label' => esc_html__('Button Hover Background', 'load-more-ajax'),
             'type' => Controls_Manager::COLOR,
             'default' => '#667eea',
             'selectors' => [
@@ -997,12 +997,12 @@ class LMA_Products extends Widget_Base
 
         // Check if WooCommerce is active
         if (!function_exists('lma_is_woocommerce_active') || !lma_is_woocommerce_active()) {
-            echo '<div class="lma-notice">' . esc_html__('WooCommerce is not active.', 'load-more-ajax-lite') . '</div>';
+            echo '<div class="lma-notice">' . esc_html__('WooCommerce is not active.', 'load-more-ajax') . '</div>';
             return;
         }
 
         // Enqueue necessary styles
-        wp_enqueue_style('load-more-ajax-lite');
+        wp_enqueue_style('load-more-ajax');
 
         // Enqueue modern layout styles for Layout 2
         if ($settings['layout'] === '2') {
@@ -1031,10 +1031,9 @@ class LMA_Products extends Widget_Base
             $category_ids = implode(',', $settings['selected_categories']);
         }
 
-?>
+        ?>
         <div class="lma_products_block woocommerce lma_block_style_<?php echo esc_attr($settings['layout']); ?>"
-            data-layout="<?php echo esc_attr($settings['layout']); ?>"
-            data-category="<?php echo esc_attr($category_ids); ?>"
+            data-layout="<?php echo esc_attr($settings['layout']); ?>" data-category="<?php echo esc_attr($category_ids); ?>"
             data-limit="<?php echo esc_attr($settings['per_page']); ?>"
             data-orderby="<?php echo esc_attr($settings['orderby']); ?>">
 
@@ -1065,7 +1064,7 @@ class LMA_Products extends Widget_Base
                             $all_cat_ids = implode(',', $cat_ids);
                         }
 
-                        echo '<a href="#" data-cateid="' . esc_attr($all_cat_ids) . '" class="ajax_post_cat active">' . esc_html__('All Products', 'load-more-ajax-lite') . '</a>';
+                        echo '<a href="#" data-cateid="' . esc_attr($all_cat_ids) . '" class="ajax_post_cat active">' . esc_html__('All Products', 'load-more-ajax') . '</a>';
 
                         if (is_array($categories)) {
                             foreach ($categories as $cat) {
@@ -1076,14 +1075,15 @@ class LMA_Products extends Widget_Base
                         if ($settings['enable_sort'] == 'true'): ?>
                             <div class="lma_product_sort_wrapper">
                                 <select class="lma_product_sort">
-                                    <option value="date:DESC" <?php echo $settings['orderby'] == 'date' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Newest First', 'load-more-ajax-lite'); ?></option>
-                                    <option value="date:ASC" <?php echo $settings['orderby'] == 'date' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Oldest First', 'load-more-ajax-lite'); ?></option>
-                                    <option value="price:ASC" <?php echo $settings['orderby'] == 'price' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Price: Low to High', 'load-more-ajax-lite'); ?></option>
-                                    <option value="price:DESC" <?php echo $settings['orderby'] == 'price' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Price: High to Low', 'load-more-ajax-lite'); ?></option>
-                                    <option value="popularity:DESC" <?php echo $settings['orderby'] == 'popularity' ? ' selected' : ''; ?>><?php esc_html_e('Most Popular', 'load-more-ajax-lite'); ?></option>
-                                    <option value="rating:DESC" <?php echo $settings['orderby'] == 'rating' ? ' selected' : ''; ?>><?php esc_html_e('Highest Rated', 'load-more-ajax-lite'); ?></option>
-                                    <option value="title:ASC" <?php echo $settings['orderby'] == 'title' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Name: A to Z', 'load-more-ajax-lite'); ?></option>
-                                    <option value="title:DESC" <?php echo $settings['orderby'] == 'title' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Name: Z to A', 'load-more-ajax-lite'); ?></option>
+                                    <option value="date:DESC" <?php echo $settings['orderby'] == 'date' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Newest First', 'load-more-ajax'); ?></option>
+                                    <option value="date:ASC" <?php echo $settings['orderby'] == 'date' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Oldest First', 'load-more-ajax'); ?></option>
+                                    <option value="price:ASC" <?php echo $settings['orderby'] == 'price' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Price: Low to High', 'load-more-ajax'); ?></option>
+                                    <option value="price:DESC" <?php echo $settings['orderby'] == 'price' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Price: High to Low', 'load-more-ajax'); ?></option>
+                                    <option value="popularity:DESC" <?php echo $settings['orderby'] == 'popularity' ? ' selected' : ''; ?>><?php esc_html_e('Most Popular', 'load-more-ajax'); ?></option>
+                                    <option value="rating:DESC" <?php echo $settings['orderby'] == 'rating' ? ' selected' : ''; ?>>
+                                        <?php esc_html_e('Highest Rated', 'load-more-ajax'); ?></option>
+                                    <option value="title:ASC" <?php echo $settings['orderby'] == 'title' && $settings['order'] == 'ASC' ? ' selected' : ''; ?>><?php esc_html_e('Name: A to Z', 'load-more-ajax'); ?></option>
+                                    <option value="title:DESC" <?php echo $settings['orderby'] == 'title' && $settings['order'] == 'DESC' ? ' selected' : ''; ?>><?php esc_html_e('Name: Z to A', 'load-more-ajax'); ?></option>
                                 </select>
                             </div>
                         <?php endif; ?>
@@ -1127,7 +1127,7 @@ class LMA_Products extends Widget_Base
                     </button>
                 </div>
 
-                </div>
-        <?php
+            </div>
+            <?php
     }
 }

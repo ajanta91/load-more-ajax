@@ -41,56 +41,51 @@ foreach ($products as $product) {
     $stock_status = $product['stock_status'] ?? '';
     $short_description = $product['short_description'] ?? '';
     ?>
-    
+
     <div class="lma_product_item" data-product-id="<?php echo esc_attr($product_id); ?>">
         <div class="lma_product_thumb">
             <?php if ($thumbnail): ?>
                 <a href="<?php echo esc_url($permalink); ?>">
-                    <img src="<?php echo esc_url($thumbnail); ?>" 
-                         alt="<?php echo esc_attr($thumbnail_alt); ?>" 
-                         loading="lazy">
+                    <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr($thumbnail_alt); ?>" loading="lazy">
                 </a>
             <?php endif; ?>
-            
+
             <?php if ($on_sale): ?>
                 <span class="lma_sale_badge">
                     SALE!
                 </span>
             <?php endif; ?>
-            
+
             <!-- Product Action Buttons -->
             <div class="product-actions">
-                <button class="action-btn" 
-                        title="<?php esc_attr_e('Quick View', 'load-more-ajax-lite'); ?>"
-                        data-product-id="<?php echo esc_attr($product_id); ?>">
+                <button class="action-btn" title="<?php esc_attr_e('Quick View', 'load-more-ajax'); ?>"
+                    data-product-id="<?php echo esc_attr($product_id); ?>">
                     <i class="fas fa-eye"></i>
                 </button>
-                <button class="action-btn" 
-                        title="<?php esc_attr_e('Add to Wishlist', 'load-more-ajax-lite'); ?>"
-                        data-product-id="<?php echo esc_attr($product_id); ?>">
+                <button class="action-btn" title="<?php esc_attr_e('Add to Wishlist', 'load-more-ajax'); ?>"
+                    data-product-id="<?php echo esc_attr($product_id); ?>">
                     <i class="fas fa-heart"></i>
                 </button>
-                <button class="action-btn" 
-                        title="<?php esc_attr_e('Compare', 'load-more-ajax-lite'); ?>"
-                        data-product-id="<?php echo esc_attr($product_id); ?>">
+                <button class="action-btn" title="<?php esc_attr_e('Compare', 'load-more-ajax'); ?>"
+                    data-product-id="<?php echo esc_attr($product_id); ?>">
                     <i class="fas fa-exchange-alt"></i>
                 </button>
             </div>
         </div>
-        
+
         <div class="lma_product_content">
             <?php if ($categories): ?>
                 <div class="lma_product_categories">
                     <?php echo wp_kses_post($categories); ?>
                 </div>
             <?php endif; ?>
-            
+
             <div class="lma_product_title">
                 <a href="<?php echo esc_url($permalink); ?>">
                     <?php echo esc_html($title); ?>
                 </a>
             </div>
-            
+
             <?php if ($rating): ?>
                 <div class="lma_product_rating">
                     <?php echo wp_kses_post($rating); ?>
@@ -99,7 +94,7 @@ foreach ($products as $product) {
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-            
+
             <?php if ($regular_price || $sale_price): ?>
                 <div class="lma_product_price">
                     <?php if ($on_sale && $regular_price && $sale_price): ?>
@@ -110,7 +105,7 @@ foreach ($products as $product) {
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-            
+
             <?php if ($add_to_cart): ?>
                 <div class="lma_product_cart">
                     <?php echo wp_kses_post($add_to_cart); ?>
@@ -118,6 +113,6 @@ foreach ($products as $product) {
             <?php endif; ?>
         </div>
     </div>
-    
+
     <?php
 }

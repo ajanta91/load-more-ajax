@@ -11,20 +11,21 @@
  * Author URI:        https://wpnonce.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       load-more-ajax-lite
+ * Text Domain:       load-more-ajax
  * Domain Path:       /languages
  */
 
-if ( ! defined( 'ABSPATH' ) )
-    die( '-1' );
+if (!defined('ABSPATH'))
+    die('-1');
 
-if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
+if (!class_exists('Load_More_Ajax_Lite')) {
     /**
      * Main class of this plugin
      */
-    final class Load_More_Ajax_Lite {
+    final class Load_More_Ajax_Lite
+    {
 
-        const  VERSION = '2.0';
+        const VERSION = '2.0';
 
         /**
          * Minimum PHP Version
@@ -36,7 +37,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @var string Minimum PHP version required to run the plugin.
          */
-        const  MINIMUM_PHP_VERSION = '7.4';
+        const MINIMUM_PHP_VERSION = '7.4';
 
         /**
          * Minimum Elementor Version
@@ -50,7 +51,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         const MINIMUM_ELEMENTOR_VERSION = '3.3.0';
 
 
-        
+
         /**
          * The loader that's responsible for maintaining and registering all hooks that power
          * the plugin.
@@ -61,7 +62,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          */
         protected $loader;
 
-                
+
 
         /**
          * Clone
@@ -74,9 +75,10 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          * @access protected
          *
          */
-        public function __clone() {
+        public function __clone()
+        {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax-lite'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax'), '2.0.0');
         }
 
         /**
@@ -90,11 +92,12 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          * @access protected
          *
          */
-        public function __wakeup() {
+        public function __wakeup()
+        {
             // Unserializing instances of the class is forbidden.
-            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax-lite'), '2.0.0');
+            _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'load-more-ajax'), '2.0.0');
         }
-  
+
 
         /**
          * Constructor
@@ -105,17 +108,18 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        private function __construct() {
+        private function __construct()
+        {
 
             $this->define_constants();
 
-            register_activation_hook( __FILE__, [ $this, 'activate_info' ] );
+            register_activation_hook(__FILE__, [$this, 'activate_info']);
 
             $this->init_hooks();
 
             $this->core_includes();
 
-            
+
         }
 
         /**
@@ -130,11 +134,12 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          * @static
          *
          */
-        public static function instance() {
+        public static function instance()
+        {
 
             static $instance = false;
 
-            if ( ! $instance ) {
+            if (!$instance) {
                 $instance = new self();
             }
 
@@ -144,25 +149,27 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         /**
          * Define Some Constants
          */
-        public function define_constants() {
-            define( 'LOAD_MORE_AJAX_LITE_VERSION', self::VERSION );
-            define( 'LOAD_MORE_AJAX_LITE_FILE', __FILE__ );
-            define( 'LOAD_MORE_AJAX_LITE_PATH', __DIR__ );
-            define( 'LOAD_MORE_AJAX_LITE_URL', plugins_url( '', LOAD_MORE_AJAX_LITE_FILE ) );
-            define( 'LOAD_MORE_AJAX_LITE_ASSETS', LOAD_MORE_AJAX_LITE_URL . '/assets' );
+        public function define_constants()
+        {
+            define('LOAD_MORE_AJAX_LITE_VERSION', self::VERSION);
+            define('LOAD_MORE_AJAX_LITE_FILE', __FILE__);
+            define('LOAD_MORE_AJAX_LITE_PATH', __DIR__);
+            define('LOAD_MORE_AJAX_LITE_URL', plugins_url('', LOAD_MORE_AJAX_LITE_FILE));
+            define('LOAD_MORE_AJAX_LITE_ASSETS', LOAD_MORE_AJAX_LITE_URL . '/assets');
         }
 
         /**
          * activate_info
          */
-        public function activate_info() {
+        public function activate_info()
+        {
             $installed = get_option('load_more_ajax_lite_installed');
 
-            if ( ! $installed ) {
-                update_option( 'load_more_ajax_lite_installed', time() );
+            if (!$installed) {
+                update_option('load_more_ajax_lite_installed', time());
             }
 
-            update_option( 'load_more_ajax_lite_version', LOAD_MORE_AJAX_LITE_VERSION );
+            update_option('load_more_ajax_lite_version', LOAD_MORE_AJAX_LITE_VERSION);
 
 
 
@@ -170,7 +177,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
 
-            
+
             // SQL query to create table
             $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 id INT NOT NULL AUTO_INCREMENT,
@@ -217,7 +224,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        public function core_includes() {
+        public function core_includes()
+        {
             // Core classes
             require_once __DIR__ . '/inc/class-security.php';
             require_once __DIR__ . '/inc/class-cache.php';
@@ -231,7 +239,7 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
 
             // WooCommerce integration
             // Load WooCommerce functions after all plugins are loaded
-            add_action('plugins_loaded', [ $this, 'load_woocommerce_integration' ], 20);
+            add_action('plugins_loaded', [$this, 'load_woocommerce_integration'], 20);
 
             // Simple Ajax handler for testing
             // require_once __DIR__ . '/simple-ajax.php';
@@ -246,9 +254,10 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access private
          */
-        private function init_hooks() {
-            add_action( 'init', [ $this, 'i18n' ] );
-            add_action( 'plugins_loaded', [ $this, 'init' ] );
+        private function init_hooks()
+        {
+            add_action('init', [$this, 'i18n']);
+            add_action('plugins_loaded', [$this, 'init']);
         }
 
         /**
@@ -258,8 +267,9 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        public function i18n() {
-            load_plugin_textdomain( 'load-more-ajax-lite', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+        public function i18n()
+        {
+            load_plugin_textdomain('load-more-ajax', false, plugin_basename(dirname(__FILE__)) . '/languages');
         }
 
 
@@ -270,18 +280,19 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        public function init() {
+        public function init()
+        {
             // Check for required PHP version
-            if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-                add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+            if (version_compare(PHP_VERSION, self::MINIMUM_PHP_VERSION, '<')) {
+                add_action('admin_notices', [$this, 'admin_notice_minimum_php_version']);
                 return;
             }
 
             // enqueue scripts
-            add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-            add_action('admin_enqueue_scripts', [ $this, 'lmal_admin_enqueue_scripts'] );
+            add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+            add_action('admin_enqueue_scripts', [$this, 'lmal_admin_enqueue_scripts']);
 
-            add_action('elementor/editor/after_enqueue_scripts', function() {
+            add_action('elementor/editor/after_enqueue_scripts', function () {
                 wp_enqueue_script(
                     'lma-elementor-editor',
                     LOAD_MORE_AJAX_LITE_ASSETS . '/js/lma-elementor-editor.js',
@@ -295,19 +306,19 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             });
 
             // Cache management hooks
-            add_action('save_post', [ $this, 'clear_post_cache' ]);
-            add_action('delete_post', [ $this, 'clear_post_cache' ]);
-            add_action('created_term', [ $this, 'clear_terms_cache' ], 10, 3);
-            add_action('edited_term', [ $this, 'clear_terms_cache' ], 10, 3);
-            add_action('delete_term', [ $this, 'clear_terms_cache' ], 10, 3);
-            
+            add_action('save_post', [$this, 'clear_post_cache']);
+            add_action('delete_post', [$this, 'clear_post_cache']);
+            add_action('created_term', [$this, 'clear_terms_cache'], 10, 3);
+            add_action('edited_term', [$this, 'clear_terms_cache'], 10, 3);
+            add_action('delete_term', [$this, 'clear_terms_cache'], 10, 3);
+
             // Admin bar cache clear button
-            add_action('admin_bar_menu', [ $this, 'add_admin_bar_cache_clear' ], 100);
-            add_action('wp_ajax_lma_clear_cache', [ $this, 'ajax_clear_cache' ]);
-            
+            add_action('admin_bar_menu', [$this, 'add_admin_bar_cache_clear'], 100);
+            add_action('wp_ajax_lma_clear_cache', [$this, 'ajax_clear_cache']);
+
             // Warm cache on plugin activation
-            add_action('init', [ $this, 'maybe_warm_cache' ]);
-            
+            add_action('init', [$this, 'maybe_warm_cache']);
+
         }
 
         /**
@@ -317,34 +328,35 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          *
          * @access public
          */
-        public function load_woocommerce_integration() {
+        public function load_woocommerce_integration()
+        {
             if (class_exists('WooCommerce')) {
                 require_once __DIR__ . '/inc/woocommerce-functions.php';
-                
+
                 // Enqueue WooCommerce scripts on pages that might need them
-                add_action('wp_enqueue_scripts', function() {
+                add_action('wp_enqueue_scripts', function () {
                     // Check if we should load WooCommerce scripts
                     global $post;
                     $should_load = false;
-                    
+
                     // Load on shop pages
                     if (function_exists('is_shop') && (is_shop() || is_product_category() || is_product_tag() || is_product())) {
                         $should_load = true;
                     }
-                    
+
                     // Load if page content contains lma_products_block class
                     if ($post && is_object($post) && strpos($post->post_content, 'lma_products_block') !== false) {
                         $should_load = true;
                     }
-                    
+
                     // Load if page content contains woocommerce-related shortcodes or elementor widgets
                     if ($post && is_object($post) && (strpos($post->post_content, 'lma-products') !== false || strpos($post->post_content, 'product') !== false)) {
                         $should_load = true;
                     }
-                    
+
                     // Allow filtering
                     $should_load = apply_filters('lma_should_load_woocommerce_scripts', $should_load);
-                    
+
                     if ($should_load) {
                         wp_enqueue_style('lma-woocommerce');
                         wp_enqueue_script('lma-woocommerce-js');
@@ -356,7 +368,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         /**
          * Clear post-related cache
          */
-        public function clear_post_cache($post_id) {
+        public function clear_post_cache($post_id)
+        {
             $post = get_post($post_id);
             if ($post && class_exists('LMA_Cache')) {
                 LMA_Cache::clear_cache_by_type('posts');
@@ -371,7 +384,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
          * @param int    $tt_id    Term taxonomy ID (required by WordPress hook, not used)
          * @param string $taxonomy Taxonomy slug (required by WordPress hook, not used)
          */
-        public function clear_terms_cache($term_id, $tt_id, $taxonomy) {
+        public function clear_terms_cache($term_id, $tt_id, $taxonomy)
+        {
             // Parameters are required by WordPress hooks but not used in this implementation
             // We clear all cache by type instead of specific terms
             if (class_exists('LMA_Cache')) {
@@ -384,14 +398,15 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         /**
          * Add cache clear button to admin bar
          */
-        public function add_admin_bar_cache_clear($wp_admin_bar) {
+        public function add_admin_bar_cache_clear($wp_admin_bar)
+        {
             if (!current_user_can('manage_options')) {
                 return;
             }
 
             $wp_admin_bar->add_node(array(
                 'id' => 'lma-clear-cache',
-                'title' => '<span class="ab-icon dashicons-update"></span> ' . esc_html__('Clear LMA Cache', 'load-more-ajax-lite'),
+                'title' => '<span class="ab-icon dashicons-update"></span> ' . esc_html__('Clear LMA Cache', 'load-more-ajax'),
                 'href' => wp_nonce_url(admin_url('admin-ajax.php?action=lma_clear_cache'), 'lma_clear_cache'),
                 'meta' => array(
                     'class' => 'lma-clear-cache-btn',
@@ -402,14 +417,15 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         /**
          * Ajax handler for cache clearing
          */
-        public function ajax_clear_cache() {
+        public function ajax_clear_cache()
+        {
             if (!current_user_can('manage_options')) {
-                wp_die(esc_html__('Unauthorized', 'load-more-ajax-lite'));
+                wp_die(esc_html__('Unauthorized', 'load-more-ajax'));
             }
 
             // Check if nonce exists and verify it
             if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'lma_clear_cache')) {
-                wp_die(esc_html__('Invalid nonce', 'load-more-ajax-lite'));
+                wp_die(esc_html__('Invalid nonce', 'load-more-ajax'));
             }
 
             if (class_exists('LMA_Cache')) {
@@ -423,7 +439,8 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         /**
          * Maybe warm cache on first load
          */
-        public function maybe_warm_cache() {
+        public function maybe_warm_cache()
+        {
             $warmed = get_option('lma_cache_warmed', false);
             if (!$warmed) {
                 // Delay cache warming to avoid blocking initial requests
@@ -433,13 +450,14 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
         }
 
 
-        public function loadmoreajax_get_font_url() {
+        public function loadmoreajax_get_font_url()
+        {
             $fonts_url = '';
             /* Translators: If there are characters in your language that are not
-            * supported by Libre Franklin, translate this to 'off'. Do not translate
-            * into your own language.
-            */
-            $Poppins = _x('on', 'Poppins font: on or off', 'load-more-ajax-lite');
+             * supported by Libre Franklin, translate this to 'off'. Do not translate
+             * into your own language.
+             */
+            $Poppins = _x('on', 'Poppins font: on or off', 'load-more-ajax');
 
             if ('off' !== $Poppins) {
                 $font_families = array();
@@ -457,88 +475,91 @@ if ( ! class_exists( 'Load_More_Ajax_Lite' ) ) {
             return esc_url_raw($fonts_url);
         }
 
-        public function enqueue_scripts() {
+        public function enqueue_scripts()
+        {
             $font_url = $this->loadmoreajax_get_font_url();
-            if ( !empty( $font_url ) ){
-                wp_enqueue_style('loadmoreajax-fonts', esc_url_raw( $font_url ), array(), null);
+            if (!empty($font_url)) {
+                wp_enqueue_style('loadmoreajax-fonts', esc_url_raw($font_url), array(), null);
             }
 
-            wp_register_style( 'load-more-ajax-lite', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'load-more-ajax-lite-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'load-more-ajax-lite-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'lma-modern-layout', plugins_url('assets/css/modern-layout.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'load-more-ajax-lite-s4', plugins_url('assets/css/load-more-ajax-lite-s4.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'load-more-ajax-lite-s5', plugins_url('assets/css/load-more-ajax-lite-s5.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
-            wp_register_style( 'lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.css', __FILE__ ), array(), '11.2.6' );
-            wp_enqueue_style( 'fontawesome', plugins_url( 'assets/css/all.min.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+            wp_register_style('load-more-ajax', plugins_url('assets/css/load-more-ajax.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s2', plugins_url('assets/css/load-more-ajax-s2.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s3', plugins_url('assets/css/load-more-ajax-s3.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('lma-modern-layout', plugins_url('assets/css/modern-layout.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s4', plugins_url('assets/css/load-more-ajax-s4.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s5', plugins_url('assets/css/load-more-ajax-s5.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.css', __FILE__), array(), '11.2.6');
+            wp_enqueue_style('fontawesome', plugins_url('assets/css/all.min.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
 
             // WooCommerce styles
             if (class_exists('WooCommerce')) {
-                wp_register_style( 'lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION );
+                wp_register_style('lma-woocommerce', plugins_url('assets/css/woocommerce.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
             }
 
-            wp_register_script( 'load-more-ajax-lite', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__ ), array(), LOAD_MORE_AJAX_LITE_VERSION, true );
+            wp_register_script('load-more-ajax', plugins_url('assets/js/load-more-ajax-modern.js', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION, true);
             // masonry and imagesloaded use WordPress core bundled versions
             // Registered as aliases so existing lma-masonry/lma-imagesloaded handles still work
-            wp_register_script( 'lma-masonry', '', array('masonry'), LOAD_MORE_AJAX_LITE_VERSION, true );
-            wp_register_script( 'lma-imagesloaded', '', array('imagesloaded'), LOAD_MORE_AJAX_LITE_VERSION, true );
-            wp_register_script( 'lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.js', __FILE__ ), array(), '11.2.6', true );
+            wp_register_script('lma-masonry', '', array('masonry'), LOAD_MORE_AJAX_LITE_VERSION, true);
+            wp_register_script('lma-imagesloaded', '', array('imagesloaded'), LOAD_MORE_AJAX_LITE_VERSION, true);
+            wp_register_script('lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.js', __FILE__), array(), '11.2.6', true);
 
             // WooCommerce JavaScript (Modern ES6)
             if (class_exists('WooCommerce')) {
-                wp_register_script( 'lma-woocommerce-js', plugins_url('assets/js/woocommerce.js', __FILE__ ), array('load-more-ajax-lite'), LOAD_MORE_AJAX_LITE_VERSION, true );
-                
+                wp_register_script('lma-woocommerce-js', plugins_url('assets/js/woocommerce.js', __FILE__), array('load-more-ajax'), LOAD_MORE_AJAX_LITE_VERSION, true);
+
                 // Also localize the WooCommerce script in case it loads independently
-                wp_localize_script( 'lma-woocommerce-js', 'load_more_ajax_lite', array(
+                wp_localize_script('lma-woocommerce-js', 'load_more_ajax_lite', array(
                     'ajax_url' => admin_url('admin-ajax.php'),
                     'nonce' => wp_create_nonce('load_more_ajax_nonce'),
                     'strings' => array(
-                        'loading' => esc_html__('Loading...', 'load-more-ajax-lite'),
-                        'load_more' => esc_html__('Load More Products', 'load-more-ajax-lite'),
-                        'no_more' => esc_html__('No More Products', 'load-more-ajax-lite'),
-                        'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax-lite'),
-                        'search_placeholder' => esc_html__('Search products...', 'load-more-ajax-lite'),
-                        'no_results' => esc_html__('No products found.', 'load-more-ajax-lite'),
+                        'loading' => esc_html__('Loading...', 'load-more-ajax'),
+                        'load_more' => esc_html__('Load More Products', 'load-more-ajax'),
+                        'no_more' => esc_html__('No More Products', 'load-more-ajax'),
+                        'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax'),
+                        'search_placeholder' => esc_html__('Search products...', 'load-more-ajax'),
+                        'no_results' => esc_html__('No products found.', 'load-more-ajax'),
                     ),
                     'settings' => array(
                         'animation_duration' => apply_filters('lma_animation_duration', 300),
                         'scroll_threshold' => apply_filters('lma_scroll_threshold', 200),
                         'search_min_chars' => apply_filters('lma_search_min_chars', 3),
                     ),
-                ) );
+                ));
             }
 
-            wp_localize_script( 'load-more-ajax-lite', 'load_more_ajax_lite', array(
+            wp_localize_script('load-more-ajax', 'load_more_ajax_lite', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('load_more_ajax_nonce'),
                 'strings' => array(
-                    'loading' => esc_html__('Loading...', 'load-more-ajax-lite'),
-                    'load_more' => esc_html__('Load More', 'load-more-ajax-lite'),
-                    'no_more' => esc_html__('No More Posts', 'load-more-ajax-lite'),
-                    'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax-lite'),
-                    'search_placeholder' => esc_html__('Search posts...', 'load-more-ajax-lite'),
-                    'no_results' => esc_html__('No posts found.', 'load-more-ajax-lite'),
+                    'loading' => esc_html__('Loading...', 'load-more-ajax'),
+                    'load_more' => esc_html__('Load More', 'load-more-ajax'),
+                    'no_more' => esc_html__('No More Posts', 'load-more-ajax'),
+                    'error' => esc_html__('Something went wrong. Please try again.', 'load-more-ajax'),
+                    'search_placeholder' => esc_html__('Search posts...', 'load-more-ajax'),
+                    'no_results' => esc_html__('No posts found.', 'load-more-ajax'),
                 ),
                 'settings' => array(
                     'animation_duration' => apply_filters('lma_animation_duration', 300),
                     'scroll_threshold' => apply_filters('lma_scroll_threshold', 200),
                     'search_min_chars' => apply_filters('lma_search_min_chars', 3),
                 ),
-            ) );
+            ));
 
         }
 
-        public function lmal_admin_enqueue_scripts(){
-            wp_enqueue_style('lmal-admin', plugins_url('/lib/admin/assets/css/admin.css', __FILE__) );
+        public function lmal_admin_enqueue_scripts()
+        {
+            wp_enqueue_style('lmal-admin', plugins_url('/lib/admin/assets/css/admin.css', __FILE__));
 
             wp_enqueue_script('lmal-admin', plugins_url('/lib/admin/assets/js/admin-script.js', __FILE__), array('jquery'), LOAD_MORE_AJAX_LITE_VERSION, true);
         }
     }
 }
 
-if ( ! function_exists( 'load_more_ajax_lite_load' ) ) {
+if (!function_exists('load_more_ajax_lite_load')) {
 
-    function load_more_ajax_lite_load() {
+    function load_more_ajax_lite_load()
+    {
         return Load_More_Ajax_Lite::instance();
     }
 
@@ -550,7 +571,8 @@ if ( ! function_exists( 'load_more_ajax_lite_load' ) ) {
  * Cache warming cron job
  */
 add_action('lma_warm_cache', 'lma_warm_cache_handler');
-function lma_warm_cache_handler() {
+function lma_warm_cache_handler()
+{
     if (class_exists('LMA_Cache')) {
         LMA_Cache::warm_cache();
     }
