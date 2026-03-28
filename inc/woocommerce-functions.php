@@ -357,7 +357,8 @@ function lma_load_products_ajax()
                 'block_style' => $block_style,
                 'limit' => $limit,
                 'showing' => sprintf(
-                    esc_html__('Showing %d-%d of %d products', 'load-more-ajax'),
+                    /* translators: 1: start index, 2: end index, 3: total number of products */
+                    esc_html__('Showing %1$d-%2$d of %3$d products', 'load-more-ajax'),
                     (($order - 1) * $limit) + 1,
                     min($order * $limit, $query->found_posts),
                     $query->found_posts

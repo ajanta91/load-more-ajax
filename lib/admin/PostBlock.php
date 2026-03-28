@@ -45,9 +45,7 @@ class PostBlock {
         $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
 
         if ($wpdb->get_var("SHOW TABLES LIKE '{$table_name}'") == $table_name) {
-            $query = "SELECT * FROM $table_name WHERE id='$block_id'";
-
-            $results = $wpdb->get_results($query);
+            $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE id=%d", $block_id));
             $resultRows = $wpdb->num_rows;
             if ($results && $resultRows > 0) {
                 return (array) $results[0];

@@ -271,7 +271,7 @@ $is_edit = true;
                         <label><?php esc_html_e('Slides Per View', 'load-more-ajax'); ?></label>
                         <select name="slides_per_view">
                             <?php for ($i = 1; $i <= 4; $i++): ?>
-                                <option value="<?php echo $i; ?>" <?php selected($block_data['slides_per_view'] ?? 3, $i); ?>><?php echo $i; ?></option>
+                                <option value="<?php echo absint($i); ?>" <?php selected($block_data['slides_per_view'] ?? 3, $i); ?>><?php echo absint($i); ?></option>
                             <?php endfor; ?>
                         </select>
                     </div>

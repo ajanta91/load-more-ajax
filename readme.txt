@@ -2,7 +2,7 @@
 Contributors: ajantawpdev
 Tags: load more, ajax pagination, infinite scroll, post filter, elementor widget
 Requires at least: 5.2
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 2.0
 Requires PHP: 7.4
 License: GPLv2 or later

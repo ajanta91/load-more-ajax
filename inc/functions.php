@@ -63,7 +63,7 @@ function load_more_ajax_lite_estimated_reading_time($post_id)
 {
 
     $the_content = get_the_content('', '', $post_id);
-    $words = str_word_count(strip_tags($the_content));
+    $words = str_word_count(wp_strip_all_tags($the_content));
 
     $minute = floor($words / 200);
     $min = 1 <= $minute ? $minute . esc_html__(' min', 'load-more-ajax') : '';
@@ -265,7 +265,8 @@ function load_more_ajax_lite_with_cat_filter()
                 'limit' => $limit,
                 'post_type' => $posttype,
                 'showing' => sprintf(
-                    esc_html__('Showing %d-%d of %d posts', 'load-more-ajax'),
+                    /* translators: 1: start index, 2: end index, 3: total number of posts */
+                    esc_html__('Showing %1$d-%2$d of %3$d posts', 'load-more-ajax'),
                     (($order - 1) * $limit) + 1,
                     min($order * $limit, $query->found_posts),
                     $query->found_posts

@@ -75,7 +75,7 @@ class AdminMenu
         $column = isset($_POST['column']) ? intval($_POST['column']) : '';
         $created_by = isset($_POST['created_by']) ? intval($_POST['created_by']) : '';
         $currentTimes = time();
-        $created_time = date("Y-m-d H:i:s", $currentTimes);
+        $created_time = gmdate("Y-m-d H:i:s", $currentTimes);
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'load_more_post_shortcode_list';
@@ -129,9 +129,9 @@ class AdminMenu
      */
     function admin_menu_page()
     {
-        add_menu_page(__('Load More Ajax', 'textdomain'), __('Load More Ajax', 'textdomain'), 'manage_options', 'load_more_ajax', [$this, 'admin_menu_page_callback'], 'dashicons-hourglass', 6);
-        add_submenu_page('load_more_ajax', __('All Blocks', 'textdomain'), __('All Blocks', 'textdomain'), 'manage_options', 'load_more_ajax', [$this, 'admin_menu_page_callback']);
-        add_submenu_page('load_more_ajax', __('Settings', 'textdomain'), __('Settings', 'textdomain'), 'manage_options', 'settings', [$this, 'load_more_ajax_settings']);
+        add_menu_page(__('Load More Ajax', 'load-more-ajax'), __('Load More Ajax', 'load-more-ajax'), 'manage_options', 'load_more_ajax', [$this, 'admin_menu_page_callback'], 'dashicons-hourglass', 6);
+        add_submenu_page('load_more_ajax', __('All Blocks', 'load-more-ajax'), __('All Blocks', 'load-more-ajax'), 'manage_options', 'load_more_ajax', [$this, 'admin_menu_page_callback']);
+        add_submenu_page('load_more_ajax', __('Settings', 'load-more-ajax'), __('Settings', 'load-more-ajax'), 'manage_options', 'settings', [$this, 'load_more_ajax_settings']);
     }
 
     /**
@@ -283,13 +283,15 @@ class AdminMenu
                     <div class="lma-widget">
                         <h3><?php esc_html_e('Cache Statistics', 'load-more-ajax'); ?></h3>
                         <ul>
-                            <li><?php printf(esc_html__('Total Entries: %d', 'load-more-ajax'), $cache_stats['total_entries']); ?>
+                            <?php /* translators: %d: total number of cache entries */ ?>
+                            <li><?php printf(esc_html__('Total Entries: %d', 'load-more-ajax'), absint($cache_stats['total_entries'])); ?>
                             </li>
-                            <li><?php printf(esc_html__('Cache Size: %s', 'load-more-ajax'), $cache_stats['human_size']); ?>
+                            <?php /* translators: %s: human-readable cache size */ ?>
+                            <li><?php printf(esc_html__('Cache Size: %s', 'load-more-ajax'), esc_html($cache_stats['human_size'])); ?>
                             </li>
                         </ul>
                         <p>
-                            <a href="<?php echo wp_nonce_url(admin_url('admin-ajax.php?action=lma_clear_cache'), 'lma_clear_cache'); ?>"
+                            <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin-ajax.php?action=lma_clear_cache'), 'lma_clear_cache')); ?>"
                                 class="button">
                                 <?php esc_html_e('Clear Cache', 'load-more-ajax'); ?>
                             </a>
@@ -299,13 +301,13 @@ class AdminMenu
                     <div class="lma-widget">
                         <h3><?php esc_html_e('Quick Actions', 'load-more-ajax'); ?></h3>
                         <p>
-                            <a href="<?php echo admin_url('admin.php?page=load_more_ajax&action=new'); ?>"
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=load_more_ajax&action=new')); ?>"
                                 class="button button-primary">
                                 <?php esc_html_e('Create New Block', 'load-more-ajax'); ?>
                             </a>
                         </p>
                         <p>
-                            <a href="<?php echo home_url('/wp-json/load-more-ajax/v1/posts'); ?>" target="_blank"
+                            <a href="<?php echo esc_url(home_url('/wp-json/load-more-ajax/v1/posts')); ?>" target="_blank"
                                 class="button">
                                 <?php esc_html_e('View API Docs', 'load-more-ajax'); ?>
                             </a>
@@ -315,9 +317,12 @@ class AdminMenu
                     <div class="lma-widget">
                         <h3><?php esc_html_e('Plugin Info', 'load-more-ajax'); ?></h3>
                         <ul>
-                            <li><?php printf(esc_html__('Version: %s', 'load-more-ajax'), LOAD_MORE_AJAX_LITE_VERSION); ?></li>
-                            <li><?php printf(esc_html__('PHP Version: %s', 'load-more-ajax'), PHP_VERSION); ?></li>
-                            <li><?php printf(esc_html__('WordPress Version: %s', 'load-more-ajax'), get_bloginfo('version')); ?>
+                            <?php /* translators: %s: plugin version number */ ?>
+                            <li><?php printf(esc_html__('Version: %s', 'load-more-ajax'), esc_html(LOAD_MORE_AJAX_LITE_VERSION)); ?></li>
+                            <?php /* translators: %s: PHP version number */ ?>
+                            <li><?php printf(esc_html__('PHP Version: %s', 'load-more-ajax'), esc_html(PHP_VERSION)); ?></li>
+                            <?php /* translators: %s: WordPress version number */ ?>
+                            <li><?php printf(esc_html__('WordPress Version: %s', 'load-more-ajax'), esc_html(get_bloginfo('version'))); ?>
                             </li>
                         </ul>
                     </div>

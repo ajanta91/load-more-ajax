@@ -110,9 +110,12 @@ function load_more_ajax_lite_shortcode($atts)
         'data-show-count' => esc_attr($show_count),
     );
 
-    echo '<div class="' . esc_attr($block_classes) . '" ' . implode(' ', array_map(function ($key, $value) {
-        return $key . '="' . $value . '"';
-    }, array_keys($data_attributes), $data_attributes)) . '>';
+    $attr_string = '';
+    foreach ($data_attributes as $key => $value) {
+        $attr_string .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+    }
+    // All attributes are escaped individually above via esc_attr().
+    echo '<div class="' . esc_attr($block_classes) . '"' . $attr_string . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     $cat_item = !empty($taxonomy) ? $taxonomy : get_load_more_ajax_lite_taxonomi($posttype);
     if ($style != '5' && in_array($filter, array('true', '1', 'yes'), true) && !empty($cat_item)) { ?>
@@ -150,7 +153,7 @@ function load_more_ajax_lite_shortcode($atts)
     if ($style == '5') {
         $slider_attrs = ' data-slides_per_view="' . esc_attr($slides_per_view) . '" data-show_arrows="' . esc_attr($show_arrows) . '" data-show_dots="' . esc_attr($show_dots) . '" data-autoplay="' . esc_attr($autoplay) . '"';
     }
-    echo '<div class="ajaxpost_loader ' . esc_attr($wraper_class) . '" data-block_style="' . esc_attr($style) . '" data-column="' . esc_attr($wraper_class) . '" data-post_type="' . esc_attr($posttype) . '" data-taxonomy="' . esc_attr($cat_item) . '" data-text_limit="' . esc_attr($text_limit) . '" data-title_limit="' . esc_attr($title_limit) . '" data-order="1" data-limit="' . esc_attr($limit) . '" data-cate=""' . $slider_attrs . '></div>';
+    echo '<div class="ajaxpost_loader ' . esc_attr($wraper_class) . '" data-block_style="' . esc_attr($style) . '" data-column="' . esc_attr($wraper_class) . '" data-post_type="' . esc_attr($posttype) . '" data-taxonomy="' . esc_attr($cat_item) . '" data-text_limit="' . esc_attr($text_limit) . '" data-title_limit="' . esc_attr($title_limit) . '" data-order="1" data-limit="' . esc_attr($limit) . '" data-cate=""' . wp_kses_post($slider_attrs) . '></div>';
     if ($style != '5') {
         echo '<div class="load_more_wrapper"><button class="loadmore_ajax" type="button" >' . esc_html__('Load More', 'load-more-ajax') . '</button></div>';
     }
