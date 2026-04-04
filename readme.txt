@@ -1,6 +1,6 @@
-=== Load More Ajax Lite ===
+=== Load More Ajax – Infinite Scroll & Pagination ===
 Contributors: ajantawpdev
-Tags: load more, ajax pagination, infinite scroll, post filter, elementor widget
+Tags: load more ajax, ajax load more, infinite scroll, ajax pagination, load more posts, wordpress ajax plugin, woocommerce load more, dynamic content loading, pagination ajax, load more button
 Requires at least: 5.2
 Tested up to: 6.9
 Stable tag: 2.0
@@ -8,11 +8,53 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced Ajax post loading with 5 layouts, custom post type support, Elementor widget, infinite scroll, search, filtering, and modern performance optimizations.
+Load more posts with AJAX in WordPress. Add infinite scroll, load more button, and AJAX pagination without page reload.
 
 == Description ==
 
-**Load More Ajax Lite** is a powerful, feature-rich WordPress plugin that transforms your post listings with modern Ajax functionality. Create stunning, fast-loading blog pages with infinite scroll, real-time search, advanced filtering, and intelligent caching.
+**Load More Ajax – Infinite Scroll & Pagination** is a powerful and lightweight WordPress plugin that allows you to dynamically load posts, pages, WooCommerce products, and custom post types without refreshing the page.
+
+Improve user experience and increase engagement using AJAX-powered content loading.
+
+🚀 **Key Features**
+
+* AJAX Load More Posts
+* Infinite Scroll Support
+* Load More Button Pagination
+* AJAX Pagination for WordPress
+* Works with WooCommerce Products
+* Supports Custom Post Types
+* Lightweight & Fast
+* Easy Integration
+* Developer Friendly
+
+🎯 **Why Use This Plugin?**
+Traditional pagination reloads the page and interrupts user experience. This plugin replaces it with smooth AJAX-based loading.
+
+* Faster browsing experience
+* Better engagement
+* Reduced bounce rate
+* Modern UX similar to social media platforms
+
+📌 **Use Cases**
+
+* Blog post pagination
+* News websites
+* WooCommerce product loading
+* Portfolio grids
+* Magazine layouts
+
+⚙️ **How It Works**
+The plugin uses AJAX to fetch and display content dynamically when users click the "Load More" button or scroll down the page.
+
+No page reload. No interruption.
+
+🔥 **SEO & Performance Friendly**
+
+* Does not affect SEO structure
+* Lightweight script
+* Optimized for performance
+
 
 ### Key Features ###
 
@@ -115,6 +157,12 @@ Yes, in the Elementor widget you get full styling controls for arrows (size, col
 
 = Does it work with the block editor (Gutenberg)? =
 Currently the plugin uses shortcodes and an Elementor widget. Gutenberg block support is planned for a future release.
+
+= Does this plugin support infinite scroll? =
+Yes, you can enable infinite scroll to automatically load posts when users scroll.
+
+= Is the plugin SEO friendly? =
+Yes, it uses proper AJAX pagination that doesn't affect SEO.
 
 == Installation ==
 

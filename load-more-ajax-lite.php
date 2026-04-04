@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Plugin Name:       Load More Ajax Lite
+ * Plugin Name:       Load More Ajax – Infinite Scroll & Pagination
  * Plugin URI:        https://plugins.wpnonce.com/load-more-ajax/
- * Description:       Load More Ajax Lite is WordPress posts and custom post type posts ajax load more and ajax category filter.
- * Version:           2.0
+ * Description:       Load posts with AJAX in WordPress using a load more button or infinite scroll. Supports custom post types, taxonomy filtering, Elementor, and WooCommerce.
+ * Version:           2.1
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Ajanta Das
@@ -25,7 +25,7 @@ if (!class_exists('Load_More_Ajax_Lite')) {
     final class Load_More_Ajax_Lite
     {
 
-        const VERSION = '2.0';
+        const VERSION = '2.1';
 
         /**
          * Minimum PHP Version
