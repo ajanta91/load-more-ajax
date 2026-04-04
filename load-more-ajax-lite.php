@@ -482,12 +482,12 @@ if (!class_exists('Load_More_Ajax_Lite')) {
                 wp_enqueue_style('loadmoreajax-fonts', esc_url_raw($font_url), array(), null);
             }
 
-            wp_register_style('load-more-ajax', plugins_url('assets/css/load-more-ajax.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
-            wp_register_style('load-more-ajax-s2', plugins_url('assets/css/load-more-ajax-s2.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
-            wp_register_style('load-more-ajax-s3', plugins_url('assets/css/load-more-ajax-s3.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax', plugins_url('assets/css/load-more-ajax-lite.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s2', plugins_url('assets/css/load-more-ajax-lite-s2.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s3', plugins_url('assets/css/load-more-ajax-lite-s3.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
             wp_register_style('lma-modern-layout', plugins_url('assets/css/modern-layout.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
-            wp_register_style('load-more-ajax-s4', plugins_url('assets/css/load-more-ajax-s4.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
-            wp_register_style('load-more-ajax-s5', plugins_url('assets/css/load-more-ajax-s5.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s4', plugins_url('assets/css/load-more-ajax-lite-s4.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
+            wp_register_style('load-more-ajax-s5', plugins_url('assets/css/load-more-ajax-lite-s5.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
             wp_register_style('lma-swiper', plugins_url('assets/vendor/swiper-bundle.min.css', __FILE__), array(), '11.2.6');
             wp_enqueue_style('fontawesome', plugins_url('assets/css/all.min.css', __FILE__), array(), LOAD_MORE_AJAX_LITE_VERSION);
 

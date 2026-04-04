@@ -3,7 +3,7 @@ Contributors: ajantawpdev
 Tags: load more ajax, ajax load more, infinite scroll, ajax pagination, load more posts, wordpress ajax plugin, woocommerce load more, dynamic content loading, pagination ajax, load more button
 Requires at least: 5.2
 Tested up to: 6.9
-Stable tag: 2.0
+Stable tag: 2.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -190,6 +190,10 @@ Yes, it uses proper AJAX pagination that doesn't affect SEO.
 7. Elementor Widget — Full layout and style controls
 
 == Changelog ==
+
+= 2.1 =
+* Fixed: CSS file path references corrected for all layout styles
+* Updated: Plugin name
 
 = 2.0 =
 * **New: Masonry Layout (Style 4)** — Pinterest-style staggered grid using Masonry.js
